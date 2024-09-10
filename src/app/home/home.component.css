@@ -1,0 +1,108 @@
+.contenedor .header-contenedor{
+    height: 80vh;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.43), rgba(0, 0, 0, 0.507)), url('../fondo2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 0px 20px;
+    
+}
+
+.header-contenedor-secundario {
+    display: flex;
+    height: 100%;
+}
+
+
+
+
+
+/* foto */
+
+.foto{
+    max-width: 1200px;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 50px;
+}
+
+
+.header-contenedor-secundario .foto img{
+    height: 80%;
+    object-fit: cover;
+}
+
+
+
+
+
+
+/* formulario */
+
+.contenedor-formulario{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-formulario .form{
+    width: 60%;
+    min-width: 350px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+}
+
+.contenedor-formulario .header-form{
+    color: white;
+    font-size: 30px;
+    
+}
+
+
+
+
+.eslogan{
+    margin-top: 20px;
+}
+.eslogan .p1{
+    font-size: 22px;
+}
+.eslogan .p2{
+    font-size: 35px;
+    font-weight: 700;
+}
+
+
+
+
+.inputs{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.inputs input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 18px;
+}
+
+
+
+
+
+.inputs button{
+    padding: 15px;
+    border-radius: 7px;
+    background-color: rgb(0, 82, 175);
+    border: none;
+    color: white;
+    font-size: 16px;
+}
