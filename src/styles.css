@@ -4,4 +4,6 @@
     padding: 0px;
     margin: 0px;
     font-family: "Roboto", system-ui;
+    list-style: none;
+    text-decoration: none;
 }

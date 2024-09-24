@@ -1,34 +1,657 @@
 <div class="contenedor">
     <header class="header-contenedor">
-        <div class="header-contenedor-secundario"> 
-            <div class="foto">
-                <img src="https://i.imgur.com/1aF2eY7.png" alt="">
+        <div class="header-contenedor-secundario">
+            <div class="nav">
+                <app-nav></app-nav>
             </div>
-    
-    
-            <div class="contenedor-formulario">
-                
-                <form class="form" action="">
-                    <div class="header-form">
-                        <div class="logo">
-                            <p>InmoYS</p>
-                        </div>
-                        <div class="eslogan">
-                            <p class="p1">Bienvenido</p>
-                            <p class="p2">A Tu Nueva Casa</p>
-                        </div>
+                <div class="header-tittle">
+                    <p>El mejor lugar <br> para encontrar tu hogar</p>
+                </div>
+                <div class="searchWrapper">
+                    <div class="search">
+                        <input type="text" placeholder="Buscar...">
                     </div>
-                    <div class="inputs">
-                        <input type="text">
-                        <input type="text">
-                        <input type="text">
-                        <input type="text">
-                        <input type="text">
-                        <button>Enviar</button>
+
+                    <div class="propertyType">
+                        <select id="tipoPropiedad" name="tipoPropiedad">
+                            <option value="" disabled selected>Tipo De Propiedad</option>
+                            <option value="piso">Piso</option>
+                            <option value="oficina">Oficina</option>
+                            <option value="edificio">Edificio</option>
+                            <option value="terreno">Terreno</option>
+                        </select>
                     </div>
-                </form>
-    
-            </div>
+
+                    <div class="transactionType">
+                        <select id="tipoTransaccion" name="tipoTransaccion">
+                            <option value="" disabled selected>Comprar O Alquilar</option>
+                            <option value="compra">Comprar</option>
+                            <option value="alquilar">Alquilar</option>
+                        </select>
+                    </div>
+                    <div class="buttonSearch">
+                        <button>BUSCAR</button>
+                    </div>
+                </div>
         </div>
     </header>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="properties">
+        <div class="header">
+            <p>Propiedades Disponibles</p>
+        </div>
+        <div class="filters">
+            <ul class="lista">
+                <li class="item">
+                    <img src="https://i.imgur.com/466gpFg.png" alt="">
+                    <p>Alquilar</p>
+                </li>
+                <li class="item">
+                    <img src="https://i.imgur.com/ybFBRp5.png" alt="">
+                    <p>Comprar</p>
+                </li>
+            </ul>
+        </div>
+        <div class="listProperties">
+            <div class="cardPropertie">
+                <div class="cardContent">
+                    <div class="imagen">
+                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                        <div class="overlay">
+                            <div class="transaction"><p>En Venta</p></div>
+                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="precio">100,000</p>
+                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    </div>
+                    <div class="footer">
+                        <p>Hab: 4</p>
+                        <p>Baños: 2</p>
+                        <p>M2: 150</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cardPropertie">
+                <div class="cardContent">
+                    <div class="imagen">
+                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                        <div class="overlay">
+                            <div class="transaction"><p>En Venta</p></div>
+                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="precio">100,000</p>
+                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    </div>
+                    <div class="footer">
+                        <p>Hab: 4</p>
+                        <p>Baños: 2</p>
+                        <p>M2: 150</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cardPropertie">
+                <div class="cardContent">
+                    <div class="imagen">
+                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                        <div class="overlay">
+                            <div class="transaction"><p>En Venta</p></div>
+                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="precio">100,000</p>
+                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    </div>
+                    <div class="footer">
+                        <p>Hab: 4</p>
+                        <p>Baños: 2</p>
+                        <p>M2: 150</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cardPropertie">
+                <div class="cardContent">
+                    <div class="imagen">
+                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                        <div class="overlay">
+                            <div class="transaction"><p>En Venta</p></div>
+                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="precio">100,000</p>
+                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    </div>
+                    <div class="footer">
+                        <p>Hab: 4</p>
+                        <p>Baños: 2</p>
+                        <p>M2: 150</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cardPropertie">
+                <div class="cardContent">
+                    <div class="imagen">
+                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                        <div class="overlay">
+                            <div class="transaction"><p>En Venta</p></div>
+                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="precio">100,000</p>
+                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    </div>
+                    <div class="footer">
+                        <p>Hab: 4</p>
+                        <p>Baños: 2</p>
+                        <p>M2: 150</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cardPropertie">
+                <div class="cardContent">
+                    <div class="imagen">
+                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                        <div class="overlay">
+                            <div class="transaction"><p>En Venta</p></div>
+                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="precio">100,000</p>
+                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    </div>
+                    <div class="footer">
+                        <p>Hab: 4</p>
+                        <p>Baños: 2</p>
+                        <p>M2: 150</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cardPropertie">
+                <div class="cardContent">
+                    <div class="imagen">
+                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                        <div class="overlay">
+                            <div class="transaction"><p>En Venta</p></div>
+                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="precio">100,000</p>
+                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    </div>
+                    <div class="footer">
+                        <p>Hab: 4</p>
+                        <p>Baños: 2</p>
+                        <p>M2: 150</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cardPropertie">
+                <div class="cardContent">
+                    <div class="imagen">
+                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                        <div class="overlay">
+                            <div class="transaction"><p>En Venta</p></div>
+                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <p class="precio">100,000</p>
+                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    </div>
+                    <div class="footer">
+                        <p>Hab: 4</p>
+                        <p>Baños: 2</p>
+                        <p>M2: 150</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-properties">
+            <button>Ver Mas Propiedades</button>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="services">
+        <div class="services-container">
+            <div class="left">
+                <h2>Ayudamos a nuestros clientes a vender, comprar o alquilar propiedades sin complicaciones.</h2>
+                <p>Gracias a su excepcional experiencia y conocimiento de los mercados de lujo frente al mar, Roland presta servicios a una amplia y selecta base de clientes de todo el mundo. Goza de una reputación de corredor tenaz.</p>
+                <ul>
+                    <li><img src="https://i.imgur.com/0RmqPmF.png" alt="Check"> Soporte disponible 24 horas al día, 7 días a la semana</li>
+                    <li><img src="https://i.imgur.com/0RmqPmF.png" alt="Check"> Nuestro apoyo legal experto</li>
+                    <li><img src="https://i.imgur.com/0RmqPmF.png" alt="Check"> Envío gratuito en nuestro sitio web</li>
+                    <li><img src="https://i.imgur.com/0RmqPmF.png" alt="Check"> Asistencia para préstamos hipotecarios por parte de nuestro personal</li>
+                </ul>
+                <button>Contáctanos hoy</button>
+            </div>
+    
+            <div class="center">
+                <div class="card">
+                    <div class="img"><img src="https://i.imgur.com/cMPvBzH.png" alt="Ícono de cámara"></div>
+                    <h3>Sesión de fotos gratis</h3>
+                    <p>Hacemos una evaluación gratuita para estar seguros de que quieres empezar a vender.</p>
+                    <a href="#">Leer más</a>
+                </div>
+            </div>
+    
+            <div class="right">
+                <div class="card">
+                    <div class="img"><img src="https://i.imgur.com/bl2m8SS.png" alt="Ícono de casa"></div>
+                    <h3>Vende tu casa</h3>
+                    <p>Hacemos una evaluación gratuita para estar seguros de que quieres empezar a vender.</p>
+                    <a href="#">Leer más</a>
+                </div>
+                <div class="card">
+                    <div class="img"><img src="https://i.imgur.com/dKcHDs1.png" alt="Ícono de apretón de manos"></div>
+                    <h3>Comprar una casa</h3>
+                    <p>Hacemos una evaluación gratuita para estar seguros de que quieres empezar a vender.</p>
+                    <a href="#">Leer más</a>
+                </div>
+            </div>
+        </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="featured-section">
+        
+        <div class="header">
+            <p class="title">Propiedades Destacadas</p>
+            <p class="paragraph">Con una atención incomparable a los detalles, una artesanía superior y comodidades deseables, cada propiedad destacada encarna el epítome de la vida de lujo.</p>
+        </div>
+        <div class="featured-properties-list">
+
+            <div class="featured-property-card">
+                <div class="image">
+                    <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                    <p class="price">1000,000</p>
+                </div>
+                <div class="content">
+                    <div class="photo-agent">
+                        <img src="https://i.imgur.com/1aF2eY7.png" alt="">
+                    </div>
+                    <div class="description">
+                        <p>Casa moderna en venta</p>
+                        <div class="caracteristicas">
+                            <p>Hab: 4</p>
+                            <p>Baños:2</p>
+                            <p>M2: 130</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+  
+            <div class="featured-property-card">
+                <div class="image">
+                    <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                    <p class="price">1000,000</p>
+                </div>
+                <div class="content">
+                    <div class="photo-agent">
+                        <img src="https://i.imgur.com/1aF2eY7.png" alt="">
+                    </div>
+                    <div class="description">
+                        <p>Casa moderna en venta</p>
+                        <div class="caracteristicas">
+                            <p>Hab: 4</p>
+                            <p>Baños:2</p>
+                            <p>M2: 130</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+
+        
+            <div class="featured-property-card">
+                <div class="image">
+                    <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                    <p class="price">1000,000</p>
+                </div>
+                <div class="content">
+                    <div class="photo-agent">
+                        <img src="https://i.imgur.com/1aF2eY7.png" alt="">
+                    </div>
+                    <div class="description">
+                        <p>Casa moderna en venta</p>
+                        <div class="caracteristicas">
+                            <p>Hab: 4</p>
+                            <p>Baños:2</p>
+                            <p>M2: 130</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="featured-property-card">
+                <div class="image">
+                    <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
+                    <p class="price">1000,000</p>
+                </div>
+                <div class="content">
+                    <div class="photo-agent">
+                        <img src="https://i.imgur.com/1aF2eY7.png" alt="">
+                    </div>
+                    <div class="description">
+                        <p>Casa moderna en venta</p>
+                        <div class="caracteristicas">
+                            <p>Hab: 4</p>
+                            <p>Baños:2</p>
+                            <p>M2: 130</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <section class="testimonials">
+        <h2>Testimonios</h2>
+        <div class="testimonials-container">
+
+            <div class="card-testimonial">
+                <div class="data-client">
+                    <div class="img">
+                        <img src="https://i.imgur.com/d345wpt.jpeg" alt="">
+                    </div>
+                    <div class="name-and-type">
+                        <p class="name">Nombre Cliente</p>
+                        <p class="type">Comprador feliz</p>
+                    </div>
+                </div>
+                <div class="text-testimonial">
+                    <p>Lorem,  consectetur fugit fugiat quisquam laborum istoluptatibus deleniti error in quo ullam!</p>
+                </div>
+                <div class="starts">
+                    <img src="https://i.imgur.com/s5CGNPX.png" alt="">
+                </div>
+            </div>
+
+
+            <div class="card-testimonial">
+                <div class="data-client">
+                    <div class="img">
+                        <img src="https://i.imgur.com/d345wpt.jpeg" alt="">
+                    </div>
+                    <div class="name-and-type">
+                        <p class="name">Nombre Cliente</p>
+                        <p class="type">Comprador feliz</p>
+                    </div>
+                </div>
+                <div class="text-testimonial">
+                    <p>Lorem,  consectetur fugit fugiat quisquam laborum istoluptatibus deleniti error in quo ullam!</p>
+                </div>
+                <div class="starts">
+                    <img src="https://i.imgur.com/s5CGNPX.png" alt="">
+                </div>
+            </div>
+
+
+            <div class="card-testimonial">
+                <div class="data-client">
+                    <div class="img">
+                        <img src="https://i.imgur.com/d345wpt.jpeg" alt="">
+                    </div>
+                    <div class="name-and-type">
+                        <p class="name">Nombre Cliente</p>
+                        <p class="type">Comprador feliz</p>
+                    </div>
+                </div>
+                <div class="text-testimonial">
+                    <p>Lorem,  consectetur fugit fugiat quisquam laborum istoluptatibus deleniti error in quo ullam!</p>
+                </div>
+                <div class="starts">
+                    <img src="https://i.imgur.com/s5CGNPX.png" alt="">
+                </div>
+            </div>
+
+
+            <div class="card-testimonial">
+                <div class="data-client">
+                    <div class="img">
+                        <img src="https://i.imgur.com/d345wpt.jpeg" alt="">
+                    </div>
+                    <div class="name-and-type">
+                        <p class="name">Nombre Cliente</p>
+                        <p class="type">Comprador feliz</p>
+                    </div>
+                </div>
+                <div class="text-testimonial">
+                    <p>Lorem,  consectetur fugit fugiat quisquam laborum istoluptatibus deleniti error in quo ullam!</p>
+                </div>
+                <div class="starts">
+                    <img src="https://i.imgur.com/s5CGNPX.png" alt="">
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+
+
+
+
+    <section class="contact">
+        <!-- <div class="svg-background">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="elementor-shape-fill" d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7
+                c23.6,2.1,48.7,3.5,103.4-2.5c54.7-6,106.2-25.6,106.2-25.6V0H0v30.3c0,0,72,32.6,158.4,30.5c39.2-0.7,92.8-6.7,134-22.4
+                c21.2-8.1,52.2-18.2,79.7-24.2C399.3,7.9,411.6,7.5,421.9,6.5z"></path>
+            </svg>
+        </div> -->
+        
+        <div class="container-contact">
+            
+            <div class="form">
+                <h2 class="title">Ponte en contacto conmigo para planificar tu próxima transacción inmobiliaria.</h2>
+                <p class="description">Completa el formulario a continuación y me pondré en contacto contigo lo antes posible.</p>
+                <div class="inputs">
+                    <div>
+                        <label for="nombre" class="label">Nombre:</label>
+                        <input type="text" id="nombre" class="input" placeholder="Nombre">
+                    </div>   
+                    <div>
+                        <label for="apellido" class="label">Apellido:</label>
+                        <input type="text" id="apellido" class="input" placeholder="Apellido">
+                    </div>
+                    
+                    <div>
+                        <label for="correo" class="label">Correo Electrónico:</label>
+                        <input type="email" id="correo" class="input" placeholder="Correo Electrónico">
+                    </div>
+                    
+                    <div>
+                       <label for="movil" class="label">Móvil:</label>
+                        <input type="tel" id="movil" class="input" placeholder="Móvil"> 
+                    </div>
+                    
+                    <div>
+                        <label for="mensaje" class="label">Mensaje:</label>
+                        <textarea name="mensaje" id="mensaje" class="input" placeholder="Escribe tu mensaje aquí"></textarea>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="photo">
+                <img src="https://i.imgur.com/itq0LHh.jpeg" alt="">
+            </div>
+        </div>
+    </section>
+    
+
+
+   
+
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="contacts">
+                <div class="logo">
+                    <p>inmoYS</p>
+                </div>
+                <div class="telefono">
+                    <img src="" alt="">
+                    <p><strong>Teléfono:</strong> <a href="tel:+34602451849"> +34 602451849</a></p>
+                </div>
+                
+                <div class="whatsapp">
+                    <img src="" alt="">
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/34602451849" target="_blank"> +34 602451849</a></p>
+                </div>
+                
+                <div class="email">
+                    <img src="" alt="">
+                    <p><strong>Email:</strong> <a href="mailto:ytrabajo@gmail.com"> ytrabajo&#64;gmail.com</a></p>
+                </div>
+                <div class="location">
+                    <img src="" alt="">
+                    <p><strong>Direccion:</strong> Calle Doctor Esquerdo 50, 28007, Madrid, Madrid</p>
+                </div>
+            </div>
+            <div class="webs">
+                <h3>InmoYS en Web</h3>
+                <ul>
+                    <a target="_blank" href="https://www.remaxconecta.es/"><li>Remax</li></a>
+                    <a target="_blank" href="https://www.idealista.com/pro/remax-conecta/"><li>Idealista</li></a>
+                </ul>
+            </div>
+            <div class="rentals">
+                <h3>Alquileres en Madrid</h3>
+                <p>Alquiler pisos Madrid</p>
+            </div>
+            <div class="sale">
+                <h3>Venta de casas, pisos y locales en Madrid</h3>
+                <p>Venta de pisos en Madrid</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

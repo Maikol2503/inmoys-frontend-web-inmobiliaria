@@ -1,38 +1,819 @@
+.contenedor{
+ background-color: #fbf9f6;
+}
+
+
 .contenedor .header-contenedor{
-    height: 80vh;
-    width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.43), rgba(0, 0, 0, 0.507)), url('../fondo2.jpg');
+    min-height: 700px;
+    max-width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.627), rgba(0, 0, 0, 0.255)), url('fondo2.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding: 0px 20px;
+    border-radius: 0px 0px 40px 40px;
+    background-attachment:fixed;
     
 }
 
 .header-contenedor-secundario {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1400px;
+    min-height: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+
+.nav{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    z-index: 1000;
+    
+}
+
+.searchSection{
+ width: 100%;
+ margin: 0 auto;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.header-tittle{
+    color: #FFFFFF;
+    font-family: "Italiana", Sans-serif;
+    font-size: 55px;
+    font-weight: 300;
+    line-height: 1.2em;
+    word-spacing: -4px;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.65);
+    text-align: center;
+}
+
+.header-tittle p{
+    font-family: "Italiana", sans-serif;
+}
+
+
+.searchWrapper{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid rgb(255, 255, 255); */
+    background-color: rgb(255, 255, 255);
+    border-radius: 55px;
+    overflow: hidden;
+
+}
+
+/* Agrupamos los estilos de ancho de los contenedores */
+.search, .propertyType, .transactionType, .buttonSearch {
+    display: inline-block; /* Para que estén alineados en una misma línea */
+    vertical-align: top;   /* Alineación vertical */
+}
+
+.search {
+    width: 40%;
+}
+
+.propertyType, .transactionType, .buttonSearch {
+    width: 20%;
+}
+
+/* Aplicamos width: 100% a los elementos hijos que lo necesitan */
+.search input, 
+.propertyType select, 
+.transactionType select, 
+.buttonSearch button {
+    width: 95%;
+    padding: 18px;
+    border:none;
+    background-color: rgba(240, 248, 255, 0);
+    
+}
+
+.search input, 
+.propertyType select, 
+.transactionType select:focus{
+    outline: none;
+    
+}
+
+
+.search input:focus {
+    outline: none;
+}
+
+
+.propertyType,
+.transactionType{
+    border-left: 1px solid rgb(242, 242, 242);
+}
+
+
+
+.buttonSearch button{
+    background-color: #94792F;
+    border: 1px solid #94792F;
     height: 100%;
+    width: 100%;
+    color: white;
 }
 
 
 
 
 
-/* foto */
 
-.foto{
-    max-width: 1200px;
+
+
+
+
+
+
+
+/* PROPERTIES */
+
+.properties {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.properties .header{
+    margin-top: 70px;
+    text-align: center;
+}
+
+.properties .header p{
+    font-family: "Italiana", sans-serif;
+    font-size: 45px;
+    color: #1B3942;
+    font-weight: 600;
+}
+
+.filters .lista {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.filters .lista .item{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   border-radius: 10px;
+}
+
+.filters .lista .item img{
+    width: 25px;
+    opacity: .7;
+}
+
+
+.filters .lista .item p{
+    margin-top: 7px;
+    font-size: 13px;
+    color: rgb(60, 60, 60);
+}
+
+
+.listProperties {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 30px; /* Espacio entre las tarjetas */
+    /* justify-content: flex-start; */
+    justify-content: center;
+}
+
+.cardPropertie {
+    flex: 0 1 calc(25% - 40px); /* Controla el comportamiento de flexbox */
+    min-width: 300px; /* Establece un ancho mínimo */
+    box-sizing: border-box;
+    float: left;
+}
+
+
+.cardContent{
+    width: 100%;
+}
+
+
+.cardPropertie .cardContent .imagen{
+    position: relative;
+}
+
+.cardPropertie .cardContent .overlay{
+    position: absolute;
+    width: 100%;
     height: 100%;
-    width: 50%;
+    top:0px;
+}
+
+
+.cardPropertie .cardContent .overlay .transaction{
+    position: absolute;
+    top:15px;
+    left: 15px;
+    background-color: #94792fd9;
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+
+.cardPropertie .cardContent .overlay .favorite{
+    position: absolute;
+    bottom:10px;
+    right:10px;
+}
+
+.cardPropertie .cardContent .overlay .photo-agent{
+    position: absolute;
+    bottom:15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    border: 2px solid white;
+    overflow: hidden;
+}
+
+.cardPropertie .cardContent .overlay .photo-agent .img-agent{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+   background-color: rgb(242, 242, 242);
+}
+
+
+
+
+
+
+.cardPropertie .cardContent .imagen .image-property{
+    border-radius: 15px;
+    width: 100%;
+    min-height: 350px;
+    object-fit: cover;
+}
+
+
+
+.cardContent .body .precio{
+    margin-top: 5px;
+   color: #94792f;
+   font-weight: 600;
+   font-size: 15px;
+}
+
+.cardContent .body .descripcion{
+    color: #1b3942;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 10px;
+ }
+
+ .cardContent .footer{
+    margin-top: 5px;
+    font-size: 13px;
+    color: #181d24;
+    display: flex;
+    gap: 10px;
+ }
+
+
+ .footer-properties {
+    margin-top: 70px;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    padding-right: 50px;
+ }
+ 
+.footer-properties button{
+    background-color: #94792f;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #FFFFFF;
+    font-weight: 600;
 }
 
 
-.header-contenedor-secundario .foto img{
-    height: 80%;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.services {
+    width: 100vw;
+    background-color: #FFFFFF;
+}
+
+.services-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 100px 50px;
+    max-width: 1400px;
+    margin: 100px auto 0px auto;
+    gap: 30px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 50%;
+    padding-right: 150px;
+}
+
+.left h2{
+    font-size: 40px;
+    font-family: "Italiana", Sans-serif;
+    color: #1B3942;
+}
+
+.left p{
+    text-align: left;
+    color: #696969;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6em;
+}
+
+.left li{
+    text-align: left;
+    color: #696969;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6em;
+}
+
+.center{
+    width: 25%;
+    height: auto;
+    display: flex;
+    align-items: center;
+
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 25%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+ul li img {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.services .left button {
+    background-color:#8a712b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #826a28;
+}
+
+/* Estilos para las tarjetas */
+.card {
+    background-color: #f9f9f9;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 70px 0px rgba(36, 42.000000000000014, 76, 0.1);
+    height: 50%;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    justify-content: center;
+    transition: .5s;
+}
+
+.card:hover {
+    box-shadow: 0px 5px 70px 0px rgba(36, 42, 76, 0.19);
+}
+
+.card .img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    background-color: #b295412a;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.card .img img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.card a {
+    color: #a8a8a8;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.card a:hover {
+   color:#0088b2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* destacadas */
+.featured-section {
+    max-width: 1400px;
+    padding: 0 0px;
+    margin: 100px auto 0px auto;
+}
+
+.featured-section .header{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+
+
+.featured-section .header .title{
+    color: #1B3942;
+    font-family: "Italiana", Sans-serif;
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 1.5em;
+}
+
+
+
+.featured-section .header .paragraph{
+    text-align: center;
+    color: #1B3942C4;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8em;
+}
+
+
+.featured-properties-list{
+    margin-top: 50px;
+    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre las tarjetas */
+    /* justify-content: flex-start; */
+    justify-content: center;
+}
+
+.featured-properties-list .featured-property-card{
+    flex: 0 1 calc(33.33% - 40px); /* Controla el comportamiento de flexbox */
+    min-width: 350px; /* Establece un ancho mínimo */
+    box-sizing: border-box;
+    float: left;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);;
+}
+
+
+.featured-properties-list .featured-property-card .image{
+    position: relative;
+}
+
+
+.featured-properties-list .featured-property-card .image .price{
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background-color: #94792fd9;
+    color: #FFFFFF;
+    border-radius: 7px;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.featured-properties-list .featured-property-card .image img{
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.featured-properties-list .featured-property-card .content{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.featured-properties-list .featured-property-card .content .photo-agent{
+    background-color: #ebebeb;
+    height: 50px;
+    width: 50px;
+    border-radius: 7px;
+}
+
+.featured-properties-list .featured-property-card .content .photo-agent img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+
+.featured-properties-list .featured-property-card .content .description .caracteristicas{
+    
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* testimonios */
+
+.testimonials{
+    width: 100%;
+    margin-top: 100px;
+    padding: 100px 50px;
+    background-color:#FFFFFF ;
+}
+
+.testimonials h2{
+    text-align: center;
+    color: #1B3942;
+    font-family: "Italiana", Sans-serif;
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 1.5em;
+}
+
+.testimonials-container{
+    max-width: 1400px;
+    margin: 30px auto 0 auto;
+    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 30px; 
+    justify-content: center;
+}
+
+
+.testimonials-container .card-testimonial{
+    flex: 0 1 calc(33.33% - 40px); /* Controla el comportamiento de flexbox */
+    min-width: 300px; /* Establece un ancho mínimo */
+    box-sizing: border-box;
+    float: left;
+    box-shadow: 0px 0px 70px 0px rgba(36, 42.000000000000014, 76, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.testimonials-container .card-testimonial .data-client{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.testimonials-container .card-testimonial .data-client img{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+}
+
+
+.testimonials-container .card-testimonial .data-client .name-and-type .name{
+    font-size: 18px;
+    color: #000000;
+    font-weight: 500;
+}
+
+
+.testimonials-container .card-testimonial .data-client .name-and-type .type{
+    font-size: 14px;
+    color: #696969;
+}
+
+.testimonials-container .card-testimonial .text-testimonial{
+    line-height: 1.65em;
+    color: #696969;
+}
+
+
+.card-testimonial .starts{
+    margin-top: -30px;
+}
+
+.card-testimonial .starts img{
+    width: 60px;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* contacts */
+.contact{
+    background-color: #ffffff;
+    position: relative;
+}
+
+
+.contact .svg-background{
+    /* position: absolute;
+    transform: translateY(-400px); */
+}
+
+.container-contact{
+    max-width: 1400px;
+    max-height: 80vh;
+    margin: 0 auto;
+    display: flex;
+    padding: 100px 0;
+}
+
+
+.container-contact .form {
+    width: 50%; /* Ajusta según el ancho deseado del contenedor */
+    padding: 50px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    
+    
+}
+
+.container-contact .form .inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas de igual ancho */
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+.container-contact .form .inputs div {
+    display: flex;
+    flex-direction: column; /* Para que los labels y inputs queden uno debajo del otro */
+}
+
+.container-contact .form .input {
+    width: 100%; /* Asegura que los campos input ocupen el 100% de su contenedor */
+    padding: 5px; /* Añade un poco de padding para mejor apariencia */
+}
+
+.container-contact .form textarea {
+    resize: vertical; /* Permite cambiar el tamaño vertical del textarea si se desea */
+    height: 100px; /* Ajusta la altura del textarea según lo que necesites */
+}
+
+.container-contact .form .inputs div:nth-child(5) {
+    grid-column: span 2; /* Hace que el textarea ocupe toda la fila */
+}
+
+
+
+
+
+.container-contact .photo{
+    width: 50%;
+    background-color: #0088b2;
+}
+
+.container-contact .photo img{
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -41,68 +822,90 @@
 
 
 
-/* formulario */
 
-.contenedor-formulario{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-}
 
-.contenedor-formulario .form{
-    width: 60%;
-    min-width: 350px;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 30px;
-}
 
-.contenedor-formulario .header-form{
-    color: white;
-    font-size: 30px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{
     
+    height: 50vh;
+    background-color: #e4e4e4;
+}
+
+.footer-container{
+    padding: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-container .logo{
+    font-size: 50px;
 }
 
 
 
-
-.eslogan{
-    margin-top: 20px;
-}
-.eslogan .p1{
-    font-size: 22px;
-}
-.eslogan .p2{
-    font-size: 35px;
-    font-weight: 700;
-}
-
-
-
-
-.inputs{
-    margin-top: 40px;
+.footer-container .webs{
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-.inputs input{
-    width: 100%;
-    padding: 10px;
-    border-radius: 7px;
-    font-size: 18px;
+    gap: 20px;
 }
 
 
+.footer-container a{
+    color: black;
+}
 
 
+.footer-container .rentals{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-.inputs button{
-    padding: 15px;
-    border-radius: 7px;
-    background-color: rgb(0, 82, 175);
-    border: none;
-    color: white;
-    font-size: 16px;
+
+.footer-container .sale{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
