@@ -1,14 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, CommonModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
   scrolled = false;
+  isNotHome = false;
+
+  constructor(private router: Router) {
+    this.checkRoute(); // Verificar la ruta cuando se inicia el componente
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -19,5 +26,15 @@ export class NavComponent {
     } else {
       this.scrolled = false;
     }
+
+
+  }
+
+  // Método para verificar si la URL actual es distinta de 'home'
+  private checkRoute() {
+    this.router.events.subscribe(() => {
+      // Actualiza la variable dependiendo de si la URL actual es distinta de '/home'
+      this.isNotHome = this.router.url !== '/home';
+    });
   }
 }

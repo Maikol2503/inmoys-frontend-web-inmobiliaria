@@ -1,0 +1,548 @@
+
+.container{
+    padding: 180px 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+.filter-wrapper{
+    position: fixed;
+    top: 4rem;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    width: 100%;
+    height: 55px;
+    box-shadow: 0 0 10px -3px rgba(66, 78, 91, .34);
+    z-index: 90;
+}
+
+.filter-wrapper .filter-options {
+    
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0px 50px;
+}
+
+
+
+.filter-wrapper .filter-options .search-container{
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid rgb(238, 238, 238);
+    padding: 7px 5px 7px 0px;
+}
+
+
+.filter-wrapper .filter-options .search-container .search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    height: 100%;
+    width: 350px;
+    background-color: #f2f5f6;
+    padding: 0px 10px;
+   
+}
+
+.filter-wrapper .filter-options .search-container .search .search-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-wrapper .filter-options .search-container .search .search-input input {
+    -webkit-appearance: none; /* Para Chrome/Safari */
+    -moz-appearance: none; /* Para Firefox */
+    background-color: transparent !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: none;
+    padding: 3px 0px 0px 0px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.filter-wrapper .filter-options .search-container .search .search-input input:focus {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: none;
+}
+
+
+
+
+
+.filter-wrapper .filter-options .search-container .search .search-input label{
+font-size: 10px;
+color: #424e5b;
+}
+
+.filter-wrapper .filter-options .search-container .search img{
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+
+
+
+.filter-wrapper .filter-options .options-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.filter-wrapper .filter-options .options-container .option{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0px 10px;
+    border-right: 1px solid rgb(238, 238, 238);
+    
+}
+
+.filter-wrapper .filter-options .options-container .option .precio-rango{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+
+.filter-wrapper .filter-options .options-container .option .precio-rango .desde, 
+.filter-wrapper .filter-options .options-container .option .precio-rango .hasta{
+    display: flex;
+    gap: 3px;
+}
+
+.filter-wrapper .filter-options .options-container .option .precio-rango .desde p, 
+.filter-wrapper .filter-options .options-container .option .precio-rango .hasta p{
+    color: #94792f;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+
+
+
+
+.filter-wrapper .filter-options .options-container .option img{
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+.filter-options .options-container .option p{
+    /* color: #424e5b; */
+}
+
+.filter-options .option .selected-type-origin{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #94792f  ;
+    font-weight: 600;
+}
+
+
+.filter-options .option .selected-type2{
+    padding: 10px;
+    border-radius: 10px;
+    color: #94792f;
+}
+
+
+
+.filter-options .option .selected-type img{
+    width: 10px;
+    height: 10px;
+    object-fit: cover;
+}
+
+
+.filter-wrapper .filter-options .option .modal{
+    position: absolute;
+    bottom: 0%;
+    right: 0px;
+    transform: translateY(100%);
+    background-color: #ffffff;
+    border-radius:0px 0px 20px 20px;
+    min-width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    z-index: -1;
+    display: none;
+}
+
+
+
+
+.filter-wrapper .filter-options .option .modal p{
+    padding: 10px 20px;
+    transition: 1s;
+    
+}
+
+.filter-wrapper .filter-options .option .modal p:hover{
+    background-color: #eeeeee;
+}
+
+
+.filter-wrapper .filter-options .option .modalPrecio, .modalTamano{
+    max-width: 250px;
+    min-width: 250px;
+    padding: 20px;
+    position: absolute;
+    bottom: 0%;
+    right:  0px;
+    transform: translateY(100%);
+    background-color: #ffffff;
+    border-radius:0px 0px 20px 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    display: none;
+}
+
+
+.filter-wrapper .filter-options .option .modalPrecio .item, .modalTamano .item{
+    display: flex;
+}
+
+.filter-wrapper .filter-options .option .modalPrecio .modalTamano .item{
+    display: flex;
+}
+
+.modalFilterActive{
+    display: block !important;
+}
+
+.rotate{
+    transform: rotate(-180deg);
+}
+
+
+
+
+
+
+
+
+/* .filter-wrapper label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .filter-wrapper input,
+  .filter-wrapper select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 10px;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .filter-wrapper input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+  }
+
+  .filter-wrapper button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-end;
+  }
+
+  .filter-wrapper button:hover {
+    background-color: #218838;
+  }
+
+  .filter-wrapper input[type="number"] {
+    width: 100px;
+  } */
+
+
+
+
+
+
+
+
+
+/* propiedades */
+.properties{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+.properties .header p{
+    font-size: 1.1875rem;
+    font-weight: 600;
+}
+
+/* .properties .header .search input{
+    width: 100%;
+    padding: 10px 7px;
+    border: none;
+}
+
+.properties .header .search button{
+    background-color:#94792f;
+    border: none;
+    padding: 0px 10px;
+    color: white;
+   
+}
+
+
+.properties .header .header-bottom{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: #ffffff;
+    border-radius: 7px;
+}
+ */
+
+/* .properties .header .header-bottom .transaction button{
+    margin-bottom: -1px;
+    padding: 22px 10px;
+    border: none;
+    background-color: #00000000;
+    font-size: 14px;
+}
+
+.filter_transaccion_active{
+    border-bottom: 2px solid #b4943a !important;
+    font-weight: 700;
+    color: #b19139;
+    background-color: #b191391f !important;
+}
+
+.properties .header .header-bottom .order-by-content{
+    height: 100%;
+    padding: 5px;
+}
+
+
+.properties .header .header-bottom .order-by{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 0px 15px;
+    font-size: 14px;
+    background-color: #fbf9f9;
+    height: 100%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.properties .header .header-bottom .order-by label{
+    font-size: 12px;
+    color: rgb(73, 73, 73);
+}
+
+.properties .header .header-bottom .order-by select{
+    background-color: #00000000;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+    font-weight: 700;
+    margin-left:-4px;
+} */
+
+
+
+
+.property{
+    
+    /* gap: 20px; */
+    padding: 0px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 24px rgba(0, 0, 0, .1) !important;
+    border-radius: 15px;
+    /* width: 100%; */
+    overflow: hidden;
+}
+
+
+.splide{
+    width: 100%;
+    height:280px;
+    position: relative;
+    visibility: visible;
+    overflow: hidden;
+}
+
+.mySwiper{
+    height: 100%;
+}
+
+.splide_slide{
+display: flex;
+height: 100% ;
+}
+
+
+.swiper-button-next, .swiper-button-prev {
+    height: var(--swiper-navigation-size);  
+    color: var(--swiper-navigation-color,var(--swiper-theme-color));
+}
+
+
+.imagen-slide{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0px 0px 0 0;
+}
+
+
+.property .information{
+    padding: 10px;
+    width: 100%;
+}
+
+
+.properties .information .price{
+    color: #94792f;
+    font-size: 1.1rem;
+    line-height: 17px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.property .information .title{
+    margin-bottom:3px;
+    width: 100%;
+    color: #082D41;
+    text-transform:capitalize;
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: #424e5b;
+}
+
+
+
+
+.property .information .ubication{
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; 
+    font-size: .9rem;
+    color: #424e5b;
+    font-weight: 400;
+  }
+  
+
+/* .properties .information .description{
+    line-height: 1.65em;
+    font-size: 13px;
+    color: #696969;
+    width: 100%;
+} */
+
+
+.property .information .detail{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid rgb(222, 222, 222);
+    padding: 10px 0px;
+    margin-top: 10px;
+}
+
+.property .information .detail .item{
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.property .information .detail .item img{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    opacity: .7;
+}
+
+.property .information .detail .item p{
+    color: #696969;
+    font-size: 13px;
+}
+
+/* .property .information .property_location{
+    border-top: 1px solid #eef3f6;
+    margin-top: 20px;
+    padding: 15px 0px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+} */
+
+.property .information .property_agent_wrapper{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+
+.property .information .property_location .property_agent_wrapper{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    
+}
+
+.property .information .property_location .property_agent_wrapper img{
+    
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    background-color: #ebebeb;
+    border-radius: 100%;
+}
+
+.property .information .property_location .property_agent_wrapper .property_agent_name{
+    font-size: 13px;
+}
+
+
+.property .information .property_location  .listing_actions .whatsapp img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+
+
+
+
+
+
+
+

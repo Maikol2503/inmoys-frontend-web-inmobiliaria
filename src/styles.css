@@ -7,3 +7,15 @@
     list-style: none;
     text-decoration: none;
 }
+
+body{
+    background-color: #ffffff;
+}
+
+:root{
+    --color-1:rgb(0, 123, 255);
+    --color-2:rgb(65, 157, 255);
+    --swiper-navigation-size: 25px !important;
+    --swiper-navigation-color: #ffffff;
+}
+

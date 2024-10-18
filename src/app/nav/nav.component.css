@@ -2,10 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 4rem;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 50px;
+    
 }
 
 
@@ -29,7 +30,7 @@
     background-color: transparent;
     transition: background-color 0.3s ease, color 0.3s ease;
     color: #ffffff; /* Texto blanco cuando el fondo es transparente */
-    
+    box-shadow: 0 0 10px -3px rgba(66, 78, 91, .34);
 }
 
 .navbar.scrolled {

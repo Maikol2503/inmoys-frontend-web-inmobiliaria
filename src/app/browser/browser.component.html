@@ -1,0 +1,109 @@
+<div class="filter-wrapper">
+    <div class="filter-options">
+        <div class="search-container">
+            <div class="search">
+                <div class="search-input">
+                    <label for="zona">Buscar por barrio</label>
+                    <input id="zona"  (change)="applyFilter()" [(ngModel)]="filters.zona">
+                </div>
+                <img (click)="applyFilter()" src="https://i.imgur.com/EmANUCR.png" />
+            </div>
+        </div>
+        <div id="options-container" class="options-container">
+            <div id="option" class="option transaccion" (click)="openModalFilter('transaccion', $event)">
+                <p class="selected-type-origin" *ngIf="filters.transaccion === 'venta'">Venta</p>
+                <p class="selected-type-origin" *ngIf="filters.transaccion === 'alquiler'">Alquiler</p>
+                <img [ngClass]="{ 'rotate': modalFilterActive === 'transaccion' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
+                <div id="modal" class="modal" [ngClass]="{ 'modalFilterActive': modalFilterActive === 'transaccion' }">
+                    <p (click)="applyFilterTrasaccion('venta');" class="item">Comprar</p>
+                    <p (click)="applyFilterTrasaccion('alquiler');" class="item">Alquilar</p>
+                </div>
+            </div>
+            <div id="option" class="option tipologia" (click)="openModalFilter('tipologia', $event)">
+                <p class="selected-type-origin selected-type2" *ngIf="filters.tipo">{{ filters.tipo }} <span (click)="deleteFilterTipologia($event)"><img src="https://i.imgur.com/3yj8Vq5.png" alt=""></span></p>
+                <p class="selected-type-prigin" *ngIf="filters.tipo === null || filters.tipo === ''">Tipología</p>
+                <img [ngClass]="{ 'rotate': modalFilterActive === 'tipologia' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
+                <div id="modal" class="modal" [ngClass]="{ 'modalFilterActive': modalFilterActive === 'tipologia' }">
+                    <p (click)="applyFilterTipologia('vivienda');" class="item">Vivienda</p>
+                    <p (click)="applyFilterTipologia('edificio');" class="item">Edificio</p>
+                    <p (click)="applyFilterTipologia('terreno');" class="item">Terreno</p>
+                    <p (click)="applyFilterTipologia('oficina');" class="item">Oficina</p>
+                </div>
+            </div>
+            <div id="option" class="option precio" (click)="openModalFilter('modalPrecio', $event)">
+                <p *ngIf="filters.precioDesde === 0 && filters.precioHasta === 0">Precio</p>
+                <div class="precio-rango">
+                    <div *ngIf="filters.precioDesde > 0" class="desde"><p>Desde</p><p>{{filters.precioDesde}}€</p></div>
+                    <div *ngIf="filters.precioHasta > 0" class="hasta"><p>a</p></div>
+                    <div *ngIf="filters.precioHasta > 0" class="hasta"><p>Hasta</p><p>{{filters.precioHasta}}€</p> </div>
+                </div>
+                <img [ngClass]="{ 'rotate': modalFilterActive === 'modalPrecio' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
+                <div id="modal" class="modalPrecio"  [ngClass]="{ 'modalFilterActive': modalFilterActive === 'modalPrecio' }">
+                    <div class="item">
+                        <label for="precioDesde">Desde</label>
+                        <input type="number" name="precioDesde" id="precioDesde"  [(ngModel)]="filters.precioDesde" (change)="applyFilter()">
+                    </div>
+                    <div class="item">
+                        <label for="precioHasta">Hasta</label>
+                        <input type="number" name="precioHasta" id="precioHasta"  [(ngModel)]="filters.precioHasta" (change)="applyFilter()">
+                    </div>
+                </div>
+            </div>
+            <div id="option" class="option superficie"  (click)="openModalFilter('tamano', $event)">
+                <p *ngIf="filters.tamanoDesde === 0 && filters.tamanoHasta === 0">Superficie</p>
+                <div class="precio-rango">
+                    <div *ngIf="filters.tamanoDesde > 0" class="desde"><p>Desde</p><p>{{filters.tamanoDesde}}m²</p></div>
+                    <div *ngIf="filters.tamanoHasta > 0" class="hasta"><p>a</p></div>
+                    <div *ngIf="filters.tamanoHasta > 0" class="hasta"><p>Hasta</p><p>{{filters.tamanoHasta}}m²</p> </div>
+                </div>
+                <img [ngClass]="{ 'rotate': modalFilterActive === 'tamano' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
+                <div id="modal" class="modalTamano" [ngClass]="{ 'modalFilterActive': modalFilterActive === 'tamano' }">
+                    <div class="item">
+                        <label for="tamanoDesde">Desde</label>
+                        <input type="number" name="tamanoDesde" id="tamanoDesde" [(ngModel)]="filters.tamanoDesde" (change)="applyFilter()">
+                    </div>
+                    <div class="item">
+                        <label for="tamanoHasta">Hasta</label>
+                        <input type="number" name="tamanoHasta" id="tamanoHasta" [(ngModel)]="filters.tamanoHasta" (change)="applyFilter()">
+                    </div>
+                </div>
+            </div>
+            <div class="option mas" (click)="openModalFilter('mas', $event)">
+                <p>Mas filtros</p>
+                <img [ngClass]="{ 'rotate': modalFilterActive === 'mas' }" src="https://i.imgur.com/3TUC2WN.png" alt="">
+            </div>
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+      <!-- Aquí se mostrará la lista de propiedades filtradas -->
+      <div class="properties">
+        <div class="property" *ngFor="let property of filteredProperties" >
+            <div class="splide">
+                <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
+                   <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
+                      <img class="imagen-slide" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                   </swiper-slide>
+                   <div class="swiper-button-next"></div>
+                   <div class="swiper-button-prev"></div>
+                </swiper-container>
+                <div class="photo-agent">
+                    <img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt="">
+                </div>
+             </div>
+             <div class="information" [routerLink]="['/propiedad', property.sku]">
+                <p class="price">{{property.precio}} €</p>
+                <h4 class="title">{{property.tipo}} en {{property.transaccion}}</h4>
+                <p class="ubication">{{property.ciudad}}, {{property.zona}}, {{property.nombreCalle}}</p>
+                <div class="detail">
+                    <div *ngIf="property.detalles.habitaciones" class="item"><img src="https://i.imgur.com/KghGKCk.png" alt=""><p>{{property.detalles.habitaciones}} Hab</p></div>
+                    <div *ngIf="property.detalles.banos" class="item"><img src="https://i.imgur.com/PwMxLuu.png" alt=""><p>{{property.detalles.banos}} Baños</p></div>
+                    <div *ngIf="property.detalles.tamano" class="item"><img src="https://i.imgur.com/sxFo7hC.png" alt=""><p>{{property.detalles.tamano}} m²</p></div>
+                </div>
+            </div>
+        </div>
+      </div>
+</div>
+
+  

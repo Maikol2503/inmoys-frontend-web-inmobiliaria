@@ -1,21 +1,24 @@
+
+<button class="whatsapp-btn"><a href="https://wa.me/34602451849" target="_blank" ><img src="https://i.imgur.com/pAJQjkz.png" alt=""></a></button>
+
 <div class="contenedor">
     <header class="header-contenedor">
         <div class="header-contenedor-secundario">
-            <div class="nav">
+            <!-- <div class="nav">
                 <app-nav></app-nav>
-            </div>
+            </div> -->
                 <div class="header-tittle">
                     <p>El mejor lugar <br> para encontrar tu hogar</p>
                 </div>
                 <div class="searchWrapper">
                     <div class="search">
-                        <input type="text" placeholder="Buscar...">
+                        <input id="zona" type="text" placeholder="Buscar...">
                     </div>
 
                     <div class="propertyType">
                         <select id="tipoPropiedad" name="tipoPropiedad">
                             <option value="" disabled selected>Tipo De Propiedad</option>
-                            <option value="piso">Piso</option>
+                            <option value="vivienda">vivienda</option>
                             <option value="oficina">Oficina</option>
                             <option value="edificio">Edificio</option>
                             <option value="terreno">Terreno</option>
@@ -25,12 +28,12 @@
                     <div class="transactionType">
                         <select id="tipoTransaccion" name="tipoTransaccion">
                             <option value="" disabled selected>Comprar O Alquilar</option>
-                            <option value="compra">Comprar</option>
-                            <option value="alquilar">Alquilar</option>
+                            <option value="venta">Comprar</option>
+                            <option value="alquiler">Alquilar</option>
                         </select>
                     </div>
                     <div class="buttonSearch">
-                        <button>BUSCAR</button>
+                        <button (click)="buscar()">BUSCAR</button>
                     </div>
                 </div>
         </div>
@@ -63,192 +66,61 @@
         </div>
         <div class="filters">
             <ul class="lista">
-                <li class="item">
+                <li [ngClass]="{ 'filterActive': filterActive === 'alquiler' }" class="item" (click)="filterProperties('alquiler')">
                     <img src="https://i.imgur.com/466gpFg.png" alt="">
                     <p>Alquilar</p>
                 </li>
-                <li class="item">
+                <li [ngClass]="{ 'filterActive': filterActive === 'venta' }" class="item" (click)="filterProperties('venta')">
                     <img src="https://i.imgur.com/ybFBRp5.png" alt="">
                     <p>Comprar</p>
+                </li>
+                <li [ngClass]="{ 'filterActive': filterActive === 'todos' }" class="item" (click)="filterProperties('todos')">
+                    <img src="https://i.imgur.com/VUbVc9R.png" alt="">
+                    <p>Todos</p>
                 </li>
             </ul>
         </div>
         <div class="listProperties">
-            <div class="cardPropertie">
+
+
+
+
+            <div class="cardPropertie" *ngFor="let property of filteredProperties">
                 <div class="cardContent">
-                    <div class="imagen">
-                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                        <div class="overlay">
-                            <div class="transaction"><p>En Venta</p></div>
-                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
+                    <div class="splide">
+                        <div class="transaction">
+                            <p>{{ property.transaccion === 'compra' ? 'Venta' : property.transaccion }}</p>
+                        </div>
+                        <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
+                            <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
+                                <img class="imagen-slide" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                            </swiper-slide>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </swiper-container>
+                        <div class="photo-agent">
+                            <img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt="">
                         </div>
                     </div>
-                    <div class="body">
-                        <p class="precio">100,000</p>
-                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
+                    <div class="body" [routerLink]="['/propiedad', property.sku]">
+                        <p class="precio">€ {{ property.precio }}</p>
+                        <p class="descripcion">{{ property.tipo }} en {{ property.ciudad }}, {{ property.zona }}</p>
                     </div>
-                    <div class="footer">
-                        <p>Hab: 4</p>
-                        <p>Baños: 2</p>
-                        <p>M2: 150</p>
+                    <div class="footer" [routerLink]="['/propiedad', property.sku]">
+                        <p>Hab: {{ property.detalles.habitaciones }}</p>
+                        <p>Baños: {{ property.detalles.banos }}</p>
+                        <p>m²: {{ property.detalles.tamano }}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="cardPropertie">
-                <div class="cardContent">
-                    <div class="imagen">
-                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                        <div class="overlay">
-                            <div class="transaction"><p>En Venta</p></div>
-                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="precio">100,000</p>
-                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
-                    </div>
-                    <div class="footer">
-                        <p>Hab: 4</p>
-                        <p>Baños: 2</p>
-                        <p>M2: 150</p>
-                    </div>
-                </div>
-            </div>
+            
 
 
-            <div class="cardPropertie">
-                <div class="cardContent">
-                    <div class="imagen">
-                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                        <div class="overlay">
-                            <div class="transaction"><p>En Venta</p></div>
-                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="precio">100,000</p>
-                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
-                    </div>
-                    <div class="footer">
-                        <p>Hab: 4</p>
-                        <p>Baños: 2</p>
-                        <p>M2: 150</p>
-                    </div>
-                </div>
-            </div>
 
-
-            <div class="cardPropertie">
-                <div class="cardContent">
-                    <div class="imagen">
-                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                        <div class="overlay">
-                            <div class="transaction"><p>En Venta</p></div>
-                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="precio">100,000</p>
-                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
-                    </div>
-                    <div class="footer">
-                        <p>Hab: 4</p>
-                        <p>Baños: 2</p>
-                        <p>M2: 150</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="cardPropertie">
-                <div class="cardContent">
-                    <div class="imagen">
-                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                        <div class="overlay">
-                            <div class="transaction"><p>En Venta</p></div>
-                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="precio">100,000</p>
-                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
-                    </div>
-                    <div class="footer">
-                        <p>Hab: 4</p>
-                        <p>Baños: 2</p>
-                        <p>M2: 150</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="cardPropertie">
-                <div class="cardContent">
-                    <div class="imagen">
-                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                        <div class="overlay">
-                            <div class="transaction"><p>En Venta</p></div>
-                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="precio">100,000</p>
-                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
-                    </div>
-                    <div class="footer">
-                        <p>Hab: 4</p>
-                        <p>Baños: 2</p>
-                        <p>M2: 150</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="cardPropertie">
-                <div class="cardContent">
-                    <div class="imagen">
-                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                        <div class="overlay">
-                            <div class="transaction"><p>En Venta</p></div>
-                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="precio">100,000</p>
-                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
-                    </div>
-                    <div class="footer">
-                        <p>Hab: 4</p>
-                        <p>Baños: 2</p>
-                        <p>M2: 150</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cardPropertie">
-                <div class="cardContent">
-                    <div class="imagen">
-                        <img class="image-property" src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                        <div class="overlay">
-                            <div class="transaction"><p>En Venta</p></div>
-                            <div class="photo-agent"><img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="precio">100,000</p>
-                        <p class="descripcion">Piso en Madrid, Madrid, Vicalvaro</p>
-                    </div>
-                    <div class="footer">
-                        <p>Hab: 4</p>
-                        <p>Baños: 2</p>
-                        <p>M2: 150</p>
-                    </div>
-                </div>
-            </div>
+           
         </div>
         <div class="footer-properties">
-            <button>Ver Mas Propiedades</button>
+            <button routerLink="/browser">Ver Mas Propiedades</button>
         </div>
     </section>
 
@@ -346,98 +218,74 @@
 
 
     <section class="featured-section">
-        
         <div class="header">
             <p class="title">Propiedades Destacadas</p>
             <p class="paragraph">Con una atención incomparable a los detalles, una artesanía superior y comodidades deseables, cada propiedad destacada encarna el epítome de la vida de lujo.</p>
         </div>
-        <div class="featured-properties-list">
 
-            <div class="featured-property-card">
-                <div class="image">
+        <div  class="featured-properties-list">
+            <div *ngFor="let property of dataPropertiesDestacadas" class="featured-property-card">
+                <div class="splide2">
+                    <div class="transaction">
+                        <p>{{ property.transaccion === 'compra' ? 'Venta' : property.transaccion }}</p>
+                    </div>
+                    <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
+                       <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
+                          <img class="imagen-slide" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                       </swiper-slide>
+                       <div class="swiper-button-next"></div>
+                       <div class="swiper-button-prev"></div>
+                    </swiper-container>
+                    <div class="price">
+                        <p>€ {{property.precio}}</p>
+                    </div>
+                 </div>
+                <!-- <div class="image">
                     <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                    <p class="price">1000,000</p>
-                </div>
+                    <p class="price">{{property.precio}}</p>
+                </div> -->
                 <div class="content">
                     <div class="photo-agent">
                         <img src="https://i.imgur.com/1aF2eY7.png" alt="">
                     </div>
                     <div class="description">
-                        <p>Casa moderna en venta</p>
+                        <h2 class="title">{{property.tipo}} en {{property.ciudad}}, {{property.zona}}</h2>
                         <div class="caracteristicas">
-                            <p>Hab: 4</p>
-                            <p>Baños:2</p>
-                            <p>M2: 130</p>
+                            <p *ngIf="property.detalles.habitaciones" >{{property.detalles.habitaciones}} Hab</p>
+                            <p *ngIf="property.detalles.banos" >{{property.detalles.banos}} Baños</p>
+                            <p *ngIf="property.detalles.tamano" >{{property.detalles.tamano}} m²</p>
                         </div>
                     </div>
                 </div>
             </div>
         
-  
-            <div class="featured-property-card">
-                <div class="image">
-                    <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                    <p class="price">1000,000</p>
-                </div>
-                <div class="content">
-                    <div class="photo-agent">
-                        <img src="https://i.imgur.com/1aF2eY7.png" alt="">
-                    </div>
-                    <div class="description">
-                        <p>Casa moderna en venta</p>
-                        <div class="caracteristicas">
-                            <p>Hab: 4</p>
-                            <p>Baños:2</p>
-                            <p>M2: 130</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-       
-
-        
-            <div class="featured-property-card">
-                <div class="image">
-                    <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                    <p class="price">1000,000</p>
-                </div>
-                <div class="content">
-                    <div class="photo-agent">
-                        <img src="https://i.imgur.com/1aF2eY7.png" alt="">
-                    </div>
-                    <div class="description">
-                        <p>Casa moderna en venta</p>
-                        <div class="caracteristicas">
-                            <p>Hab: 4</p>
-                            <p>Baños:2</p>
-                            <p>M2: 130</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="featured-property-card">
-                <div class="image">
-                    <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                    <p class="price">1000,000</p>
-                </div>
-                <div class="content">
-                    <div class="photo-agent">
-                        <img src="https://i.imgur.com/1aF2eY7.png" alt="">
-                    </div>
-                    <div class="description">
-                        <p>Casa moderna en venta</p>
-                        <div class="caracteristicas">
-                            <p>Hab: 4</p>
-                            <p>Baños:2</p>
-                            <p>M2: 130</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -449,18 +297,18 @@
         <h2>Testimonios</h2>
         <div class="testimonials-container">
 
-            <div class="card-testimonial">
+            <div *ngFor="let testimonial of dataTestimonialsClients" class="card-testimonial">
                 <div class="data-client">
                     <div class="img">
-                        <img src="https://i.imgur.com/d345wpt.jpeg" alt="">
+                        <img [src]="testimonial.image" alt="">
                     </div>
                     <div class="name-and-type">
-                        <p class="name">Nombre Cliente</p>
-                        <p class="type">Comprador feliz</p>
+                        <p class="name">{{testimonial.name}}</p>
+                        <p class="type">{{testimonial.tipoCliente}} feliz</p>
                     </div>
                 </div>
                 <div class="text-testimonial">
-                    <p>Lorem,  consectetur fugit fugiat quisquam laborum istoluptatibus deleniti error in quo ullam!</p>
+                    <p>{{testimonial.comment}}</p>
                 </div>
                 <div class="starts">
                     <img src="https://i.imgur.com/s5CGNPX.png" alt="">
@@ -468,61 +316,7 @@
             </div>
 
 
-            <div class="card-testimonial">
-                <div class="data-client">
-                    <div class="img">
-                        <img src="https://i.imgur.com/d345wpt.jpeg" alt="">
-                    </div>
-                    <div class="name-and-type">
-                        <p class="name">Nombre Cliente</p>
-                        <p class="type">Comprador feliz</p>
-                    </div>
-                </div>
-                <div class="text-testimonial">
-                    <p>Lorem,  consectetur fugit fugiat quisquam laborum istoluptatibus deleniti error in quo ullam!</p>
-                </div>
-                <div class="starts">
-                    <img src="https://i.imgur.com/s5CGNPX.png" alt="">
-                </div>
-            </div>
-
-
-            <div class="card-testimonial">
-                <div class="data-client">
-                    <div class="img">
-                        <img src="https://i.imgur.com/d345wpt.jpeg" alt="">
-                    </div>
-                    <div class="name-and-type">
-                        <p class="name">Nombre Cliente</p>
-                        <p class="type">Comprador feliz</p>
-                    </div>
-                </div>
-                <div class="text-testimonial">
-                    <p>Lorem,  consectetur fugit fugiat quisquam laborum istoluptatibus deleniti error in quo ullam!</p>
-                </div>
-                <div class="starts">
-                    <img src="https://i.imgur.com/s5CGNPX.png" alt="">
-                </div>
-            </div>
-
-
-            <div class="card-testimonial">
-                <div class="data-client">
-                    <div class="img">
-                        <img src="https://i.imgur.com/d345wpt.jpeg" alt="">
-                    </div>
-                    <div class="name-and-type">
-                        <p class="name">Nombre Cliente</p>
-                        <p class="type">Comprador feliz</p>
-                    </div>
-                </div>
-                <div class="text-testimonial">
-                    <p>Lorem,  consectetur fugit fugiat quisquam laborum istoluptatibus deleniti error in quo ullam!</p>
-                </div>
-                <div class="starts">
-                    <img src="https://i.imgur.com/s5CGNPX.png" alt="">
-                </div>
-            </div>
+            
 
 
 
@@ -534,50 +328,93 @@
 
 
     <section class="contact">
-        <!-- <div class="svg-background">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path class="elementor-shape-fill" d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7
-                c23.6,2.1,48.7,3.5,103.4-2.5c54.7-6,106.2-25.6,106.2-25.6V0H0v30.3c0,0,72,32.6,158.4,30.5c39.2-0.7,92.8-6.7,134-22.4
-                c21.2-8.1,52.2-18.2,79.7-24.2C399.3,7.9,411.6,7.5,421.9,6.5z"></path>
-            </svg>
-        </div> -->
-        
         <div class="container-contact">
+            <div class="form-contact">
+                <div class="form">
+                    <h2 class="title">Ponte en contacto conmigo para planificar tu próxima transacción inmobiliaria.</h2>
+                    <p class="description">Completa el formulario a continuación y me pondré en contacto contigo lo antes posible.</p>
+                    <div class="inputs">
+                        <div>
+                            <label for="nombre" class="label">Nombre:*</label>
+                            <input type="text" id="nombre" class="input" placeholder="Nombre">
+                        </div>   
+                        <div>
+                            <label for="apellido" class="label">Apellido:*</label>
+                            <input type="text" id="apellido" class="input" placeholder="Apellido">
+                        </div>
+                        
+                        <div>
+                            <label for="correo" class="label">Correo Electrónico:*</label>
+                            <input type="email" id="correo" class="input" placeholder="Correo Electrónico">
+                        </div>
+                        
+                        <div>
+                           <label for="movil" class="label">Móvil:</label>
+                            <input type="tel" id="movil" class="input" placeholder="Móvil"> 
+                        </div>
+                        
+                        <div>
+                            <label for="mensaje" class="label">Mensaje:</label>
+                            <textarea name="mensaje" id="mensaje" class="input" placeholder="Escribe tu mensaje aquí"></textarea>
+                        </div>
+                    </div>
+                    <button>Enviar</button>
+                    
+                </div>
+                <div class="photo">
+                    <img src="https://i.imgur.com/itq0LHh.jpeg" alt="">
+                </div>
+            </div>
             
-            <div class="form">
-                <h2 class="title">Ponte en contacto conmigo para planificar tu próxima transacción inmobiliaria.</h2>
-                <p class="description">Completa el formulario a continuación y me pondré en contacto contigo lo antes posible.</p>
-                <div class="inputs">
-                    <div>
-                        <label for="nombre" class="label">Nombre:</label>
-                        <input type="text" id="nombre" class="input" placeholder="Nombre">
-                    </div>   
-                    <div>
-                        <label for="apellido" class="label">Apellido:</label>
-                        <input type="text" id="apellido" class="input" placeholder="Apellido">
-                    </div>
-                    
-                    <div>
-                        <label for="correo" class="label">Correo Electrónico:</label>
-                        <input type="email" id="correo" class="input" placeholder="Correo Electrónico">
-                    </div>
-                    
-                    <div>
-                       <label for="movil" class="label">Móvil:</label>
-                        <input type="tel" id="movil" class="input" placeholder="Móvil"> 
-                    </div>
-                    
-                    <div>
-                        <label for="mensaje" class="label">Mensaje:</label>
-                        <textarea name="mensaje" id="mensaje" class="input" placeholder="Escribe tu mensaje aquí"></textarea>
-                    </div>
+        </div>
+
+        <div class="s">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#ffffff" fill-opacity="1" d="M0,192L60,186.7C120,181,240,171,360,144C480,117,600,75,720,53.3C840,32,960,32,1080,69.3C1200,107,1320,181,1380,218.7L1440,256L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+              </svg>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <section class="mapa">
+        <div id="map"></div>
+        
+        <div class="modal">
+            <div class="box">
+                <h3>Cómo encontrarnos</h3>
+                <div class="telefono item">
+                    <img src="https://i.imgur.com/Jtqy329.png" alt="">
+                    <p><a href="tel:+34602451849"> (+34) 602451849</a></p>
                 </div>
                 
+                <div class="whatsapp item">
+                    <img src="https://i.imgur.com/vZnnSvF.png" alt="">
+                    <p><a href="https://wa.me/34602451849" target="_blank"> (+34) 602451849</a></p>
+                </div>
+                
+                <div class="email item">
+                    <img src="https://i.imgur.com/k0iWSXC.png" alt="">
+                    <p><a href="mailto:ytrabajo@gmail.com"> ysalguerot&#64;gmail.com</a></p>
+                </div>
+                <div class="location item">
+                    <img src="https://i.imgur.com/v4JSWF2.png" alt="">
+                    <p><a target="_blank" href="https://www.google.es/maps/place/REMAX+Conecta/@40.417604,-3.6693655,17z/data=!4m15!1m8!3m7!1s0xd4229000139f99d:0xbfc63bd5cc574cc7!2sREMAX+Conecta!8m2!3d40.4176015!4d-3.6696778!10e5!16s%2Fg%2F11y6px_f3z!3m5!1s0xd4229000139f99d:0xbfc63bd5cc574cc7!8m2!3d40.4176015!4d-3.6696778!16s%2Fg%2F11y6px_f3z?hl=es&entry=ttu&g_ep=EgoyMDI0MDkyMi4wIKXMDSoASAFQAw%3D%3D"> Calle Doctor Esquerdo 50, 28007, Madrid, Madrid</a> </p>
+                </div>    
             </div>
-            <div class="photo">
-                <img src="https://i.imgur.com/itq0LHh.jpeg" alt="">
+            <div class="box">
+                <h3>Horario de apertura</h3>
+                <p>Lunes - Viernes 09:30 a 14:00 y 17:00 a 20:00</p>
+                <p>Sabado - Domingo Cerrado</p>
             </div>
+            
         </div>
+        
+        
     </section>
     
 
@@ -590,25 +427,25 @@
         <div class="footer-container">
             <div class="contacts">
                 <div class="logo">
-                    <p>inmoYS</p>
+                    <h1>InmoYS</h1>
                 </div>
-                <div class="telefono">
-                    <img src="" alt="">
-                    <p><strong>Teléfono:</strong> <a href="tel:+34602451849"> +34 602451849</a></p>
-                </div>
-                
-                <div class="whatsapp">
-                    <img src="" alt="">
-                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/34602451849" target="_blank"> +34 602451849</a></p>
+                <div class="telefono item">
+                    <img src="https://i.imgur.com/Jtqy329.png" alt="">
+                    <p><a href="tel:+34602451849"> (+34) 602451849</a></p>
                 </div>
                 
-                <div class="email">
-                    <img src="" alt="">
-                    <p><strong>Email:</strong> <a href="mailto:ytrabajo@gmail.com"> ytrabajo&#64;gmail.com</a></p>
+                <div class="whatsapp item">
+                    <img src="https://i.imgur.com/vZnnSvF.png" alt="">
+                    <p><a href="https://wa.me/34602451849" target="_blank"> (+34) 602451849</a></p>
                 </div>
-                <div class="location">
-                    <img src="" alt="">
-                    <p><strong>Direccion:</strong> Calle Doctor Esquerdo 50, 28007, Madrid, Madrid</p>
+                
+                <div class="email item">
+                    <img src="https://i.imgur.com/k0iWSXC.png" alt="">
+                    <p><a href="mailto:ytrabajo@gmail.com"> ysalguerot&#64;gmail.com</a></p>
+                </div>
+                <div class="location item">
+                    <img src="https://i.imgur.com/v4JSWF2.png" alt="">
+                    <p><a target="_blank" href="https://www.google.es/maps/place/REMAX+Conecta/@40.417604,-3.6693655,17z/data=!4m15!1m8!3m7!1s0xd4229000139f99d:0xbfc63bd5cc574cc7!2sREMAX+Conecta!8m2!3d40.4176015!4d-3.6696778!10e5!16s%2Fg%2F11y6px_f3z!3m5!1s0xd4229000139f99d:0xbfc63bd5cc574cc7!8m2!3d40.4176015!4d-3.6696778!16s%2Fg%2F11y6px_f3z?hl=es&entry=ttu&g_ep=EgoyMDI0MDkyMi4wIKXMDSoASAFQAw%3D%3D"> Calle Doctor Esquerdo 50, 28007, Madrid, Madrid</a> </p>
                 </div>
             </div>
             <div class="webs">
@@ -642,7 +479,7 @@
 
 
 
-
+ 
 
 
 
