@@ -9,6 +9,8 @@ import { register } from 'swiper/element/bundle';
 import { Imagen } from '../services/imagesPropertiesModel';
 register()
 
+import { firstValueFrom } from 'rxjs';
+
 @Component({
   selector: 'app-browser',
   standalone: true,
@@ -20,10 +22,14 @@ register()
 export class BrowserComponent implements OnInit {
 
   dataProperties: Propiedad[] = [];
+  dataProperty?:Propiedad;
   filteredProperties: Propiedad[] = [];
   filterTrasaccionActive = ''
   modalFilterActive = ''
+  viewPropertyActive = false
   private baseUrl: string = 'http://127.0.0.1:8000/images/';
+  resetSlider = false;
+  selectedPropertyId: number | null = null;
   
   // Definir los filtros
   filters = {
@@ -89,6 +95,35 @@ export class BrowserComponent implements OnInit {
         console.error('Error al cargar todas las propiedades:', error);
       }
     );
+  }
+
+
+ 
+
+
+  async viewProperty(idProperty: number | undefined) {
+    this.selectedPropertyId = idProperty ?? 0;
+    this.viewPropertyActive = true;
+    this.resetSlider = false;
+
+    // Esperar un pequeño tiempo y luego volver a mostrar el slider
+    setTimeout(() => {
+      this.resetSlider = true;
+    }, 50);  // 50ms es suficiente para el re-render
+
+    // this.dataProperty = this.getProperty(id)
+  
+    this.servicesProperties.getPropertyById(this.selectedPropertyId).subscribe(
+      (data)=>{
+        this.dataProperty = data
+        console.log(this.dataProperty)
+      },
+      (error)=>{
+        console.error('Error al cargar todas las propiedades:', error);
+      }
+    )
+
+     
   }
 
 

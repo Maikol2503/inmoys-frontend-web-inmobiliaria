@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Propiedad } from './propertiesModel';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +27,8 @@ export class PropertiesService {
   }
 
   // Obtener una propiedad por ID
-  getPropertyById(propertyId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/get-property/${propertyId}`);
+  getPropertyById(propertyId: number): Observable<Propiedad> {
+    return this.http.get<Propiedad>(`${this.apiUrl}/get-property/${propertyId}`);
   }
 
   // Obtener propiedades por SKU similar

@@ -78,8 +78,8 @@
 
 <div class="container">
       <!-- Aquí se mostrará la lista de propiedades filtradas -->
-      <div class="properties">
-        <div class="property" *ngFor="let property of filteredProperties" >
+      <div class="properties" [ngClass]="{'grid-dos-columnas': viewPropertyActive === true} ">
+        <div [ngClass]="{'selected-property': selectedPropertyId === property.id_property}" class="property" *ngFor="let property of filteredProperties" >
             <div class="splide">
                 <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
                    <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
@@ -92,7 +92,8 @@
                     <img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt="">
                 </div>
              </div>
-             <div class="information" [routerLink]="['/propiedad', property.sku]">
+             <!-- <div class="information" [routerLink]="['/propiedad', property.sku]"> -->
+             <div class="information" (click)="viewProperty(property.id_property)">
                 <p class="price">{{property.precio}} €</p>
                 <h4 class="title">{{property.tipo}} en {{property.transaccion}}</h4>
                 <p class="ubication">{{property.ciudad}}, {{property.zona}}, {{property.nombreCalle}}</p>
@@ -104,6 +105,110 @@
             </div>
         </div>
       </div>
+      <div *ngIf="viewPropertyActive" class="view-property">
+        <div class="container-interno-view-property">
+            <div class="splide_container_view_property">
+                <swiper-container *ngIf="resetSlider" [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper_container_view_property">
+                    <swiper-slide class="splide_slide_container_view_property" *ngFor="let imagen of dataProperty?.image">
+                        <img class="imagen-slide_container_view_property" [src]="getImageUrl(dataProperty?.id_property, imagen)" alt="Imagen de la propiedad">
+                    </swiper-slide>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </swiper-container>
+            </div>
+            <div class="property-details-container">
+                <p class="price">{{ dataProperty?.precio }} €</p>
+                <div class="property-details">
+                    <div *ngIf="dataProperty?.detalles?.habitaciones" class="detail-item">
+                        <img class="icon" src="https://i.imgur.com/KghGKCk.png" alt="">
+                        <p>{{ dataProperty?.detalles.habitaciones }} Hab</p>
+                    </div>
+                    <div *ngIf="dataProperty?.detalles?.banos" class="detail-item">
+                        <img class="icon" src="https://i.imgur.com/PwMxLuu.png" alt="">
+                        <p>{{ dataProperty?.detalles.banos }} Baño</p>
+                    </div>
+                    <div *ngIf="dataProperty?.detalles?.tamano" class="detail-item">
+                        <img class="icon" src="https://i.imgur.com/sxFo7hC.png" alt="">
+                        <p>{{ dataProperty?.detalles.tamano }} m²</p>
+                    </div>
+                    <div class="detail-item">
+                        <img class="icon" src="https://i.imgur.com/cZoOykF.png" alt="">
+                        <p>Planta {{dataProperty?.planta}}</p>
+                    </div>
+                </div>
+                <h3 class="property-type-transaction">{{ dataProperty?.tipo }} en {{ dataProperty?.transaccion }}</h3>
+                <p class="property-location">{{ dataProperty?.ciudad }}, {{ dataProperty?.zona }}, {{ dataProperty?.nombreCalle }}</p>
+                <p class="property-description">{{dataProperty?.descripcion}}</p>
+        
+                
+        
+                <div *ngIf="dataProperty?.detalles && (dataProperty?.detalles | keyvalue).length > 0" class="item item-equipment">
+                    <h2>Equipamiento</h2>
+                    <div class="icons-equipment">
+                        <div class="icon" *ngIf="dataProperty?.detalles?.ascensor">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/13390/13390926.png" alt="">
+                            <p>Ascensor</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.piscina">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/3437/3437732.png" alt="">
+                            <p>Piscina</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.trastero">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/6842/6842296.png" alt="">
+                            <p>Trastero</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.garaje">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/1571/1571991.png" alt="">
+                            <p>Garaje</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.aire">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/3550/3550996.png" alt="">
+                            <p>Aire Acondicionado</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.calefaccion">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/289/289759.png" alt="">
+                            <p>Calefacción</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.gimnasio">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/8065/8065747.png" alt="">
+                            <p>Gimnasio</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.balcon">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/11392/11392402.png" alt="">
+                            <p>Balcón</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.terraza">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/174/174446.png" alt="">
+                            <p>Terraza</p>
+                        </div>
+                        <div class="icon" *ngIf="dataProperty?.detalles?.jardin">
+                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/149/149569.png" alt="">
+                            <p>Jardín</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div *ngIf="dataProperty?.detalles && (dataProperty?.detalles | keyvalue).length > 0" class="item item-characteristics">
+                    <h2 >Características</h2>
+                    <ul class="characteristics">
+                        <li *ngIf="dataProperty?.detalles?.calefaccion" class="item">Combustible Calefacción: {{dataProperty?.detalles.combustibleCalefaccion}}</li>
+                        <li *ngIf="dataProperty?.detalles?.orientacion" class="item">Interior / Exterior: {{dataProperty?.detalles.orientacion}}</li>
+                        <li *ngIf="dataProperty?.detalles?.planta" class="item">Planta Nº {{dataProperty?.detalles.planta}}</li>
+                        <li *ngIf="dataProperty?.detalles?.calefaccion" class="item">Sistema calefacción {{dataProperty?.detalles.sistemaCalefaccion}}</li>
+                        <li *ngIf="dataProperty?.detalles?.consumo" class="item">Consumo: {{dataProperty?.detalles.consumo}}</li>
+                        <li *ngIf="dataProperty?.detalles?.emisiones" class="item">Emisiones: {{dataProperty?.detalles.emisiones}}</li>
+                        <li *ngIf="dataProperty?.detalles?.certificadoEnergetico" class="item">Certificado Energético: {{dataProperty?.detalles.certificadoEnergetico}}</li>
+                        <li *ngIf="dataProperty?.detalles?.anoConstruccion" class="item">Año de construcción: {{dataProperty?.detalles.anoConstruccion}}</li>
+                    </ul>
+                </div>
+        
+                <div class="form-contact">
+                    <!-- Aquí puedes añadir el formulario de contacto -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
   
