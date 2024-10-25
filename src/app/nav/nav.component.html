@@ -3,16 +3,16 @@
         <ul class="mainContent">
             <li routerLink="/home" class="item">Inicio</li>
             <li routerLink="/browser" class="item">Propiedades</li>
-            <li class="item">Nosotros</li>
-            <li class="item">Blog</li>
+            <li class="item" routerLink="/nosotros">Nosotros</li>
+            <!-- <li class="item">Blog</li> -->
         </ul>
-        <div class="logo">
+        <div routerLink="/home" class="logo">
             <p>InmoYS</p>
         </div>
         <ul class="contacts">
-            <li class="item">Contactos</li>
+            <li class="item" routerLink="/contact">Contactos</li>
             <li class="item">Valoración de vivienda</li>
-            <li class="item">641161427</li>
+            <li class="item"><a href="tel:+34602451849">641161427</a></li>
         </ul>
     </div>
 </nav>

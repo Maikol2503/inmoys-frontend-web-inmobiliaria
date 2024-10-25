@@ -32,8 +32,8 @@ export class PropertiesService {
   }
 
   // Obtener propiedades por SKU similar
-  getPropertyBySkuSimilar(sku: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/get-property-by-sku-similar/${sku}`);
+  getPropertyBySkuSimilar(sku: string): Observable<Propiedad>{
+    return this.http.get<Propiedad>(`${this.apiUrl}/get-property-by-sku-similar/${sku}`);
   }
 
   // Obtener propiedades por tipo de transacción

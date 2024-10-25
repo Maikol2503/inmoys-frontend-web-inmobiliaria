@@ -12,7 +12,7 @@
                 </div>
                 <div class="searchWrapper">
                     <div class="search">
-                        <input id="zona" type="text" placeholder="Buscar...">
+                        <input id="zona" type="text" placeholder="Buscar Por Ciudad O Barrio">
                     </div>
 
                     <div class="propertyType">
@@ -85,7 +85,7 @@
 
 
 
-            <div class="cardPropertie" *ngFor="let property of filteredProperties">
+            <div class="cardPropertie" *ngFor="let property of filteredProperties.slice(0, 8)">
                 <div class="cardContent">
                     <div class="splide">
                         <div class="transaction">
@@ -224,7 +224,7 @@
         </div>
 
         <div  class="featured-properties-list">
-            <div *ngFor="let property of dataPropertiesDestacadas" class="featured-property-card">
+            <div *ngFor="let property of dataPropertiesDestacadas.slice(0, 6)" class="featured-property-card">
                 <div class="splide2">
                     <div class="transaction">
                         <p>{{ property.transaccion === 'compra' ? 'Venta' : property.transaccion }}</p>
@@ -248,7 +248,7 @@
                     <div class="photo-agent">
                         <img src="https://i.imgur.com/1aF2eY7.png" alt="">
                     </div>
-                    <div class="description">
+                    <div class="description"  [routerLink]="['/propiedad', property.sku]">
                         <h2 class="title">{{property.tipo}} en {{property.ciudad}}, {{property.zona}}</h2>
                         <div class="caracteristicas">
                             <p *ngIf="property.detalles.habitaciones" >{{property.detalles.habitaciones}} Hab</p>
@@ -297,7 +297,7 @@
         <h2>Testimonios</h2>
         <div class="testimonials-container">
 
-            <div *ngFor="let testimonial of dataTestimonialsClients" class="card-testimonial">
+            <div *ngFor="let testimonial of dataTestimonialsClients.slice(0, 6)" class="card-testimonial">
                 <div class="data-client">
                     <div class="img">
                         <img [src]="testimonial.image" alt="">
@@ -457,11 +457,11 @@
             </div>
             <div class="rentals">
                 <h3>Alquileres en Madrid</h3>
-                <p>Alquiler pisos Madrid</p>
+                <p  routerLink="/browser" [queryParams]="{ tipo: 'vivienda', transaccion: 'alquiler', zona: 'Madrid' }">Alquiler pisos Madrid</p>
             </div>
             <div class="sale">
                 <h3>Venta de casas, pisos y locales en Madrid</h3>
-                <p>Venta de pisos en Madrid</p>
+                <p routerLink="/browser" [queryParams]="{ tipo: 'vivienda', transaccion: 'venta', zona: 'Madrid' }">Venta de pisos en Madrid</p>
             </div>
         </div>
     </footer>

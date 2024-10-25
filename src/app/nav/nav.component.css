@@ -9,6 +9,10 @@
     
 }
 
+.logo{
+    cursor: pointer;
+}
+
 
 .mainContent{
     display:flex;
@@ -17,12 +21,26 @@
     color: white;
 }
 
+.mainContent li{
+    cursor: pointer;
+}
+
 .contacts{
     display:flex;
     align-items: center;
     gap: 30px;
     color :white;
 }
+
+.contacts li{
+    cursor: pointer;
+}
+
+.contacts li a{
+    cursor: pointer;
+    color: #ffffff;
+}
+
 
 
 
@@ -42,6 +60,7 @@
 /* Estilo específico para los elementos dentro del navbar */
 .navbar.scrolled .mainContent .item,
 .navbar.scrolled .contacts .item,
+.navbar.scrolled .contacts .item a,
 .navbar.scrolled .logo p {
     color: black; /* Cambiar el color de los enlaces y logo a negro */
 }

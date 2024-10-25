@@ -47,6 +47,7 @@
 .filter-wrapper .filter-options .search-container .search .search-input{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .filter-wrapper .filter-options .search-container .search .search-input input {
@@ -80,6 +81,7 @@ color: #424e5b;
 .filter-wrapper .filter-options .search-container .search img{
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 
@@ -89,6 +91,7 @@ color: #424e5b;
 
 
 .filter-wrapper .filter-options .options-container{
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
@@ -101,14 +104,20 @@ color: #424e5b;
     gap: 30px;
     padding: 0px 10px;
     border-right: 1px solid rgb(238, 238, 238);
+    cursor: pointer;
+
     
+    /* border: 1px solid red; */
 }
 
 .filter-wrapper .filter-options .options-container .option .precio-rango{
     display: flex;
     align-items: center;
     gap: 10px;
-    
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;  
+    max-width: 160px; */
 }
 
 
@@ -116,6 +125,7 @@ color: #424e5b;
 .filter-wrapper .filter-options .options-container .option .precio-rango .hasta{
     display: flex;
     gap: 3px;
+    
 }
 
 .filter-wrapper .filter-options .options-container .option .precio-rango .desde p, 
@@ -123,10 +133,52 @@ color: #424e5b;
     color: #94792f;
     font-size: .9rem;
     font-weight: 600;
+    
 }
 
 
 
+.filter-wrapper .filter-options .options-container .precio .modalPrecio .modal-precio-container-interno,
+.filter-wrapper .filter-options .options-container .superficie .modalTamano .modal-tamano-container-interno
+{
+    display: flex;
+    gap: 20px;
+   border-bottom: 1px solid rgb(230, 230, 230);
+   padding-bottom: 20px;
+}
+
+
+
+.filter-wrapper .filter-options .options-container .precio .modalPrecio .modal-precio-container-interno .item label,
+.filter-wrapper .filter-options .options-container .superficie .modalTamano .modal-tamano-container-interno .item label{
+    font-size: 14px;
+}
+
+.filter-wrapper .filter-options .options-container .precio .modalPrecio .modal-precio-container-interno .item input,
+.filter-wrapper .filter-options .options-container .superficie .modalTamano .modal-tamano-container-interno .item input{
+    margin-top: 5px;
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(147, 147, 147);
+}
+
+
+.filter-wrapper .filter-options .options-container .precio .modalPrecio .btn-filtrar,
+.filter-wrapper .filter-options .options-container .superficie .modalTamano .btn-filtrar{
+    background-color: #94792f;
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 15px;
+    float: right;
+    width: 70%;
+    cursor: pointer;
+}
 
 
 .filter-wrapper .filter-options .options-container .option img{
@@ -181,7 +233,7 @@ color: #424e5b;
 
 .filter-wrapper .filter-options .option .modal p{
     padding: 10px 20px;
-    transition: 1s;
+    transition: .5s;
     
 }
 
@@ -191,9 +243,7 @@ color: #424e5b;
 
 
 .filter-wrapper .filter-options .option .modalPrecio, .modalTamano{
-    max-width: 250px;
-    min-width: 250px;
-    padding: 20px;
+    padding: 15px;
     position: absolute;
     bottom: 0%;
     right:  0px;
@@ -205,16 +255,279 @@ color: #424e5b;
 }
 
 
-.filter-wrapper .filter-options .option .modalPrecio .item, .modalTamano .item{
-    display: flex;
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros{
+    display: none;
+    position: absolute;
+    bottom: 0%;
+    right:  0px;
+    transform: translateY(100%);
+    background-color: #ffffff;
+    border-radius:0px 0px 20px 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    padding: 0px 0px 60px 0px;
+    height: calc(100vh - 85px - 65px);
 }
 
-.filter-wrapper .filter-options .option .modalPrecio .modalTamano .item{
-    display: flex;
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .filtros{
+    overflow-y: scroll;
+    height: 100%;
+    padding: 20px 20px 20px 20px;
 }
+
+/* habitaciones */
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones h2{
+ font-size: 18px;
+ color: #424e5b;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones ul {
+    display: flex;
+    margin-top: 15px;
+   
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e1e1e1;
+    border-radius: 0px;
+    padding: 0px 0px;
+    width: 60px;
+    height: 48px;
+    border-radius: 0px;
+    color:#7e7e7e;
+    transition: .2s;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones ul li:hover{
+    background-color: #f9f9f9;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones ul li:first-child{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones ul li:last-child{
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.selected {
+    background-color:#94792f; /* Color de fondo de selección */
+    color: white !important;         /* Color de texto cuando está seleccionado */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.selected:hover {
+    background-color:#94792f !important; /* Color de fondo de selección */
+   
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones .checkbox{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones .checkbox input{
+    height: 18px;
+    width: 18px;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-habitaciones .checkbox label{
+    color: #696969;
+}
+
+
+/* baños */
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos h2{
+    font-size: 18px;
+    color: #424e5b;
+    margin-top: 40px;
+   }
+   
+   .filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos ul {
+       display: flex;
+       margin-top: 15px;
+      
+   }
+   
+   .filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos ul li{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       border: 1px solid #e1e1e1;
+       border-radius: 0px;
+       padding: 0px 0px;
+       width: 60px;
+       height: 48px;
+       border-radius: 0px;
+       color:#7e7e7e;
+       transition: .2s;
+       font-size: 14px;
+       font-weight: 300;
+   }
+   
+   .filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos ul li:hover{
+       background-color: #f9f9f9;
+   }
+   
+   .filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos ul li:first-child{
+       border-top-left-radius: 30px;
+       border-bottom-left-radius: 30px;
+   }
+   
+   
+   .filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos ul li:last-child{
+       border-top-right-radius: 30px;
+       border-bottom-right-radius: 30px;
+   }
+   
+   .filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos .checkbox{
+       margin-top: 10px;
+       display: flex;
+       align-items: center;
+       gap: 5px;
+   }
+   
+   
+   .filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos .checkbox input{
+       height: 18px;
+       width: 18px;
+   }
+   
+   .filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .num-banos .checkbox label{
+       color: #696969;
+   }
+
+
+
+/* estado inmueble */
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .estado-inmueble{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .estado-inmueble label{
+    font-size: 18px;
+    color: #424e5b;
+    font-weight: 700;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .estado-inmueble select{
+   width: 50%;
+   margin-top: 10px;
+   height: 40px;
+   border: 1px solid #e1e1e1;
+   padding:0px 7px;
+   border-radius: 10px;
+}
+
+
+/* filtros adicionales */
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .filtros-adicionales{
+    margin-top: 40px;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .filtros-adicionales h2{
+    font-size: 18px;
+    color: #424e5b;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .filtros-adicionales .filtros-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .filtros-adicionales .filtros-container .filtro-item{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0px 0px 0px 10px;
+    background-color: #f4f2ee;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .filtros-adicionales .filtros-container .filtro-item label{
+    font-size: 12px;
+    height: 40px;
+    width: 100%;
+    cursor: pointer;
+    padding: 0px 10px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .footer{
+    width: 100%;
+    height: auto;
+    border-top: 1px solid rgb(220, 220, 220);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0px;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .footer .btn-filtrar{
+    padding: 10px 15px;
+    background-color: #94792f;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 15px;
+    transition: .2s;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .footer .btn-filtrar:hover{
+    color: rgb(71, 71, 71); 
+    background-color: #00000000;
+    border: 1px solid #94792f;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .footer .btn-reset{
+    padding: 10px 15px;
+    background-color: #ffffff00;
+    color: rgb(70, 70, 70);
+    font-size: 14px;
+    border: 1px solid rgb(94, 94, 94);
+    border-radius: 15px;
+    transition: .2s;
+}
+
+.filter-wrapper .filter-options .options-container .mas .modal-mas-filtros .footer .btn-reset:hover{
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.321);
+}
+
 
 .modalFilterActive{
     display: block !important;
+    cursor:default;
+    
 }
 
 .rotate{
@@ -321,7 +634,7 @@ color: #424e5b;
 
 
 .property{
-    
+    position: relative;
     /* gap: 20px; */
     padding: 0px;
     background-color: #ffffff;
@@ -330,6 +643,8 @@ color: #424e5b;
     /* width: 100%; */
     overflow: hidden;
 }
+
+
 
 
 .splide{
@@ -372,6 +687,7 @@ height: 100% ;
 .property .information{
     padding: 10px;
     width: 100%;
+    cursor: pointer;
 }
 
 
@@ -506,6 +822,7 @@ height: 100% ;
 
 
 .view-property{
+    
     height: calc(100vh - 70px - 70px);
     max-width: 50%;
     min-width: 50%;
@@ -516,6 +833,7 @@ height: 100% ;
     animation: slideIn .3s ease-out forwards; /* Añade la animación */
     
 }
+
 
 /* Definición de la animación */
 @keyframes slideIn {
@@ -531,6 +849,7 @@ height: 100% ;
 
 
 .container-interno-view-property{
+    position: relative;
     background-color: #fefdfd;
     height: auto;
     padding: 0px 0px 0px 0px;
@@ -538,6 +857,27 @@ height: 100% ;
     overflow-y: scroll;
     height: 100%;
     border-radius: 7px;
+}
+
+.container-interno-view-property .cerrar{
+    border: none;
+    background-color: #ffffff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    padding: 5px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1000;
+}
+
+.container-interno-view-property .cerrar img{
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -691,7 +1031,7 @@ height: 100% ;
 
 
 .selected-property {
-    border: 1px solid #ffd971;
+    border: 1px solid #917939dc;
     box-shadow: 0 2px 24px rgba(96, 91, 0, 0.377) !important;
 
   }
