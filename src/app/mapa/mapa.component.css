@@ -1,0 +1,83 @@
+/* mapa */
+
+
+.mapa{
+    position: relative;
+    margin-top: 100px;
+}
+
+.mapa .modal{
+    height: auto;
+    width: 340px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-25%, -50%);
+    z-index: 2;
+    padding: 50px;
+    box-shadow: 0px 5px 65px 0px rgba(36, 42.000000000000014, 76, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mapa .modal h3{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.mapa .modal p{
+    font-size: 14px;
+}
+
+
+.mapa .modal img{
+    width: 20px;
+    height: 20px;
+}
+
+
+.mapa .modal .box .item{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 0px;
+}
+
+.mapa .modal .box .item a{
+    color: #696969;
+    transition: .2s;
+}
+
+.mapa .modal .box .item a:hover{
+    color:#8a712b;
+}
+
+
+.mapa .modal .box p{
+    color: #696969;
+    padding: 7px 0px;
+}
+
+
+
+
+
+
+
+/* Asegúrate de que el contenedor tenga un tamaño definido */
+#map {
+    z-index: 1;
+    height: 500px; /* O la altura que necesites */
+    width: 100%;   /* Puedes ajustar esto si deseas un ancho fijo */
+  
+  }
+  
+  .leaflet-container {
+    height: 100%; /* Asegura que el mapa ocupe toda la altura del contenedor */
+    width: 100%;
+  }
+
+  

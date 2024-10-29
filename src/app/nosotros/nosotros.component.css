@@ -1,0 +1,38 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .seccion{
+    width: 900px;
+    max-width: 100%;
+}
+
+.container .seccion h1{
+    text-align: center;
+    font-size: 40px;
+    color: #fd9687;
+    margin-bottom: 20px;
+}
+
+.container .seccion img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: blurIn .3s ease-in-out forwards; /* Aplica la animación */
+}
+
+/* Definir la animación del desenfoque */
+@keyframes blurIn {
+    0% {
+        filter: blur(10px); /* Desenfoque inicial */
+        opacity: 0; /* Transparencia inicial */
+    }
+    100% {
+        filter: blur(0); /* Desenfoque desaparece */
+        opacity: 1; /* Imagen completamente visible */
+    }
+}

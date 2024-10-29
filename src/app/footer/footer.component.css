@@ -1,0 +1,94 @@
+
+footer{
+    border-top: 4px solid rgb(255, 255, 255);
+    height: auto;
+    background-color: hsl(36, 38%, 97%);
+    
+}
+
+
+
+
+.footer-container{
+    padding: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-container .logo{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+
+.footer-container h3{
+    color: #212f36;
+    font-size: 16px;
+}
+
+.footer-container .contacts .item{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 0px;
+}
+
+.footer-container .contacts .item img{
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+
+
+.footer-container .webs{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.footer-container a{
+    color: #696969;
+}
+
+
+.footer-container .rentals{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-container .rentals p{
+    color: #696969;
+}
+
+
+
+
+.footer-container .sale{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-container .sale p{
+    color: #696969;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

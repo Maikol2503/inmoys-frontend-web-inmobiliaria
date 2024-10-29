@@ -87,13 +87,13 @@
 
             <div class="cardPropertie" *ngFor="let property of filteredProperties.slice(0, 8)">
                 <div class="cardContent">
-                    <div class="splide">
+                    <div class="splide_property">
                         <div class="transaction">
                             <p>{{ property.transaccion === 'compra' ? 'Venta' : property.transaccion }}</p>
                         </div>
-                        <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
-                            <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
-                                <img class="imagen-slide" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                        <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper_property">
+                            <swiper-slide class="splide_slide_property" *ngFor="let imagen of property.image">
+                                <img class="imagen-slide_property" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
                             </swiper-slide>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
@@ -225,13 +225,13 @@
 
         <div  class="featured-properties-list">
             <div *ngFor="let property of dataPropertiesDestacadas.slice(0, 6)" class="featured-property-card">
-                <div class="splide2">
+                <div class="splide_property_destacado">
                     <div class="transaction">
                         <p>{{ property.transaccion === 'compra' ? 'Venta' : property.transaccion }}</p>
                     </div>
-                    <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
-                       <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
-                          <img class="imagen-slide" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                    <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper_property_destacado">
+                       <swiper-slide class="splide_slide_property_destacado" *ngFor="let imagen of property.image">
+                          <img class="imagen-slide_property_destacado" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
                        </swiper-slide>
                        <div class="swiper-button-next"></div>
                        <div class="swiper-button-prev"></div>
@@ -240,10 +240,7 @@
                         <p>€ {{property.precio}}</p>
                     </div>
                  </div>
-                <!-- <div class="image">
-                    <img src="https://s37805.pcdn.co/fotocasa-life/wp-content/uploads/2019/06/baratos-1.jpg.optimal.jpg" alt="">
-                    <p class="price">{{property.precio}}</p>
-                </div> -->
+        
                 <div class="content">
                     <div class="photo-agent">
                         <img src="https://i.imgur.com/1aF2eY7.png" alt="">
@@ -314,12 +311,6 @@
                     <img src="https://i.imgur.com/s5CGNPX.png" alt="">
                 </div>
             </div>
-
-
-            
-
-
-
         </div>
     </section>
 
@@ -330,37 +321,51 @@
     <section class="contact">
         <div class="container-contact">
             <div class="form-contact">
-                <div class="form">
+                <form class="form" (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
                     <h2 class="title">Ponte en contacto conmigo para planificar tu próxima transacción inmobiliaria.</h2>
                     <p class="description">Completa el formulario a continuación y me pondré en contacto contigo lo antes posible.</p>
                     <div class="inputs">
-                        <div>
-                            <label for="nombre" class="label">Nombre:*</label>
-                            <input type="text" id="nombre" class="input" placeholder="Nombre">
-                        </div>   
-                        <div>
-                            <label for="apellido" class="label">Apellido:*</label>
-                            <input type="text" id="apellido" class="input" placeholder="Apellido">
-                        </div>
-                        
-                        <div>
-                            <label for="correo" class="label">Correo Electrónico:*</label>
-                            <input type="email" id="correo" class="input" placeholder="Correo Electrónico">
-                        </div>
-                        
-                        <div>
-                           <label for="movil" class="label">Móvil:</label>
-                            <input type="tel" id="movil" class="input" placeholder="Móvil"> 
-                        </div>
-                        
-                        <div>
-                            <label for="mensaje" class="label">Mensaje:</label>
-                            <textarea name="mensaje" id="mensaje" class="input" placeholder="Escribe tu mensaje aquí"></textarea>
-                        </div>
-                    </div>
-                    <button>Enviar</button>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" [(ngModel)]="contact.nombre" class="form-control"   placeholder="Nombre">
+                          </div>
                     
-                </div>
+                          <div class="form-group">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" [(ngModel)]="contact.apellido" class="form-control"  placeholder="Apellido">
+                          </div>
+                    
+                          <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" [(ngModel)]="contact.email" class="form-control"   placeholder="Email*" required >
+                          </div>
+                    
+                          <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="text" id="telefono" name="telefono" [(ngModel)]="contact.telefono"  placeholder="Telefono*" class="form-control" required>
+                          </div>
+                    
+                        </div>
+            
+                        <div class="text-area">
+                          <label for="mensaje" class="mensaje_label">Mensaje</label>
+                          <textarea id="mensaje" name="mensaje" [(ngModel)]="contact.mensaje" placeholder="Mensaje" class="form-control" rows="5"></textarea>
+                        </div>
+
+                        <div class="button">
+                            <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">
+                                <span *ngIf="!enviando">Enviar</span>
+                                <span *ngIf="enviando" class="loader"></span>
+                            </button>
+                            
+                                <div *ngIf="enviadoExitosamente" class="mensaje-exito">
+                                    ¡Mensaje enviado!
+                                </div>
+                                <div *ngIf="errorEnvio" class="mensaje-error">
+                                    Error al enviar el mensaje. Por favor, inténtalo de nuevo.
+                                </div>
+                        </div>
+                </form>
                 <div class="photo">
                     <img src="https://i.imgur.com/itq0LHh.jpeg" alt="">
                 </div>
@@ -368,103 +373,29 @@
             
         </div>
 
-        <div class="s">
+        <!-- <div class="s">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path fill="#ffffff" fill-opacity="1" d="M0,192L60,186.7C120,181,240,171,360,144C480,117,600,75,720,53.3C840,32,960,32,1080,69.3C1200,107,1320,181,1380,218.7L1440,256L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
               </svg>
-        </div>
+        </div> -->
     </section>
-
-
-
 
 
 
 
     <section class="mapa">
-        <div id="map"></div>
-        
-        <div class="modal">
-            <div class="box">
-                <h3>Cómo encontrarnos</h3>
-                <div class="telefono item">
-                    <img src="https://i.imgur.com/Jtqy329.png" alt="">
-                    <p><a href="tel:+34602451849"> (+34) 602451849</a></p>
-                </div>
-                
-                <div class="whatsapp item">
-                    <img src="https://i.imgur.com/vZnnSvF.png" alt="">
-                    <p><a href="https://wa.me/34602451849" target="_blank"> (+34) 602451849</a></p>
-                </div>
-                
-                <div class="email item">
-                    <img src="https://i.imgur.com/k0iWSXC.png" alt="">
-                    <p><a href="mailto:ytrabajo@gmail.com"> ysalguerot&#64;gmail.com</a></p>
-                </div>
-                <div class="location item">
-                    <img src="https://i.imgur.com/v4JSWF2.png" alt="">
-                    <p><a target="_blank" href="https://www.google.es/maps/place/REMAX+Conecta/@40.417604,-3.6693655,17z/data=!4m15!1m8!3m7!1s0xd4229000139f99d:0xbfc63bd5cc574cc7!2sREMAX+Conecta!8m2!3d40.4176015!4d-3.6696778!10e5!16s%2Fg%2F11y6px_f3z!3m5!1s0xd4229000139f99d:0xbfc63bd5cc574cc7!8m2!3d40.4176015!4d-3.6696778!16s%2Fg%2F11y6px_f3z?hl=es&entry=ttu&g_ep=EgoyMDI0MDkyMi4wIKXMDSoASAFQAw%3D%3D"> Calle Doctor Esquerdo 50, 28007, Madrid, Madrid</a> </p>
-                </div>    
-            </div>
-            <div class="box">
-                <h3>Horario de apertura</h3>
-                <p>Lunes - Viernes 09:30 a 14:00 y 17:00 a 20:00</p>
-                <p>Sabado - Domingo Cerrado</p>
-            </div>
-            
-        </div>
-        
-        
+        <app-mapa></app-mapa>
     </section>
+
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+
+    
     
 
 
-   
 
-
-
-    <footer>
-        <div class="footer-container">
-            <div class="contacts">
-                <div class="logo">
-                    <h1>InmoYS</h1>
-                </div>
-                <div class="telefono item">
-                    <img src="https://i.imgur.com/Jtqy329.png" alt="">
-                    <p><a href="tel:+34602451849"> (+34) 602451849</a></p>
-                </div>
-                
-                <div class="whatsapp item">
-                    <img src="https://i.imgur.com/vZnnSvF.png" alt="">
-                    <p><a href="https://wa.me/34602451849" target="_blank"> (+34) 602451849</a></p>
-                </div>
-                
-                <div class="email item">
-                    <img src="https://i.imgur.com/k0iWSXC.png" alt="">
-                    <p><a href="mailto:ytrabajo@gmail.com"> ysalguerot&#64;gmail.com</a></p>
-                </div>
-                <div class="location item">
-                    <img src="https://i.imgur.com/v4JSWF2.png" alt="">
-                    <p><a target="_blank" href="https://www.google.es/maps/place/REMAX+Conecta/@40.417604,-3.6693655,17z/data=!4m15!1m8!3m7!1s0xd4229000139f99d:0xbfc63bd5cc574cc7!2sREMAX+Conecta!8m2!3d40.4176015!4d-3.6696778!10e5!16s%2Fg%2F11y6px_f3z!3m5!1s0xd4229000139f99d:0xbfc63bd5cc574cc7!8m2!3d40.4176015!4d-3.6696778!16s%2Fg%2F11y6px_f3z?hl=es&entry=ttu&g_ep=EgoyMDI0MDkyMi4wIKXMDSoASAFQAw%3D%3D"> Calle Doctor Esquerdo 50, 28007, Madrid, Madrid</a> </p>
-                </div>
-            </div>
-            <div class="webs">
-                <h3>InmoYS en Web</h3>
-                <ul>
-                    <a target="_blank" href="https://www.remaxconecta.es/"><li>Remax</li></a>
-                    <a target="_blank" href="https://www.idealista.com/pro/remax-conecta/"><li>Idealista</li></a>
-                </ul>
-            </div>
-            <div class="rentals">
-                <h3>Alquileres en Madrid</h3>
-                <p  routerLink="/browser" [queryParams]="{ tipo: 'vivienda', transaccion: 'alquiler', zona: 'Madrid' }">Alquiler pisos Madrid</p>
-            </div>
-            <div class="sale">
-                <h3>Venta de casas, pisos y locales en Madrid</h3>
-                <p routerLink="/browser" [queryParams]="{ tipo: 'vivienda', transaccion: 'venta', zona: 'Madrid' }">Venta de pisos en Madrid</p>
-            </div>
-        </div>
-    </footer>
 
 
 

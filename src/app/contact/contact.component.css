@@ -1,0 +1,251 @@
+.container{
+   width: 100%;
+   
+}
+
+/* seccion formulario y info adicional */
+.section-form-and-info {
+    margin: 60px auto 0px auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1400px;
+    padding: 50px;
+  }
+  
+/* formulario */
+.form {
+    padding: 100px 40px;
+    width: 500px;
+    height: 100%;
+    max-width: 50%;
+    margin: 0 auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+  }
+  
+  .section-form-and-info .form h2, h3 {
+    text-align: center;
+  }
+
+  .inputs{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 0px;
+    
+  }
+  
+  label {
+    
+    font-size: 13px;
+    color: #696969;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top:5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    resize: none;
+  }
+
+.form .text-area{
+  margin-top: 10px;
+}
+
+.form .button{
+  position: relative;
+}
+  
+.form .button button{
+    background-color: #94792f;
+    color: white;
+    height: 45px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+.form .button button:disabled {
+    background-color: #94792fd1;
+    
+}
+
+.loader {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+  /* Estilos de mensajes de estado */
+
+.form .button .mensaje-exito {
+    color: #826a28;
+    position: absolute;
+    top: 0%;
+    transform: translateY(calc(-100% - -18px));
+    right: 0px;
+    font-size: 12px;
+  }
+
+
+.form .button .mensaje-error {
+    color: red;
+    position: absolute;
+    top: 0%;
+    transform: translateY(calc(-100% - -18px));
+    right: 0px;
+    font-size: 12px;
+  }
+
+.form .contact-info{
+  margin-top: 20px;
+}
+
+.form .contact-info ul{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form .contact-info ul li a img{
+  width: 30px;
+  height: 30px;
+}
+  
+
+/* informacion adicional */
+
+.section-form-and-info .additional-info{
+  width: 50%;
+  padding: 40px;
+}
+
+.section-form-and-info .additional-info .assistance-title{
+  font-size: 24px;
+  font-weight: 600;
+  color: #1B3942;
+}
+
+.section-form-and-info .additional-info .contact-subtitle{
+  font-size: 40px;
+  font-weight: 600;
+  color: #1B3942;
+  margin-top: 10px;
+}
+
+.section-form-and-info .additional-info .assistance-description{
+  margin-top: 20px;
+  font-size: 18px;
+  color: #2d2d2d;
+  line-height: 25px;
+}
+
+.section-form-and-info .additional-info .contact-title{
+  margin-top: 20px;
+  color: #1B3942;
+}
+
+.section-form-and-info .additional-info .whatsapp{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.section-form-and-info .additional-info .whatsapp p a{
+  color: #2d2d2d;
+}
+
+.section-form-and-info .additional-info .whatsapp img{
+  width: 40px;
+ 
+}
+
+.section-form-and-info .additional-info .telefono{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.section-form-and-info .additional-info .telefono p a{
+  color: #2d2d2d;
+}
+
+.section-form-and-info .additional-info .telefono img{
+  width: 40px;
+  max-height: 30px;
+  object-fit: contain;
+}
+
+
+.section-form-and-info .additional-info .correo{
+margin-top: 20px;
+
+}
+
+.section-form-and-info .additional-info .correo h2{
+  color: #1B3942;
+  
+  }
+
+.section-form-and-info .additional-info .correo .item-correo{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.section-form-and-info .additional-info .correo .item-correo img{
+  width: 40px;
+  max-height: 30px;
+  object-fit: contain;
+}
+
+.section-form-and-info .additional-info .correo .item-correo p{
+  margin-top: 0px;
+}
+
+.section-form-and-info .additional-info .correo .item-correo p a{
+  color: #2d2d2d;
+}
+
+
+
+.section-form-and-info .additional-info .horarios{
+margin-top: 20px;
+padding: 20px;
+background-color: rgb(244, 244, 244);
+border-radius: 20px;
+}
+
+.section-form-and-info .additional-info .horarios h3{
+  text-align: left;
+  color: #1B3942;
+}
+
+.section-form-and-info .additional-info .horarios p{
+  margin-top: 10px;
+}

@@ -10,11 +10,12 @@ import { Imagen } from '../services/imagesPropertiesModel';
 register()
 
 import { firstValueFrom } from 'rxjs';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-browser',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, FooterComponent],
   templateUrl: './browser.component.html',
   styleUrls: ['./browser.component.css'] ,
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

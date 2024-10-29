@@ -241,16 +241,46 @@
     transition: .5s;
 }
 
-.cardPropertie:hover .imagen-slide {
-    transform: scale(1.1); /* Escala la primera imagen */
-}
-
 .cardContent{
     width: 100%;
 }
 
 
-.cardContent .splide .transaction{
+.splide_property{
+    width: 100%;
+    height:350px;
+    position: relative;
+    visibility: visible;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.mySwiper_property{
+    height: 100%;
+}
+
+
+.splide_slide_property{
+    display: flex;
+    height: 100% ;
+    overflow: hidden;
+    }
+
+.imagen-slide_property{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px 0px 0 0;
+    transition: .5s;
+} 
+
+.cardPropertie:hover .imagen-slide_property {
+    transform: scale(1.1); /* Escala la primera imagen */
+}
+
+
+
+.cardContent .splide_property .transaction{
     position: absolute;
     top: 10px;
     left: 10px;
@@ -295,7 +325,7 @@
     right:10px;
 } */
 
-.cardPropertie .cardContent .splide .photo-agent{
+.cardPropertie .cardContent .splide_property .photo-agent{
     position: absolute;
     bottom:15px;
     left: 15px;
@@ -307,7 +337,7 @@
     z-index: 1;
 }
 
-.cardPropertie .cardContent .splide .photo-agent .img-agent{
+.cardPropertie .cardContent .splide_property .photo-agent .img-agent{
     width: 100%;
     height: auto;
     object-fit: contain;
@@ -320,7 +350,7 @@
 
 
 
-.cardPropertie .cardContent .imagen .image-property{
+.cardPropertie .cardContent .imagen .image-property_property{
     border-radius: 15px;
     width: 100%;
     min-height: 350px;
@@ -619,11 +649,38 @@ button:hover {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
-.featured-properties-list .featured-property-card:hover .imagen-slide{
+.featured-properties-list .featured-property-card .mySwiper_property_destacado{
+    height: 100%;
+}
+
+
+.featured-properties-list .featured-property-card .splide_property_destacado{
+    width: 100%;
+    height:220px;
+    position: relative;
+    visibility: visible;
+    overflow: hidden;
+}
+
+.featured-properties-list .featured-property-card .imagen-slide_property_destacado{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px 0px 0 0;
+    transition: .5s;
+} 
+
+.featured-properties-list .featured-property-card .splide_slide_property_destacado{
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    }
+
+.featured-properties-list .featured-property-card:hover .imagen-slide_property_destacado{
    transform: scale(1.1);
 }
 
-.featured-properties-list .featured-property-card .splide2 .transaction{
+.featured-properties-list .featured-property-card .splide_property_destacado .transaction{
     position: absolute;
     top: 10px;
     right: 10px;
@@ -631,14 +688,14 @@ button:hover {
     line-height: 20px;
     font-size: 11px;
     color: #FFFFFF;
-    background-color: #94792fd9;
+    background-color: #003e54a1;
     border-radius: 7px;
     z-index: 2;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
     text-transform: capitalize;
 }
 
-.featured-properties-list .featured-property-card .splide2 .price{
+.featured-properties-list .featured-property-card .splide_property_destacado .price{
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -901,7 +958,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 30px;
-   
+   position: relative;
     
 }
 
@@ -938,37 +995,71 @@ button:hover {
     padding: 10px 15px;
 }
 
+.container-contact .form .button{
+    height: 20px;
+    height: auto;
+    position: relative;
+  }
 
-.container-contact .form .inputs textarea{
-    line-height: 1.4;
-    font-size: 15px;
-    min-height: 40px;
-    padding: 5px 14px;
-    border-radius: 3px;
-    background-color: #F8F9FA;
-    border-color: #ffffff00;
-}
-
-
-.container-contact .form button{
+.container-contact .form .button button{
     background-color: #826a28;
     color: #FFFFFF;
     border: none;
     padding: 15px 30px;
+    height: 50px;
     border-radius: 5px;
     font-size: 16px;
     transition: .3s;
+    width: 100%;
 }
 
+.container-contact .form .button button:disabled {
+    background-color: #94792fd1;
+    
+}
 
-.container-contact .form button:hover{
+.loader {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  
+  /* Estilos de mensajes de estado */
+.container-contact .form .button .mensaje-exito {
+    color: #826a28;
+    position: absolute;
+    bottom: 0%;
+    transform: translateY(calc(100% + 5px));
+    right: 0px;
+    font-size: 14px;
+  }
+.container-contact .form .button .mensaje-error {
+    color: red;
+    position: absolute;
+    bottom: 0%;
+    transform: translateY(calc(100% + 5px));
+    right: 0px;
+    font-size: 14px;
+  }
+
+.container-contact .form .button button:hover{
     background-color: #a2832e;
 }
 
 .container-contact .form .inputs {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 columnas de igual ancho */
-    gap: 10px; /* Espacio entre los elementos */
+    gap: 20px; /* Espacio entre los elementos */
 }
 
 .container-contact .form .inputs div {
@@ -981,10 +1072,27 @@ button:hover {
     padding: 5px; /* Añade un poco de padding para mejor apariencia */
 }
 
-.container-contact .form textarea {
-    resize: vertical; /* Permite cambiar el tamaño vertical del textarea si se desea */
-    height: 100px; /* Ajusta la altura del textarea según lo que necesites */
+.container-contact .form .text-area textarea{
+    resize: none; /* Permite cambiar el tamaño vertical del textarea si se desea */
+    height: 150px; /* Ajusta la altura del textarea según lo que necesites */
+    width: 100%;
+    line-height: 1.4;
+    font-size: 15px;
+    min-height: 40px;
+    padding: 15px;
+    border-radius: 3px;
+    background-color: #F8F9FA;
+    border-color: #ffffff00;
+    margin-top: 5px;
 }
+
+.container-contact .form .text-area label{
+    font-size: 13px;
+    color:#696969;
+    margin-bottom: 7px;
+}
+
+
 
 .container-contact .form .inputs div:nth-child(5) {
     grid-column: span 2; /* Hace que el textarea ocupe toda la fila */
@@ -1014,69 +1122,6 @@ button:hover {
 
 
 
-/* mapa */
-
-
-.mapa{
-    position: relative;
-    margin-top: 100px;
-}
-
-.mapa .modal{
-    height: auto;
-    width: 340px;
-    border-radius: 15px;
-    background-color: #FFFFFF;
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    transform: translate(-25%, -50%);
-    z-index: 2;
-    padding: 50px;
-    box-shadow: 0px 5px 65px 0px rgba(36, 42.000000000000014, 76, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.mapa .modal h3{
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.mapa .modal p{
-    font-size: 14px;
-}
-
-
-.mapa .modal img{
-    width: 20px;
-    height: 20px;
-}
-
-
-.mapa .modal .box .item{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 2px 0px;
-}
-
-.mapa .modal .box .item a{
-    color: #696969;
-    transition: .2s;
-}
-
-.mapa .modal .box .item a:hover{
-    color:#8a712b;
-}
-
-
-.mapa .modal .box p{
-    color: #696969;
-    padding: 7px 0px;
-}
-
 
 
 
@@ -1094,7 +1139,7 @@ button:hover {
   .leaflet-container {
     height: 100%; /* Asegura que el mapa ocupe toda la altura del contenedor */
     width: 100%;
-  }
+  } 
 
   
 
@@ -1130,85 +1175,6 @@ button:hover {
 
 
 
-footer{
-    border-top: 4px solid rgb(255, 255, 255);
-    height: auto;
-    background-color: #fbf9f6;
-}
-
-
-
-
-.footer-container{
-    padding: 50px;
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer-container .logo{
-    font-size: 30px;
-    margin-bottom: 10px;
-}
-
-
-.footer-container h3{
-    color: #212f36;
-    font-size: 16px;
-}
-
-.footer-container .contacts .item{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 0px;
-}
-
-.footer-container .contacts .item img{
-    width: 20px;
-    height: 20px;
-}
-
-
-
-
-
-
-.footer-container .webs{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-
-.footer-container a{
-    color: #696969;
-}
-
-
-.footer-container .rentals{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.footer-container .rentals p{
-    color: #696969;
-}
-
-
-
-
-.footer-container .sale{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.footer-container .sale p{
-    color: #696969;
-}
 
 
 
@@ -1223,34 +1189,7 @@ footer{
 
 
 
-
-
-
-
-
-
-
-
-.splide2{
-    width: 100%;
-    height:220px;
-    position: relative;
-    visibility: visible;
-    overflow: hidden;
-}
-
-
-.splide{
-    width: 100%;
-    height:350px;
-    position: relative;
-    visibility: visible;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-
-.mySwiper{
+/* .mySwiper{
     height: 100%;
 }
 
@@ -1273,7 +1212,7 @@ overflow: hidden;
     object-fit: cover;
     border-radius: 0px 0px 0 0;
     transition: .5s;
-}
+} */
 
 
 

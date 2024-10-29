@@ -1,1 +1,105 @@
-<p>contact works!</p>
+<div class="container">
+      <section class="section-form-and-info">
+        <div class="form">
+          
+          <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+            <div class="inputs">
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" [(ngModel)]="contact.nombre" class="form-control" placeholder="Nombre">
+              </div>
+        
+              <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" [(ngModel)]="contact.apellido" class="form-control" placeholder="Apeellido">
+              </div>
+        
+              <div class="form-group">
+                <label for="email">Correo Electrónico *</label>
+                <input type="email" id="email" name="email" [(ngModel)]="contact.email" class="form-control" required  placeholder="Correo*">
+              </div>
+        
+              <div class="form-group">
+                <label for="telefono">Teléfono *</label>
+                <input type="text" id="telefono" name="telefono" [(ngModel)]="contact.telefono" class="form-control" required placeholder="Telefono*">
+              </div>
+        
+            </div>
+
+            <div class="text-area">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" [(ngModel)]="contact.mensaje" class="form-control" rows="5" placeholder="Mensaje"></textarea>
+            </div>
+      
+            <div class="button">
+              <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">
+                  <span *ngIf="!enviando">Enviar</span>
+                  <span *ngIf="enviando" class="loader"></span>
+              </button>
+              
+              <div *ngIf="enviadoExitosamente" class="mensaje-exito">
+                  ¡Mensaje enviado!
+              </div>
+              <div *ngIf="errorEnvio" class="mensaje-error">
+                  Error al enviar el mensaje. Por favor, inténtalo de nuevo.
+              </div>
+            </div>
+          </form>
+      
+          <div class="contact-info">
+            <p>Síguenos en:</p>
+            <ul>
+              <li><a href="https://www.instagram.com/yennyremaxconecta/?igsh=MWNpeGptOWtydjYybA%3D%3D" target="_blank"><img [src]="getImageUrl('iconos', 'social.png')" alt=""></a></li>
+              <li><a href="https://www.facebook.com/profile.php?id=61562343212618" target="_blank"><img [src]="getImageUrl('iconos', 'facebook.png')"  alt=""></a></li>
+            </ul>
+          </div>
+        </div>
+      
+        <!-- seccion derecha - info adicional -->
+        <div class="additional-info">
+          <h2 class="assistance-title">¿Necesitas asistencia?</h2>
+          <h2 class="contact-subtitle">Póngase en contacto con nosotros si necesita ayuda.</h2>
+          <p  class="assistance-description">
+            Nuestro equipo está disponible para resolver cualquier pregunta o solicitud que tengas. 
+            Puedes contactarnos por mensaje, correo electrónico o teléfono; 
+            estamos listos para asistirte en todo momento. No dudes en contactarnos cuando lo necesites.
+          </p>
+          <h2 class="contact-title">Teléfono / Whatsapp</h2>
+          <div class="whatsapp">
+            <img src="https://i.imgur.com/vZnnSvF.png" alt="">
+            <p>
+              <a href="https://wa.me/34602451849" target="_blank"> (+34) 602451849</a>
+            </p>
+          </div>
+          <div class="telefono">
+            <img src="https://i.imgur.com/Jtqy329.png" alt="">
+            <p>
+              <a href="tel:+34602451849"> (+34) 602451849</a>
+            </p>
+          </div>
+          
+          <div class="correo">
+            <h2>Envíanos un correo</h2>
+            <div class="item-correo">
+              <img src="https://i.imgur.com/k0iWSXC.png" alt="">
+              <p>
+                <a href="mailto:ytrabajo@gmail.com"> ysalguerot&#64;gmail.com</a>
+              </p>
+            </div>
+          </div>
+          <div class="horarios">
+            <h3>Horario de apertura</h3>
+            <p>Lunes - Viernes 09:30 a 14:00 y 17:00 a 20:00</p>
+            <p>Sábado - Domingo Cerrado</p>
+          </div>
+        </div>
+      </section>
+  
+      <!-- mapa -->
+      <section class="mapa">
+        <app-mapa></app-mapa>
+      </section>
+      <footer>
+        <app-footer></app-footer>
+      </footer>
+</div>
