@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Propiedad } from './propertiesModel';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { Propiedad } from './propertiesModel';
 })
 export class PropertiesService {
   private apiUrl = 'http://localhost:8000'; // Cambia esto a la URL base de tu API FastAPI
+  
 
   constructor(private http: HttpClient) {}
 
@@ -16,14 +17,20 @@ export class PropertiesService {
     return this.http.get(`${this.apiUrl}/get-properties`);
   }
 
+  getImagesByPropertyId(propertyId: number): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/obtener-imagenes-propiedad?property_id=${propertyId}`)
+      .pipe(
+        catchError(this.handleError) // Manejo de errores
+      );
+  }
 
   filteresProperties(params: any): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/get-public-properties-disponibles`, { params });
   }
 
   // Obtener propiedades disponibles
-  getAllAvailableProperties(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/get-public-properties-disponibles`);
+  getAllAvailableProperties(params: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/get-public-properties-disponibles`, {params});
   }
 
   // Obtener una propiedad por ID
@@ -49,5 +56,15 @@ export class PropertiesService {
   // Validar si el SKU existe
   validateSku(sku: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/validar-sku/${sku}`);
+  }
+
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('Ocurrió un error:', error.error.message);
+    } else {
+      console.error(`Error de servidor: ${error.status}, ` + `cuerpo: ${error.error}`);
+    }
+    return throwError('Algo salió mal; por favor intenta de nuevo más tarde.');
   }
 }

@@ -11,6 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class NavComponent {
   scrolled = false;
+  private baseUrlImagesWeb: string = 'http://127.0.0.1:8000/images-for-web/';
   isNotHome = false;
 
   constructor(private router: Router) {
@@ -36,5 +37,9 @@ export class NavComponent {
       // Actualiza la variable dependiendo de si la URL actual es distinta de '/home'
       this.isNotHome = this.router.url !== '/home';
     });
+  }
+
+  getImageUrlWeb(directory: string, nameImage: string): string {
+    return `${this.baseUrlImagesWeb}${directory}/${nameImage}`;
   }
 }

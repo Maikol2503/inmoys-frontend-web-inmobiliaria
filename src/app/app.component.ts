@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './nav/nav.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
-import { ScrollService } from './scroll.service';
+import { ScrollService } from './services/scroll.service';
 
 @Component({
   selector: 'app-root',

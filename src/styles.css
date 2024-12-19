@@ -20,3 +20,37 @@ body{
     --swiper-navigation-color: #ffffff;
 }
 
+/* ::view-transition-old(root) {
+    animation: exit 1s ease 0s 1 normal forwards;
+  }
+  
+  ::view-transition-new(root) {
+    animation: enter 1s ease 0s 1 normal forwards;
+  }
+  
+  
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes exit {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+    
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+  } */
+
+

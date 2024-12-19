@@ -14,7 +14,7 @@ import { MailService } from '../services/mail.service';  // Importar el servicio
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
-  private baseUrl: string = 'http://127.0.0.1:8000/images-for-web/';
+  private baseUrlImagesWeb: string = 'http://127.0.0.1:8000/images-for-web/';
   
   enviadoExitosamente = false;
   errorEnvio = false;
@@ -67,7 +67,7 @@ export class ContactComponent {
 
   // Función para obtener la URL completa de la imagen
   getImageUrl(directory: string, nameImage: string): string {
-    return `${this.baseUrl}${directory}/${nameImage}`;
+    return `${this.baseUrlImagesWeb}${directory}/${nameImage}`;
   }
 
   resetForm(){

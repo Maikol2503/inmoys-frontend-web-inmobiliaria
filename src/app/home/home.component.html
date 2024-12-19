@@ -1,7 +1,15 @@
 
-<button class="whatsapp-btn"><a href="https://wa.me/34602451849" target="_blank" ><img src="https://i.imgur.com/pAJQjkz.png" alt=""></a></button>
+
+<!-- boton whatsapp -->
+<button class="whatsapp-btn">
+    <a href="https://wa.me/34602451849" target="_blank" >
+        <img src="https://i.imgur.com/pAJQjkz.png" alt="">
+    </a>
+</button>
 
 <div class="contenedor">
+
+    <!-- header -->
     <header class="header-contenedor">
         <div class="header-contenedor-secundario">
             <!-- <div class="nav">
@@ -39,31 +47,13 @@
         </div>
     </header>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- propiedades -->
     <section class="properties">
+        <!-- header propiedades -->
         <div class="header">
             <p>Propiedades Disponibles</p>
         </div>
+        <!-- filtros -->
         <div class="filters">
             <ul class="lista">
                 <li [ngClass]="{ 'filterActive': filterActive === 'alquiler' }" class="item" (click)="filterProperties('alquiler')">
@@ -80,20 +70,17 @@
                 </li>
             </ul>
         </div>
+        <!-- lista de propiedades -->
         <div class="listProperties">
-
-
-
-
             <div class="cardPropertie" *ngFor="let property of filteredProperties.slice(0, 8)">
                 <div class="cardContent">
-                    <div class="splide_property">
+                    <div class="splide_property" >
                         <div class="transaction">
                             <p>{{ property.transaccion === 'compra' ? 'Venta' : property.transaccion }}</p>
                         </div>
                         <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper_property">
                             <swiper-slide class="splide_slide_property" *ngFor="let imagen of property.image">
-                                <img class="imagen-slide_property" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                                <img class="imagen-slide_property" [src]="getImageUrl(property.sku, imagen)" alt="Imagen de la propiedad">
                             </swiper-slide>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
@@ -113,42 +100,13 @@
                     </div>
                 </div>
             </div>
-            
-
-
-
-           
         </div>
         <div class="footer-properties">
             <button routerLink="/browser">Ver Mas Propiedades</button>
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- servicios -->
     <section class="services">
         <div class="services-container">
             <div class="left">
@@ -160,7 +118,7 @@
                     <li><img src="https://i.imgur.com/0RmqPmF.png" alt="Check"> Envío gratuito en nuestro sitio web</li>
                     <li><img src="https://i.imgur.com/0RmqPmF.png" alt="Check"> Asistencia para préstamos hipotecarios por parte de nuestro personal</li>
                 </ul>
-                <button>Contáctanos hoy</button>
+                <button routerLink="/contact">Contáctanos hoy</button>
             </div>
     
             <div class="center">
@@ -187,36 +145,9 @@
                 </div>
             </div>
         </div>
-        </section>
+    </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- porpiedades destacadas -->
     <section class="featured-section">
         <div class="header">
             <p class="title">Propiedades Destacadas</p>
@@ -225,13 +156,13 @@
 
         <div  class="featured-properties-list">
             <div *ngFor="let property of dataPropertiesDestacadas.slice(0, 6)" class="featured-property-card">
-                <div class="splide_property_destacado">
+                <div class="splide_property_destacado" >
                     <div class="transaction">
                         <p>{{ property.transaccion === 'compra' ? 'Venta' : property.transaccion }}</p>
                     </div>
                     <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper_property_destacado">
                        <swiper-slide class="splide_slide_property_destacado" *ngFor="let imagen of property.image">
-                          <img class="imagen-slide_property_destacado" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                          <img class="imagen-slide_property_destacado" [src]="getImageUrl(property.sku, imagen)" alt="Imagen de la propiedad">
                        </swiper-slide>
                        <div class="swiper-button-next"></div>
                        <div class="swiper-button-prev"></div>
@@ -255,41 +186,10 @@
                     </div>
                 </div>
             </div>
-        
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- testimonios -->
     <section class="testimonials">
         <h2>Testimonios</h2>
         <div class="testimonials-container">
@@ -314,10 +214,7 @@
         </div>
     </section>
 
-
-
-
-
+    <!-- contacto -->
     <section class="contact">
         <div class="container-contact">
             <div class="form-contact">
@@ -353,9 +250,9 @@
                         </div>
 
                         <div class="button">
-                            <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">
-                                <span *ngIf="!enviando">Enviar</span>
-                                <span *ngIf="enviando" class="loader"></span>
+                            <button type="submit" class="btn" [disabled]="!contactForm.valid">
+                                <span *ngIf="!enviando"> Enviar</span>
+                                <span *ngIf="enviando"><svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 40 60 16" enable-background="new 0 0 0 0" xml:space="preserve"><circle fill="currentColor" stroke="none" cx="6" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/></circle><circle fill="currentColor" stroke="none" cx="26" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/></circle><circle fill="currentColor" stroke="none" cx="46" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/></circle></svg></span>
                             </button>
                             
                                 <div *ngIf="enviadoExitosamente" class="mensaje-exito">
@@ -380,22 +277,17 @@
         </div> -->
     </section>
 
-
-
-
+    <!-- mapa -->
     <section class="mapa">
         <app-mapa></app-mapa>
     </section>
 
+    <!-- footer -->
     <footer>
         <app-footer></app-footer>
     </footer>
 
-    
-    
-
-
-
+</div>
 
 
 

@@ -1,0 +1,14 @@
+<div [style.view-transition-name]="skuProperty" class="container">
+    <swiper-container 
+        #swiperContainer
+        navigation="true"
+        pagination="true"
+        pagination-type="progress-bar"
+        style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+        class="mySwiper"
+        thumbs-swiper=".mySwiper2">
+        <swiper-slide *ngFor="let imagen of imagenes" >
+            <img  [src]="getImageUrl(idProperty, imagen)" alt="Imagen de propiedad">
+        </swiper-slide>
+    </swiper-container>
+</div>

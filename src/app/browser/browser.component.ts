@@ -5,9 +5,10 @@ import { PropertiesService } from '../services/properties.service';
 import { Propiedad } from '../services/propertiesModel';
 import { FormsModule } from '@angular/forms'; 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 import { register } from 'swiper/element/bundle';
-import { Imagen } from '../services/imagesPropertiesModel';
 register()
+import { Imagen } from '../services/imagesPropertiesModel';
 
 import { firstValueFrom } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
@@ -21,7 +22,7 @@ import { FooterComponent } from '../footer/footer.component';
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BrowserComponent implements OnInit {
-
+ ab='ab'
   dataProperties: Propiedad[] = [];
   dataProperty?:Propiedad;
   filteredProperties: Propiedad[] = [];
@@ -29,8 +30,10 @@ export class BrowserComponent implements OnInit {
   modalToggleFilterActive = ''
   viewPropertyActive = false
   private baseUrl: string = 'http://127.0.0.1:8000/images/';
+  private baseUrlImagesWeb:string= 'http://127.0.0.1:8000/images-for-web/';
   resetSlider = false;
   selectedPropertyId: number | null = null;
+  numResults = 0
   
   // Definir los filtros
   filters = {
@@ -55,9 +58,12 @@ export class BrowserComponent implements OnInit {
     calefaccion: false,
     terraza: false,
     balcon: false,
-    order: 'reciente',
+    order: 'relevancia',
     estadoInmueble:''
   };
+  
+view: any;
+text1:0 | undefined;
 
   constructor(private servicesProperties: PropertiesService, private route: ActivatedRoute,  private router: Router) {}
 
@@ -99,6 +105,7 @@ loadProperties(filters:any) {
       (data) => {
         this.dataProperties = data;
         this.filteredProperties = data; // Inicialmente, mostrar todas las propiedades
+        this.numResults = data.length
         
       },
       (error) => {
@@ -149,7 +156,6 @@ cleanFilters(filters: any): any {
         cleanedFilters[key] = filters[key]; // Agregar solo si no es null o undefined
       }
     }
-   
     return cleanedFilters; // Retornar el objeto limpio
 }
 
@@ -159,15 +165,16 @@ cleanFilters(filters: any): any {
 applyFilter() {
     // Limpiar los filtros antes de enviarlos
     const cleanFilters = this.cleanFilters(this.filters);
-    console.log(cleanFilters)
     this.loadProperties(cleanFilters); // Cargar propiedades filtradas desde el backend
+    this.actualizarUrl(cleanFilters)
+}
 
-    this.router.navigate([], { 
-      relativeTo: this.route,
-      queryParams: cleanFilters,
-      queryParamsHandling: 'merge', // Mantiene los parámetros existentes
-    });
-
+actualizarUrl(parametros:any){
+  this.router.navigate([], { 
+    relativeTo: this.route,
+    queryParams: parametros,
+    queryParamsHandling: 'replace', // Mantiene los parámetros existentes
+  });
 }
 
 
@@ -263,7 +270,7 @@ resetFilters() {
     calefaccion: false,
     terraza: false,
     balcon: false,
-    order: 'reciente',
+    order: 'relevancia',
     estadoInmueble:''
   };
   this.applyFilter()
@@ -271,6 +278,10 @@ resetFilters() {
 
   // Función para obtener la URL completa de la imagen
   getImageUrl(idProperty:any, imagen:Imagen): string {
-    return `${this.baseUrl}${idProperty}/${imagen.image_name}`;
+    return `${this.baseUrl}${idProperty}/${imagen.image}`;
+  }
+
+  getImageUrlWeb(directory: string, nameImage: string): string {
+    return `${this.baseUrlImagesWeb}${directory}/${nameImage}`;
   }
 }

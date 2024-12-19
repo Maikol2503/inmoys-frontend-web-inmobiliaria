@@ -1,4 +1,4 @@
 export interface Imagen {
-    id_image: number;
-    image_name: string;
+    id: number;
+    image: string;
 }

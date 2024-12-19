@@ -8,7 +8,7 @@ import { Propiedad } from '../services/propertiesModel';
 import { CommonModule } from '@angular/common';
 import { Imagen } from '../services/imagesPropertiesModel';
 
-import { register } from 'swiper/element/bundle';
+
 import { TestimonialsService } from '../services/testimonials.service';
 import { Testimonials } from '../services/testiminialClientsModels';
 import { Router, RouterModule } from '@angular/router';
@@ -16,7 +16,7 @@ import { MapaComponent } from '../mapa/mapa.component';
 import { FooterComponent } from "../footer/footer.component";
 import { MailService } from '../services/mail.service';
 import { FormsModule } from '@angular/forms';
-register()
+
 
 @Component({
   selector: 'app-home',
@@ -33,11 +33,15 @@ export class HomeComponent implements  OnInit {
   filteredProperties: Propiedad[] = [];
   dataTestimonialsClients:Testimonials[] = []
   filterActive = 'todos'
+  esDestacado = ''
   enviadoExitosamente = false;
   errorEnvio = false;
   enviando = false; 
-  private baseUrl: string = 'http://127.0.0.1:8000/images/';
+  private baseUrl: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images/';
+  private baseUrlImagesWeb: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/';
 
+  page = 1
+  limit = 6
     
   contact = {
     nombre: '',
@@ -55,6 +59,7 @@ export class HomeComponent implements  OnInit {
     this.loadProperties()
     this.loadPropertiesDestacadas()
     this.loadTesmonialsClients()
+    
   }
 
   private map!: L.Map;
@@ -65,11 +70,15 @@ export class HomeComponent implements  OnInit {
 
 
   loadProperties(): void {
-    this.services.getAllAvailableProperties().subscribe(
+    const params = {
+                limit:this.limit,
+                offset:this.page
+              }
+    this.services.getAllAvailableProperties(params).subscribe(
       (data) => {
         this.dataProperties = data;
         this.filteredProperties = data; 
-        // console.log(this.dataProperties, 'todas las propiedades');
+        console.log(this.dataProperties, 'todas las propiedades');
       },
       (error) => {
         console.error('Error loading properties:', error);
@@ -131,41 +140,15 @@ export class HomeComponent implements  OnInit {
 
    // Función para obtener la URL completa de la imagen
    getImageUrl(idProperty:any, imagen:Imagen): string {
-    return `${this.baseUrl}${idProperty}/${imagen.image_name}`;
+    return `${this.baseUrl}${idProperty}/${imagen.image}`;
   }
 
 
+  getImageUrlWeb(directory: string, nameImage: string): string {
+    return `${this.baseUrlImagesWeb}${directory}/${nameImage}`;
+  }
 
-
-  // private initMap(): void {
-  //   this.map = L.map('map', {
-  //     center: [40.417784, -3.700000],
-  //     zoom: 13,
-  //     dragging: true, // Deshabilitar el arrastre con el ratón al inicio
-  //     scrollWheelZoom: false, // Deshabilitar el zoom con la rueda del ratón
-  //     touchZoom: true, // Deshabilitar el zoom táctil
-  //   });
-
-  //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  //     maxZoom: 19,
-  //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  //   }).addTo(this.map);
-
-  //   // Definir un icono personalizado
-  //   const customIcon = L.icon({
-  //     iconUrl: 'https://i.imgur.com/rT2nAN9.png', // Ruta a tu imagen
-  //     iconSize: [52, 62], // Tamaño del icono en píxeles
-  //     iconAnchor: [16, 32], // Punto de anclaje del icono, en este caso la base del icono
-  //     popupAnchor: [0, -32] // Punto donde se abrirá el popup en relación al icono
-  //   });
-
-  //   // Crear el marcador con el icono personalizado
-  //   const marker = L.marker([40.417784, -3.669548], { icon: customIcon }).addTo(this.map);
-
-  //   // Añadir un popup al marcador
-  //   marker.bindPopup('¡Bienvenido a tu futuro hogar!').openPopup();
-  // }
-
+  
 
   onSubmit(contactForm: any) {
     if (contactForm.valid) {
@@ -210,9 +193,6 @@ export class HomeComponent implements  OnInit {
     };
   }
 
-  PlayAnimateButtonSubmit(){
-
-  }
 
 
 

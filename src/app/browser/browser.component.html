@@ -1,324 +1,253 @@
-<div class="filter-wrapper">
-    <div class="filter-options">
-        <div class="search-container">
-            <div class="search">
-                <div class="search-input">
-                    <label for="zona">Buscar por barrio</label>
-                    <input id="zona"  (change)="applyFilter()" [(ngModel)]="filters.zona" placeholder="Buscar Por Ciudad O Barrio">
-                </div>
-                <img class="icon-search" (click)="applyFilter()" src="https://i.imgur.com/EmANUCR.png" />
-            </div>
-        </div>
-        <div id="options-container" class="options-container">
-            <div id="option" class="option transaccion" (click)="toggleModal('transaccion', $event)">
-                <p class="selected-type-origin" *ngIf="filters.transaccion === 'venta'">Comprar</p>
-                <p class="selected-type-origin" *ngIf="filters.transaccion === 'alquiler'">Alquiler</p>
-                <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'transaccion' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
-                <div id="modal" class="modal" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'transaccion' }">
-                    <p (click)="applyFilterTrasaccion('venta');" class="item">Comprar</p>
-                    <p (click)="applyFilterTrasaccion('alquiler');" class="item">Alquilar</p>
-                </div>
-            </div>
-            <div id="option" class="option tipologia" (click)="toggleModal('tipologia', $event)">
-                <p class="selected-type-origin selected-type2" *ngIf="filters.tipo">{{ filters.tipo }} <span (click)="deleteFilterTipologia($event)"><img src="https://i.imgur.com/3yj8Vq5.png" alt=""></span></p>
-                <p class="selected-type-prigin" *ngIf="filters.tipo === null || filters.tipo === ''">Tipología</p>
-                <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'tipologia' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
-                <div id="modal" class="modal" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'tipologia' }">
-                    <p (click)="applyFilterTipologia('vivienda');" class="item">Vivienda</p>
-                    <p (click)="applyFilterTipologia('edificio');" class="item">Edificio</p>
-                    <p (click)="applyFilterTipologia('terreno');" class="item">Terreno</p>
-                    <p (click)="applyFilterTipologia('oficina');" class="item">Oficina</p>
-                </div>
-            </div>
-            <div id="option" class="option precio" (click)="toggleModal('modalPrecio', $event)">
-                <p *ngIf="filters.precioDesde === 0 && filters.precioHasta === 0">Precio</p>
-                <div class="precio-rango">
-                    <div *ngIf="filters.precioDesde > 0" class="desde"><p>Desde</p><p>{{filters.precioDesde}}€</p></div>
-                    <div *ngIf="filters.precioHasta > 0" class="hasta"><p>Hasta</p><p>{{filters.precioHasta}}€</p> </div>
-                </div>
-                <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'modalPrecio' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
-                <div id="modal" class="modalPrecio"  [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'modalPrecio' }">
-                    <div class="modal-precio-container-interno">
-                        <div class="item">
-                            <label for="precioDesde">Desde</label>
-                            <input type="number" name="precioDesde" id="precioDesde"  [(ngModel)]="filters.precioDesde" (change)="applyFilter()">
-                        </div>
-                        <div class="item">
-                            <label for="precioHasta">Hasta</label>
-                            <input type="number" name="precioHasta" id="precioHasta"  [(ngModel)]="filters.precioHasta" (change)="applyFilter()">
-                        </div>
-                    </div>
-                    <button class="btn-filtrar" (click)="applyFilter()">Filtrar</button>
-                </div>
-            </div>
-            <div id="option" class="option superficie"  (click)="toggleModal('tamano', $event)">
-                <p *ngIf="filters.tamanoDesde === 0 && filters.tamanoHasta === 0">Superficie</p>
-                <div class="precio-rango">
-                    <div *ngIf="filters.tamanoDesde > 0" class="desde"><p>Desde</p><p>{{filters.tamanoDesde}}m²</p></div>
-                    <div *ngIf="filters.tamanoHasta > 0" class="hasta"><p>Hasta</p><p>{{filters.tamanoHasta}}m²</p> </div>
-                </div>
-                <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'tamano' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
-                <div id="modal" class="modalTamano" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'tamano' }">
-                    <div class="modal-tamano-container-interno">
-                        <div class="item">
-                            <label for="tamanoDesde">Desde</label>
-                            <input type="number" name="tamanoDesde" id="tamanoDesde" [(ngModel)]="filters.tamanoDesde" (change)="applyFilter()">
-                        </div>
-                        <div class="item">
-                            <label for="tamanoHasta">Hasta</label>
-                            <input type="number" name="tamanoHasta" id="tamanoHasta" [(ngModel)]="filters.tamanoHasta" (change)="applyFilter()">
-                        </div>
-                    </div>
-                    <button class="btn-filtrar" (click)="applyFilter()">Filtrar</button>
-                </div>
-            </div>
-            <div  class="option mas" (click)="toggleModal('mas', $event)">
-                <p>Mas filtros</p>
-                <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'mas' }" src="https://i.imgur.com/3TUC2WN.png" alt="">
-                <div id="modal" class="modal-mas-filtros" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'mas' }">
-                    <div class="filtros">
-                        <div class="num-habitaciones">
-                            <h2>Habitaciones</h2>
-                            <ul>
-                                <li (click)="numberRoomSelected(0)" [class.selected]="filters.habitaciones === 0">Todo</li>
-                                <li (click)="numberRoomSelected(1)" [class.selected]="filters.habitaciones === 1"><span *ngIf="filters.numeroExactoHabitaciones === false">1+</span><span *ngIf="filters.numeroExactoHabitaciones">1</span></li>
-                                <li (click)="numberRoomSelected(2)" [class.selected]="filters.habitaciones === 2"><span *ngIf="filters.numeroExactoHabitaciones === false">2+</span><span *ngIf="filters.numeroExactoHabitaciones">2</span></li>
-                                <li (click)="numberRoomSelected(3)" [class.selected]="filters.habitaciones === 3"><span *ngIf="filters.numeroExactoHabitaciones === false">3+</span><span *ngIf="filters.numeroExactoHabitaciones">3</span></li>
-                                <li (click)="numberRoomSelected(4)" [class.selected]="filters.habitaciones === 4"><span *ngIf="filters.numeroExactoHabitaciones === false">4+</span><span *ngIf="filters.numeroExactoHabitaciones">4</span></li> 
-                                <li (click)="numberRoomSelected(5)" [class.selected]="filters.habitaciones === 5"><span *ngIf="filters.numeroExactoHabitaciones === false">5+</span><span *ngIf="filters.numeroExactoHabitaciones">5</span></li> 
-                                <li (click)="numberRoomSelected(6)" [class.selected]="filters.habitaciones === 6"><span *ngIf="filters.numeroExactoHabitaciones === false">6+</span><span *ngIf="filters.numeroExactoHabitaciones">6</span></li>                      
-                            </ul>
-                            <div class="checkbox">
-                                <input type="checkbox" name="numeroExactoHabitaciones" id="numeroExactoHabitaciones" [(ngModel)]="filters.numeroExactoHabitaciones" (change)="applyFilter()">
-                                <label for="numeroExactoHabitaciones">Numero exacto de habitaciones</label>
-                            </div>
-                            
-                        </div>
-                        <div class="num-banos">
-                            <h2>Baños</h2>
-                            <ul>
-                                <li (click)="numbeBathroomsSelected(0)" [class.selected]="filters.banos === 0">Todo</li>
-                                <li (click)="numbeBathroomsSelected(1)" [class.selected]="filters.banos === 1"><span *ngIf="filters.numeroExactoBanos === false">1+</span><span *ngIf="filters.numeroExactoBanos">1</span></li>
-                                <li (click)="numbeBathroomsSelected(2)" [class.selected]="filters.banos === 2"><span *ngIf="filters.numeroExactoBanos === false">2+</span><span *ngIf="filters.numeroExactoBanos">2</span></li>
-                                <li (click)="numbeBathroomsSelected(3)" [class.selected]="filters.banos === 3"><span *ngIf="filters.numeroExactoBanos === false">3+</span><span *ngIf="filters.numeroExactoBanos">3</span></li>
-                                <li (click)="numbeBathroomsSelected(4)" [class.selected]="filters.banos === 4"><span *ngIf="filters.numeroExactoBanos === false">4+</span><span *ngIf="filters.numeroExactoBanos">4</span></li> 
-                                <li (click)="numbeBathroomsSelected(5)" [class.selected]="filters.banos === 5"><span *ngIf="filters.numeroExactoBanos === false">5+</span><span *ngIf="filters.numeroExactoBanos">5</span></li> 
-                                <li (click)="numbeBathroomsSelected(6)" [class.selected]="filters.banos === 6"><span *ngIf="filters.numeroExactoBanos === false">6+</span><span *ngIf="filters.numeroExactoBanos">6</span></li>                      
-                            </ul>
-                            <div class="checkbox">
-                                <input type="checkbox" name="numeroExactobanos" id="numeroExactobanos"  [(ngModel)]="filters.numeroExactoBanos" (change)="applyFilter()">
-                                <label for="numeroExactobanos">Numero exacto de Baños</label>
-                            </div>
-                        </div>
-                        <div class="estado-inmueble">
-                            <label for="estadoInmueble">Estado del inmueble:</label>
-                            <select id="estadoInmueble" class="form-control" name="estadoInmueble" [(ngModel)]="filters.estadoInmueble" (change)="applyFilter()">
-                                <option value="" [disabled]="true">Seleccione una opcion</option>
-                                <option value="nuevo">Nuevo</option>
-                                <option value="reformado">Reformado</option>
-                                <option value="buenEstado">Buen estado</option>
-                                <option value="malEstado">Mal estado</option>
-                                <option value="Construccion">En construcción</option>
-                                <option value="aReformar">Para reformar</option>
-                            </select>                        
-                        </div>
-                        <div class="filtros-adicionales">
-                            <h2>Mas Filtros</h2>
-                            <div class="filtros-container">
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="garaje" name="garaje" [(ngModel)]="filters.garaje" (change)="applyFilter()">
-                                    <label for="garaje">Garaje</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="piscina" name="piscina" [(ngModel)]="filters.piscina" (change)="applyFilter()">
-                                    <label for="piscina">Piscina</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="trastero" name="trastero" [(ngModel)]="filters.trastero" (change)="applyFilter()">
-                                    <label for="trastero">Trastero</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="jardin" name="jardin" [(ngModel)]="filters.jardin" (change)="applyFilter()">
-                                    <label for="jardin">Jardín</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="ascensor" name="ascensor" [(ngModel)]="filters.ascensor" (change)="applyFilter()">
-                                    <label for="ascensor">Ascensor</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="gimnasio" name="gimnasio" [(ngModel)]="filters.gimnasio" (change)="applyFilter()">
-                                    <label for="gimnasio">Gimnasio</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="aire-acondicionado" name="aire-acondicionado" [(ngModel)]="filters.aireAcondicionado" (change)="applyFilter()">
-                                    <label for="aire-acondicionado">Aire Acondicionado</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="calefaccion" name="calefaccion" [(ngModel)]="filters.calefaccion" (change)="applyFilter()">
-                                    <label for="calefaccion">Calefacción</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="balcon" name="balcon" [(ngModel)]="filters.balcon" (change)="applyFilter()">
-                                    <label for="balcon">Balcón</label>
-                                </div>
-                                <div class="filtro-item">
-                                    <input type="checkbox" id="terraza" name="terraza" [(ngModel)]="filters.terraza" (change)="applyFilter()">
-                                    <label for="terraza">Terraza</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <button class="btn-reset" (click)="resetFilters()">Resetear</button>
-                        <button class="btn-filtrar" (click)="applyAdditionalFilters()">Aplicar filtros</button>
-                    </div>   
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-
 <div class="container">
-      <!-- Aquí se mostrará la lista de propiedades filtradas -->
-      <div class="properties" [ngClass]="{'grid-dos-columnas': viewPropertyActive === true} ">
-        <div [ngClass]="{'selected-property': selectedPropertyId === property.id_property}" class="property" *ngFor="let property of filteredProperties" >
+    <!-- filter bar -->
+    <div class="filter-wrapper">
+        <div class="filter-options">
+            <!-- search container -->
+            <div class="search-container">
+                <!-- <div class="background-overlay"></div> -->
+                <div class="search">
+                    <div class="search-inputs">
+                        <div class="search-input">
+                            <!-- <label for="zona">Buscar por barrio</label> -->
+                            <input id="zona"  (change)="applyFilter()" [(ngModel)]="filters.zona" placeholder="Buscar Por Ciudad O Barrio">
+                        </div>
+                        <div class="image">
+                            <img src="https://i.imgur.com/EmANUCR.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="option-label">
+                <div id="options-container" class="options-container">
+                    <div id="option" class="option transaccion" (click)="toggleModal('transaccion', $event)">
+                        <p class="selected-type-origin" *ngIf="filters.transaccion === 'venta'">Comprar</p>
+                        <p class="selected-type-origin" *ngIf="filters.transaccion === 'alquiler'">Alquiler</p>
+                        <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'transaccion' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
+                        <div id="modal" class="modal" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'transaccion' }">
+                            <p (click)="applyFilterTrasaccion('venta');" class="item">Comprar</p>
+                            <p (click)="applyFilterTrasaccion('alquiler');" class="item">Alquilar</p>
+                        </div>
+                    </div>
+                    <div id="option" class="option tipologia" (click)="toggleModal('tipologia', $event)">
+                        <p class="selected-type-origin selected-type2" *ngIf="filters.tipo">{{ filters.tipo }} <span (click)="deleteFilterTipologia($event)"><img src="https://i.imgur.com/3yj8Vq5.png" alt=""></span></p>
+                        <p class="selected-type-prigin" *ngIf="filters.tipo === null || filters.tipo === ''">Tipología</p>
+                        <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'tipologia' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
+                        <div id="modal" class="modal" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'tipologia' }">
+                            <p (click)="applyFilterTipologia('vivienda');" class="item">Vivienda</p>
+                            <p (click)="applyFilterTipologia('edificio');" class="item">Edificio</p>
+                            <p (click)="applyFilterTipologia('terreno');" class="item">Terreno</p>
+                            <p (click)="applyFilterTipologia('oficina');" class="item">Oficina</p>
+                        </div>
+                    </div>
+                    <div id="option" class="option precio" (click)="toggleModal('modalPrecio', $event)">
+                        <p *ngIf="filters.precioDesde === 0 && filters.precioHasta === 0">Precio</p>
+                        <div class="precio-rango">
+                            <div *ngIf="filters.precioDesde > 0" class="desde"><p>Desde</p><p>{{filters.precioDesde}}€</p></div>
+                            <div *ngIf="filters.precioHasta > 0" class="hasta"><p>Hasta</p><p>{{filters.precioHasta}}€</p> </div>
+                        </div>
+                        <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'modalPrecio' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
+                        <div id="modal" class="modalPrecio"  [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'modalPrecio' }">
+                            <div class="modal-precio-container-interno">
+                                <div class="item">
+                                    <label for="precioDesde">Desde</label>
+                                    <input type="number" name="precioDesde" id="precioDesde"  [(ngModel)]="filters.precioDesde" (change)="applyFilter()">
+                                </div>
+                                <div class="item">
+                                    <label for="precioHasta">Hasta</label>
+                                    <input type="number" name="precioHasta" id="precioHasta"  [(ngModel)]="filters.precioHasta" (change)="applyFilter()">
+                                </div>
+                            </div>
+                            <button class="btn-filtrar" (click)="applyFilter()">Filtrar</button>
+                        </div>
+                    </div>
+                    <div id="option" class="option superficie"  (click)="toggleModal('tamano', $event)">
+                        <p *ngIf="filters.tamanoDesde === 0 && filters.tamanoHasta === 0">Superficie</p>
+                        <div class="precio-rango">
+                            <div *ngIf="filters.tamanoDesde > 0" class="desde"><p>Desde</p><p>{{filters.tamanoDesde}}m²</p></div>
+                            <div *ngIf="filters.tamanoHasta > 0" class="hasta"><p>Hasta</p><p>{{filters.tamanoHasta}}m²</p> </div>
+                        </div>
+                        <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'tamano' }" src="https://i.imgur.com/EiY2mA1.png" alt="">
+                        <div id="modal" class="modalTamano" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'tamano' }">
+                            <div class="modal-tamano-container-interno">
+                                <div class="item">
+                                    <label for="tamanoDesde">Desde</label>
+                                    <input type="number" name="tamanoDesde" id="tamanoDesde" [(ngModel)]="filters.tamanoDesde" (change)="applyFilter()">
+                                </div>
+                                <div class="item">
+                                    <label for="tamanoHasta">Hasta</label>
+                                    <input type="number" name="tamanoHasta" id="tamanoHasta" [(ngModel)]="filters.tamanoHasta" (change)="applyFilter()">
+                                </div>
+                            </div>
+                            <button class="btn-filtrar" (click)="applyFilter()">Filtrar</button>
+                        </div>
+                    </div>
+                    <div  class="option mas" (click)="toggleModal('mas', $event)">
+                        <p>Mas filtros</p>
+                        <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'mas' }" src="https://i.imgur.com/3TUC2WN.png" alt="">
+                        <div id="modal" class="modal-mas-filtros" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'mas' }">
+                            <div class="filtros">
+                                <div class="num-habitaciones">
+                                    <h2>Habitaciones</h2>
+                                    <ul>
+                                        <li (click)="numberRoomSelected(0)" [class.selected]="filters.habitaciones === 0">Todo</li>
+                                        <li (click)="numberRoomSelected(1)" [class.selected]="filters.habitaciones === 1"><span *ngIf="filters.numeroExactoHabitaciones === false">1+</span><span *ngIf="filters.numeroExactoHabitaciones">1</span></li>
+                                        <li (click)="numberRoomSelected(2)" [class.selected]="filters.habitaciones === 2"><span *ngIf="filters.numeroExactoHabitaciones === false">2+</span><span *ngIf="filters.numeroExactoHabitaciones">2</span></li>
+                                        <li (click)="numberRoomSelected(3)" [class.selected]="filters.habitaciones === 3"><span *ngIf="filters.numeroExactoHabitaciones === false">3+</span><span *ngIf="filters.numeroExactoHabitaciones">3</span></li>
+                                        <li (click)="numberRoomSelected(4)" [class.selected]="filters.habitaciones === 4"><span *ngIf="filters.numeroExactoHabitaciones === false">4+</span><span *ngIf="filters.numeroExactoHabitaciones">4</span></li> 
+                                        <li (click)="numberRoomSelected(5)" [class.selected]="filters.habitaciones === 5"><span *ngIf="filters.numeroExactoHabitaciones === false">5+</span><span *ngIf="filters.numeroExactoHabitaciones">5</span></li> 
+                                        <li (click)="numberRoomSelected(6)" [class.selected]="filters.habitaciones === 6"><span *ngIf="filters.numeroExactoHabitaciones === false">6+</span><span *ngIf="filters.numeroExactoHabitaciones">6</span></li>                      
+                                    </ul>
+                                    <div class="checkbox">
+                                        <input type="checkbox" name="numeroExactoHabitaciones" id="numeroExactoHabitaciones" [(ngModel)]="filters.numeroExactoHabitaciones" (change)="applyFilter()">
+                                        <label for="numeroExactoHabitaciones">Numero exacto de habitaciones</label>
+                                    </div>
+                                    
+                                </div>
+                                <div class="num-banos">
+                                    <h2>Baños</h2>
+                                    <ul>
+                                        <li (click)="numbeBathroomsSelected(0)" [class.selected]="filters.banos === 0">Todo</li>
+                                        <li (click)="numbeBathroomsSelected(1)" [class.selected]="filters.banos === 1"><span *ngIf="filters.numeroExactoBanos === false">1+</span><span *ngIf="filters.numeroExactoBanos">1</span></li>
+                                        <li (click)="numbeBathroomsSelected(2)" [class.selected]="filters.banos === 2"><span *ngIf="filters.numeroExactoBanos === false">2+</span><span *ngIf="filters.numeroExactoBanos">2</span></li>
+                                        <li (click)="numbeBathroomsSelected(3)" [class.selected]="filters.banos === 3"><span *ngIf="filters.numeroExactoBanos === false">3+</span><span *ngIf="filters.numeroExactoBanos">3</span></li>
+                                        <li (click)="numbeBathroomsSelected(4)" [class.selected]="filters.banos === 4"><span *ngIf="filters.numeroExactoBanos === false">4+</span><span *ngIf="filters.numeroExactoBanos">4</span></li> 
+                                        <li (click)="numbeBathroomsSelected(5)" [class.selected]="filters.banos === 5"><span *ngIf="filters.numeroExactoBanos === false">5+</span><span *ngIf="filters.numeroExactoBanos">5</span></li> 
+                                        <li (click)="numbeBathroomsSelected(6)" [class.selected]="filters.banos === 6"><span *ngIf="filters.numeroExactoBanos === false">6+</span><span *ngIf="filters.numeroExactoBanos">6</span></li>                      
+                                    </ul>
+                                    <div class="checkbox">
+                                        <input type="checkbox" name="numeroExactobanos" id="numeroExactobanos"  [(ngModel)]="filters.numeroExactoBanos" (change)="applyFilter()">
+                                        <label for="numeroExactobanos">Numero exacto de Baños</label>
+                                    </div>
+                                </div>
+                                <div class="estado-inmueble">
+                                    <label for="estadoInmueble">Estado del inmueble:</label>
+                                    <select id="estadoInmueble" class="form-control" name="estadoInmueble" [(ngModel)]="filters.estadoInmueble" (change)="applyFilter()">
+                                        <option value="" [disabled]="true">Seleccione una opcion</option>
+                                        <option value="nuevo">Nuevo</option>
+                                        <option value="reformado">Reformado</option>
+                                        <option value="buenEstado">Buen estado</option>
+                                        <option value="malEstado">Mal estado</option>
+                                        <option value="Construccion">En construcción</option>
+                                        <option value="aReformar">Para reformar</option>
+                                    </select>                        
+                                </div>
+                                <div class="filtros-adicionales">
+                                    <h2>Mas Filtros</h2>
+                                    <div class="filtros-container">
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="garaje" name="garaje" [(ngModel)]="filters.garaje" (change)="applyFilter()">
+                                            <label for="garaje">Garaje</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="piscina" name="piscina" [(ngModel)]="filters.piscina" (change)="applyFilter()">
+                                            <label for="piscina">Piscina</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="trastero" name="trastero" [(ngModel)]="filters.trastero" (change)="applyFilter()">
+                                            <label for="trastero">Trastero</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="jardin" name="jardin" [(ngModel)]="filters.jardin" (change)="applyFilter()">
+                                            <label for="jardin">Jardín</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="ascensor" name="ascensor" [(ngModel)]="filters.ascensor" (change)="applyFilter()">
+                                            <label for="ascensor">Ascensor</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="gimnasio" name="gimnasio" [(ngModel)]="filters.gimnasio" (change)="applyFilter()">
+                                            <label for="gimnasio">Gimnasio</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="aire-acondicionado" name="aire-acondicionado" [(ngModel)]="filters.aireAcondicionado" (change)="applyFilter()">
+                                            <label for="aire-acondicionado">Aire Acondicionado</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="calefaccion" name="calefaccion" [(ngModel)]="filters.calefaccion" (change)="applyFilter()">
+                                            <label for="calefaccion">Calefacción</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="balcon" name="balcon" [(ngModel)]="filters.balcon" (change)="applyFilter()">
+                                            <label for="balcon">Balcón</label>
+                                        </div>
+                                        <div class="filtro-item">
+                                            <input type="checkbox" id="terraza" name="terraza" [(ngModel)]="filters.terraza" (change)="applyFilter()">
+                                            <label for="terraza">Terraza</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <button class="btn-reset" (click)="resetFilters()">Resetear</button>
+                                <button class="btn-filtrar" (click)="applyAdditionalFilters()">Aplicar filtros</button>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="splide">
-                <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
-                   <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
-                      <img class="imagen-slide" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
-                   </swiper-slide>
-                   <div class="swiper-button-next"></div>
-                   <div class="swiper-button-prev"></div>
-                </swiper-container>
-                <div class="photo-agent">
-                    <img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt="">
-                </div>
-             </div>
-             <!-- <div class="information" [routerLink]="['/propiedad', property.sku]"> -->
-             <div class="information" (click)="viewProperty(property.id_property)">
-                <p class="price">{{property.precio}} €</p>
-                <h4 class="title">{{property.tipo}} en {{property.transaccion}}</h4>
-                <p class="ubication">{{property.ciudad}}, {{property.zona}}, {{property.nombreCalle}}</p>
-                <div class="detail">
-                    <div *ngIf="property.detalles.habitaciones" class="item"><img src="https://i.imgur.com/KghGKCk.png" alt=""><p>{{property.detalles.habitaciones}} Hab</p></div>
-                    <div *ngIf="property.detalles.banos" class="item"><img src="https://i.imgur.com/PwMxLuu.png" alt=""><p>{{property.detalles.banos}} Baños</p></div>
-                    <div *ngIf="property.detalles.tamano" class="item"><img src="https://i.imgur.com/sxFo7hC.png" alt=""><p>{{property.detalles.tamano}} m²</p></div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div *ngIf="viewPropertyActive" class="view-property">
-        <div class="container-interno-view-property">
-            <button class="cerrar" (click)="closeViewProperty()">
-                <img src="https://i.imgur.com/0GevfGK.png" alt="">
-            </button>
-            <div class="splide_container_view_property">
-                <swiper-container *ngIf="resetSlider" [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper_container_view_property">
-                    <swiper-slide class="splide_slide_container_view_property" *ngFor="let imagen of dataProperty?.image">
-                        <img class="imagen-slide_container_view_property" [src]="getImageUrl(dataProperty?.id_property, imagen)" alt="Imagen de la propiedad">
-                    </swiper-slide>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </swiper-container>
-            </div>
-            <div class="property-details-container">
-                <p class="price">{{ dataProperty?.precio }} €</p>
-                <div class="property-details">
-                    <div *ngIf="dataProperty?.detalles?.habitaciones" class="detail-item">
-                        <img class="icon" src="https://i.imgur.com/KghGKCk.png" alt="">
-                        <p>{{ dataProperty?.detalles.habitaciones }} Hab</p>
-                    </div>
-                    <div *ngIf="dataProperty?.detalles?.banos" class="detail-item">
-                        <img class="icon" src="https://i.imgur.com/PwMxLuu.png" alt="">
-                        <p>{{ dataProperty?.detalles.banos }} Baño</p>
-                    </div>
-                    <div *ngIf="dataProperty?.detalles?.tamano" class="detail-item">
-                        <img class="icon" src="https://i.imgur.com/sxFo7hC.png" alt="">
-                        <p>{{ dataProperty?.detalles.tamano }} m²</p>
-                    </div>
-                    <div class="detail-item">
-                        <img class="icon" src="https://i.imgur.com/cZoOykF.png" alt="">
-                        <p>Planta {{dataProperty?.planta}}</p>
-                    </div>
-                </div>
-                <h3 class="property-type-transaction">{{ dataProperty?.tipo }} en {{ dataProperty?.transaccion }}</h3>
-                <p class="property-location">{{ dataProperty?.ciudad }}, {{ dataProperty?.zona }}, {{ dataProperty?.nombreCalle }}</p>
-                <p class="property-description">{{dataProperty?.descripcion}}</p>
-        
-                
-        
-                <div *ngIf="dataProperty?.detalles && (dataProperty?.detalles | keyvalue).length > 0" class="item item-equipment">
-                    <h2>Equipamiento</h2>
-                    <div class="icons-equipment">
-                        <div class="icon" *ngIf="dataProperty?.detalles?.ascensor">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/13390/13390926.png" alt="">
-                            <p>Ascensor</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.piscina">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/3437/3437732.png" alt="">
-                            <p>Piscina</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.trastero">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/6842/6842296.png" alt="">
-                            <p>Trastero</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.garaje">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/1571/1571991.png" alt="">
-                            <p>Garaje</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.aire">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/3550/3550996.png" alt="">
-                            <p>Aire Acondicionado</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.calefaccion">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/289/289759.png" alt="">
-                            <p>Calefacción</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.gimnasio">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/8065/8065747.png" alt="">
-                            <p>Gimnasio</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.balcon">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/11392/11392402.png" alt="">
-                            <p>Balcón</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.terraza">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/174/174446.png" alt="">
-                            <p>Terraza</p>
-                        </div>
-                        <div class="icon" *ngIf="dataProperty?.detalles?.jardin">
-                            <img height="30px" src="https://cdn-icons-png.flaticon.com/128/149/149569.png" alt="">
-                            <p>Jardín</p>
-                        </div>
-                    </div>
-                </div>
-        
-                <div *ngIf="dataProperty?.detalles && (dataProperty?.detalles | keyvalue).length > 0" class="item item-characteristics">
-                    <h2 >Características</h2>
-                    <ul class="characteristics">
-                        <li *ngIf="dataProperty?.detalles?.calefaccion" class="item">Combustible Calefacción: {{dataProperty?.detalles.combustibleCalefaccion}}</li>
-                        <li *ngIf="dataProperty?.detalles?.orientacion" class="item">Interior / Exterior: {{dataProperty?.detalles.orientacion}}</li>
-                        <li *ngIf="dataProperty?.detalles?.planta" class="item">Planta Nº {{dataProperty?.detalles.planta}}</li>
-                        <li *ngIf="dataProperty?.detalles?.calefaccion" class="item">Sistema calefacción {{dataProperty?.detalles.sistemaCalefaccion}}</li>
-                        <li *ngIf="dataProperty?.detalles?.consumo" class="item">Consumo: {{dataProperty?.detalles.consumo}}</li>
-                        <li *ngIf="dataProperty?.detalles?.emisiones" class="item">Emisiones: {{dataProperty?.detalles.emisiones}}</li>
-                        <li *ngIf="dataProperty?.detalles?.certificadoEnergetico" class="item">Certificado Energético: {{dataProperty?.detalles.certificadoEnergetico}}</li>
-                        <li *ngIf="dataProperty?.detalles?.anoConstruccion" class="item">Año de construcción: {{dataProperty?.detalles.anoConstruccion}}</li>
-                    </ul>
-                </div>
-        
-                <div class="form-contact">
-                    <!-- Aquí puedes añadir el formulario de contacto -->
-                </div>
-            </div>
         </div>
     </div>
 
-   
+    <div class="results-section">
+        <div class="results-header">
+            <div class="results-count">
+                <p *ngIf="numResults <= 1">{{numResults}} Resultado</p>
+                <p *ngIf="numResults > 1">{{numResults}} Resultados</p>
+            </div>
+            <div class="sort-options">
+                <label for="sort" >Ordenar Por</label>
+                <select name="sort" id="sort" [(ngModel)]="filters.order" (change)="applyFilter()">
+                    <option value="relevancia">Relevancia</option>
+                    <option value="recientes">Recientes</option>
+                    <option value="MasBaratos">Más Baratos Primero</option>
+                    <option value="MasCaros">Más Caros Primero</option>
+                </select>
+            </div>
+        </div>
+    </div>
     
-</div>
+    
+    <!-- properties container -->
+    <div class="container-properties">
+        <!-- Aquí se mostrará la lista de propiedades filtradas -->
+        <div class="properties" [ngClass]="{'grid-dos-columnas': viewPropertyActive === true} ">
+            <div [ngClass]="{'selected-property': selectedPropertyId === property.id_property}" class="property" *ngFor="let property of filteredProperties; let i = index" >
+                
+                <!-- <div class="splide" [style.view-transition-name]="'fotos'+property.sku"> -->
+                <div class="splide" [style.view-transition-name]="property.sku">
+                    <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
+                        <swiper-slide   class="splide_slide" *ngFor="let imagen of property.image">
+                            <img  class="imagen-slide" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                        </swiper-slide>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </swiper-container>
+                    <!-- <div class="photo-agent">
+                        <img class="img-agent" src="https://i.imgur.com/1aF2eY7.png" alt="">
+                    </div> -->
+                </div>
+                <div class="information" [routerLink]="['/propiedad', property.sku]">
+    
+                    <p class="price">{{property.precio}} €</p>
+                    <h4 class="title" >{{property.tipo}} en {{property.transaccion}}</h4>
+                    <p class="ubication">{{property.ciudad}}, {{property.zona}}, {{property.nombreCalle}}</p>
+                    <div class="detail">
+                        <div *ngIf="property.detalles.habitaciones" class="item"><img src="https://i.imgur.com/KghGKCk.png" alt=""><p>{{property.detalles.habitaciones}} Hab</p></div>
+                        <div *ngIf="property.detalles.banos" class="item"><img src="https://i.imgur.com/PwMxLuu.png" alt=""><p>{{property.detalles.banos}} Baños</p></div>
+                        <div *ngIf="property.detalles.tamano" class="item"><img src="https://i.imgur.com/sxFo7hC.png" alt=""><p>{{property.detalles.tamano}} m²</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
 
-<footer>
-    <app-footer></app-footer>
-</footer>
+    
+        
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+</div>

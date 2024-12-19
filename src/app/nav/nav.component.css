@@ -38,9 +38,28 @@
 
 .contacts li a{
     cursor: pointer;
-    color: #ffffff;
 }
 
+.contacts .telefono{
+    background-color: #2c6678;
+    height: 35px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 7px;
+}
+
+.contacts .telefono img{
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+}
+
+
+.contacts .telefono a{
+    color: white !important;
+}
 
 
 
@@ -52,7 +71,7 @@
 }
 
 .navbar.scrolled {
-    background-color: #fffffff5; /* Fondo blanco */
+    background-color: #ffffff; /* Fondo blanco */
     color: #1b3942; /* Texto negro cuando haces scroll */
    
 }

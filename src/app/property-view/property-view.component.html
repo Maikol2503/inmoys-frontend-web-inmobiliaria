@@ -1,1 +1,221 @@
-<p>property-view works!</p>
+<div class="container">
+    
+    <section>
+        <div class="header">
+            <button class="volver" (click)="volverPaginaAnterior()"><img [src]="getImageUrlWeb('iconos', 'flecha.png')" alt=""></button>
+            <div class="property-header">
+                <div class="button-action">
+                    <button 
+                        [routerLink]="['/browser']"
+                        [queryParams]="{
+                            transaccion: dataProperty?.transaccion || 'venta',
+                        }"
+                        >
+                        {{ dataProperty?.transaccion }}
+                        </button>
+
+                    <button
+                    [routerLink]="['/browser']"
+                        [queryParams]="{
+                            tipo:dataProperty?.tipo || '',
+                        }">{{dataProperty?.tipo}}</button>
+                </div>
+                <div class="property-title">
+                    <h2 class="property-type-transaction">{{ dataProperty?.tipo }} en {{ dataProperty?.transaccion }} en {{ dataProperty?.zona }}</h2>
+                </div>
+                <div class="property-location">
+                    <img [src]="getImageUrlWeb('iconos', 'ubicacion.png')" alt="">
+                    <p>{{ dataProperty?.ciudad }}, {{ dataProperty?.zona }}, {{ dataProperty?.nombreCalle }}</p>
+                </div>
+            </div>
+            <div class="property-actions">
+                <p class="price" >{{ dataProperty?.precio }} €</p>
+                <div class="actions-buttons">
+                    <button (click)="compartirPagina()"><img [src]="getImageUrlWeb('iconos', 'participacion.png')" alt=""> Compartir</button>
+                    <button (click)="imprimirPagina()"><img [src]="getImageUrlWeb('iconos', 'imprimir.png')" alt=""> Imprimir</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content-wrapper">
+        <!-- datos de la propiedad -->
+        <div class="property-data">
+                <!-- carrusel de fotos -->
+                <div class="photos"> 
+                    <div [style.view-transition-name]="skuProperty">
+                        <swiper-container 
+                            navigation="true"
+                            pagination="true"
+                            pagination-type="progress-bar"
+                            style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+                            class="mySwiper"
+                            thumbs-swiper=".mySwiper2">
+                            <swiper-slide *ngFor="let imagen of dataProperty?.image; let i = index" >
+                                <img [routerLink]="['/view-images', dataProperty?.sku, dataProperty?.id_property,i]" [src]="getImageUrl(dataProperty?.id_property, imagen.image)" alt="Imagen de propiedad">
+                            </swiper-slide>
+                        </swiper-container>
+                    
+                        <swiper-container
+                            class="thumbnail-swiper mySwiper2" 
+                            space-between="15" 
+                            slides-per-view="5" 
+                            free-mode="true"  
+                            watch-slides-progress="false">
+                            <swiper-slide *ngFor="let imagen of dataProperty?.image; let i = index" >
+                                <img [src]="getImageUrl(dataProperty?.id_property, imagen.image)" alt="Imagen de propiedad">
+                            </swiper-slide>
+                        </swiper-container>
+                    </div>
+                </div>
+                <div class="property-details-container">
+                    
+                    <!-- detalles y precio de la propiedad -->
+                    <div class="property-details">
+                        <div *ngIf="dataProperty?.detalles?.habitaciones" class="detail-item">
+                            <img class="icon" src="https://i.imgur.com/KghGKCk.png" alt="">
+                            <p>{{ dataProperty?.detalles.habitaciones }} Hab</p>
+                        </div>
+                        <div *ngIf="dataProperty?.detalles?.banos" class="detail-item">
+                            <img class="icon" src="https://i.imgur.com/PwMxLuu.png" alt="">
+                            <p>{{ dataProperty?.detalles.banos }} Baño</p>
+                        </div>
+                        <div *ngIf="dataProperty?.detalles?.tamano" class="detail-item">
+                            <img class="icon" src="https://i.imgur.com/sxFo7hC.png" alt="">
+                            <p>{{ dataProperty?.detalles.tamano }} m²</p>
+                        </div>
+                        <div class="detail-item">
+                            <img class="icon" src="https://i.imgur.com/cZoOykF.png" alt="">
+                            <p>Planta {{dataProperty?.planta}}</p>
+                        </div>
+                    </div>
+                
+                    <!-- descripcion -->
+                    <div class="property-description">
+                        <p>{{ dataProperty?.descripcion }}</p>
+                    </div>
+                    
+                    <!-- equipamiento -->
+                    <div *ngIf="dataProperty?.detalles && (dataProperty?.detalles | keyvalue).length > 0" class="property-equipment">
+                        <h2>Equipamiento</h2>
+                        <div class="icons-equipment">
+                            <div class="icon" *ngIf="dataProperty?.detalles?.ascensor">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/13390/13390926.png" alt="">
+                                <p>Ascensor</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.piscina">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/3437/3437732.png" alt="">
+                                <p>Piscina</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.trastero">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/6842/6842296.png" alt="">
+                                <p>Trastero</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.garaje">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/1571/1571991.png" alt="">
+                                <p>Garaje</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.aire">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/3550/3550996.png" alt="">
+                                <p>Aire Acondicionado</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.calefaccion">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/289/289759.png" alt="">
+                                <p>Calefacción</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.gimnasio">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/8065/8065747.png" alt="">
+                                <p>Gimnasio</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.balcon">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/11392/11392402.png" alt="">
+                                <p>Balcón</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.terraza">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/174/174446.png" alt="">
+                                <p>Terraza</p>
+                            </div>
+                            <div class="icon" *ngIf="dataProperty?.detalles?.jardin">
+                                <img height="30px" src="https://cdn-icons-png.flaticon.com/128/149/149569.png" alt="">
+                                <p>Jardín</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- características -->
+                    <div *ngIf="dataProperty?.detalles && (dataProperty?.detalles | keyvalue).length > 0" class="property-characteristics">
+                        <h2>Características</h2>
+                        <ul class="characteristics">
+                            <li *ngIf="dataProperty?.detalles?.calefaccion" class="characteristic-item">Combustible Calefacción: {{dataProperty?.detalles.combustibleCalefaccion}}</li>
+                            <li *ngIf="dataProperty?.detalles?.orientacion" class="characteristic-item">Interior / Exterior: {{dataProperty?.detalles.orientacion}}</li>
+                            <li *ngIf="dataProperty?.detalles?.planta" class="characteristic-item">Planta Nº {{dataProperty?.detalles.planta}}</li>
+                            <li *ngIf="dataProperty?.detalles?.calefaccion" class="characteristic-item">Sistema calefacción {{dataProperty?.detalles.sistemaCalefaccion}}</li>
+                            <li *ngIf="dataProperty?.detalles?.consumo != 'sinValor'" 
+                                class="characteristic-item characteristic-consumo">
+                                Consumo: 
+                                <p   *ngIf="dataProperty?.detalles?.consumo === 'en tramite'">
+                                     {{dataProperty?.detalles.consumo}}
+                                </p> 
+                                <img *ngIf="dataProperty?.detalles?.consumo != 'en tramite'"  
+                                     [src]="getImageUrlWeb('iconos', dataProperty?.detalles.consumo+'.png')" alt="">
+                            </li>
+                            <li *ngIf="dataProperty?.detalles?.emisiones != 'sinValor'" class="characteristic-item characteristic-emisiones">
+                                Emisiones: 
+                                <p 
+                                    *ngIf="dataProperty?.detalles?.emisiones === 'enTramite'">
+                                    {{dataProperty?.detalles.emisiones}}
+                                </p> 
+                                <img *ngIf="dataProperty?.detalles?.emisiones != 'enTramite'" 
+                                     [src]="getImageUrlWeb('iconos', dataProperty?.detalles.emisiones+'.png')" alt="">
+                            </li>
+                            <li *ngIf="dataProperty?.detalles?.certificadoEnergetico" class="characteristic-item">Certificado Energético: {{dataProperty?.detalles.certificadoEnergetico}}</li>
+                            <li *ngIf="dataProperty?.detalles?.anoConstruccion" class="characteristic-item">Año de construcción: {{dataProperty?.detalles.anoConstruccion}}</li>
+                        </ul>
+                    </div>
+                </div>
+            
+        </div>
+        <!-- formulario de contacto -->
+        <div class="form-contact">
+            <div class="agent">
+                <div class="photo-agent">
+                    <img [src]="getImageUrlWeb('fotos', 'yenny.jpg')" alt="">
+                </div>
+                <div class="name-agent">
+                    <h4>Yenny Salguero</h4>
+                    <p>Ascesora Inmobiliaria</p>
+                </div>
+            </div>
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <input type="text" formControlName="nombre" [(ngModel)]="contact.nombre" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" formControlName="apellido" [(ngModel)]="contact.apellido" placeholder="Apellido">
+                      </div>
+                    <div class="form-group">
+                      <input type="email" formControlName="email" [(ngModel)]="contact.email" placeholder="Correo" >
+                    </div>
+                    <div class="form-group">
+                      <input type="text" formControlName="telefono" [(ngModel)]="contact.telefono" placeholder="Teléfono" >
+                    </div>
+                    <div class="form-group">
+                      <textarea formControlName="mensaje" [(ngModel)]="contact.mensaje" placeholder="Mensaje"></textarea>
+                    </div>
+                  
+                    
+                  
+                    
+                    <button type="submit" class="btn" [disabled]="formulario.invalid">
+                        <span *ngIf="!enviando"> Enviar</span>
+                        <span *ngIf="enviando"><svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 40 60 16" enable-background="new 0 0 0 0" xml:space="preserve"><circle fill="currentColor" stroke="none" cx="6" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/></circle><circle fill="currentColor" stroke="none" cx="26" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/></circle><circle fill="currentColor" stroke="none" cx="46" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/></circle></svg></span>
+                      </button>
+            </form>
+            <div class="buttons-action">
+                <button><img [src]="getImageUrlWeb('iconos', 'whatsapp.png')" alt="">Whatsapp</button>
+                <button><img [src]="getImageUrlWeb('iconos', 'telefono.png')" alt="">LLamame</button>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>
+

@@ -7,6 +7,7 @@ export interface Propiedad {
     titulo: string;
     tipo: string;
     descripcion: string;
+    destacado?: number;
     precio: number;
     transaccion: string;
     provincia: string;

@@ -1,0 +1,28 @@
+swiper-container {
+    width: 100%;
+    height: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+swiper-slide{
+    width: 100%;
+    height: 100%;
+}
+
+swiper-slide img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 100000;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
