@@ -29,11 +29,15 @@ export class BrowserComponent implements OnInit {
   filterTrasaccionActive = ''
   modalToggleFilterActive = ''
   viewPropertyActive = false
-  private baseUrl: string = 'http://127.0.0.1:8000/images/';
-  private baseUrlImagesWeb:string= 'http://127.0.0.1:8000/images-for-web/';
+  // private baseUrl: string = 'http://127.0.0.1:8000/images/';
+  // private baseUrlImagesWeb:string= 'http://127.0.0.1:8000/images-for-web/';
+  private baseUrl: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images/';
+  private baseUrlImagesWeb: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/';
   resetSlider = false;
   selectedPropertyId: number | null = null;
   numResults = 0
+  page = 1
+  limit = 10
   
   // Definir los filtros
   filters = {
@@ -59,7 +63,9 @@ export class BrowserComponent implements OnInit {
     terraza: false,
     balcon: false,
     order: 'relevancia',
-    estadoInmueble:''
+    estadoInmueble:'',
+    limit: this.limit,
+    offset: this.page
   };
   
 view: any;
@@ -271,7 +277,9 @@ resetFilters() {
     terraza: false,
     balcon: false,
     order: 'relevancia',
-    estadoInmueble:''
+    estadoInmueble:'',
+    limit: this.limit,
+    offset: this.page
   };
   this.applyFilter()
 }

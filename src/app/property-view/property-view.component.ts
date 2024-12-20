@@ -25,8 +25,8 @@ export class PropertyViewComponent implements OnInit {
   skuProperty = ''
   esDestacado = ''
   dataProperty?: Propiedad;
-  private baseUrlImagesWeb:string= 'http://127.0.0.1:8000/images-for-web/';
-  private baseUrl: string = 'http://127.0.0.1:8000/images/';
+  private baseUrl: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images/';
+  private baseUrlImagesWeb: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/';
   thumbsSwiper: any;
   text1: any;
   enviadoExitosamente = false;
@@ -75,7 +75,8 @@ export class PropertyViewComponent implements OnInit {
   getProperty(){
     this.servicesProperties.getPropertyBySkuSimilar(this.skuProperty).subscribe(
       (data:any)=>{
-        this.dataProperty=data[0];
+        this.dataProperty=data;
+        console.log(this.dataProperty)
         if (this.dataProperty) {
           this.esDestacado = this.dataProperty.destacado == 1 ? 'destacado' : '';
           this.imagenes = this.dataProperty.image || [];  // Asigna las imágenes si existen

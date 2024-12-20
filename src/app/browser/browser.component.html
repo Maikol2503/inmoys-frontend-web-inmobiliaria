@@ -218,7 +218,7 @@
                 <div class="splide" [style.view-transition-name]="property.sku">
                     <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
                         <swiper-slide   class="splide_slide" *ngFor="let imagen of property.image">
-                            <img  class="imagen-slide" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                            <img  class="imagen-slide" [src]="getImageUrl(property.sku, imagen)" alt="Imagen de la propiedad">
                         </swiper-slide>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>

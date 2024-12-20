@@ -41,7 +41,10 @@ export class HomeComponent implements  OnInit {
   private baseUrlImagesWeb: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/';
 
   page = 1
-  limit = 6
+  limit = 8
+
+  page_destacados = 1
+  limit_destacados = 6
     
   contact = {
     nombre: '',
@@ -87,10 +90,14 @@ export class HomeComponent implements  OnInit {
   }
 
   loadPropertiesDestacadas(): void {
-    this.services.getPropertiesDestacadas().subscribe(
+    const params = {
+      limit:this.limit_destacados,
+      offset:this.page_destacados
+    }
+    this.services.getPropertiesDestacadas(params).subscribe(
       (data) => {
         this.dataPropertiesDestacadas = data;
-        // console.log(this.dataPropertiesDestacadas, 'todas las propiedades destacadas');
+        console.log(this.dataPropertiesDestacadas, 'todas las propiedades destacadas');
       },
       (error) => {
         

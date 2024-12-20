@@ -8,7 +8,7 @@
         class="mySwiper"
         thumbs-swiper=".mySwiper2">
         <swiper-slide *ngFor="let imagen of imagenes" >
-            <img  [src]="getImageUrl(idProperty, imagen)" alt="Imagen de propiedad">
+            <img  [src]="getImageUrl(skuProperty, imagen.image)" alt="Imagen de propiedad">
         </swiper-slide>
     </swiper-container>
 </div>

@@ -7,8 +7,8 @@ import { Propiedad } from './propertiesModel';
   providedIn: 'root',
 })
 export class PropertiesService {
-  private apiUrl = 'http://localhost:8000'; // Cambia esto a la URL base de tu API FastAPI
-  
+  // private apiUrl = 'http://localhost:8000'; // Cambia esto a la URL base de tu API FastAPI
+  private apiUrl = 'https://inmoys-backend-inmobiliaria-1.onrender.com';
 
   constructor(private http: HttpClient) {}
 
@@ -17,12 +17,6 @@ export class PropertiesService {
     return this.http.get(`${this.apiUrl}/get-properties`);
   }
 
-  getImagesByPropertyId(propertyId: number): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/obtener-imagenes-propiedad?property_id=${propertyId}`)
-      .pipe(
-        catchError(this.handleError) // Manejo de errores
-      );
-  }
 
   filteresProperties(params: any): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/get-public-properties-disponibles`, { params });
@@ -40,7 +34,7 @@ export class PropertiesService {
 
   // Obtener propiedades por SKU similar
   getPropertyBySkuSimilar(sku: string): Observable<Propiedad>{
-    return this.http.get<Propiedad>(`${this.apiUrl}/get-property-by-sku-similar/${sku}`);
+    return this.http.get<Propiedad>(`${this.apiUrl}/get-public-property-by-sku-similar/${sku}`);
   }
 
   // Obtener propiedades por tipo de transacción
@@ -49,8 +43,8 @@ export class PropertiesService {
     return this.http.get(`${this.apiUrl}/get-properties-tipo`, { params });
   }
   //Obtener todas las propiedades destacadas
-  getPropertiesDestacadas():Observable<any>{
-    return  this.http.get(`${this.apiUrl}/get-public-property-destacadas`);
+  getPropertiesDestacadas(params: any):Observable<any>{
+    return  this.http.get(`${this.apiUrl}/get-public-property-destacadas`, {params});
   }
 
   // Validar si el SKU existe

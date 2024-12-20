@@ -51,7 +51,7 @@
                             class="mySwiper"
                             thumbs-swiper=".mySwiper2">
                             <swiper-slide *ngFor="let imagen of dataProperty?.image; let i = index" >
-                                <img [routerLink]="['/view-images', dataProperty?.sku, dataProperty?.id_property,i]" [src]="getImageUrl(dataProperty?.id_property, imagen.image)" alt="Imagen de propiedad">
+                                <img [routerLink]="['/view-images', dataProperty?.sku, dataProperty?.id_property,i]" [src]="getImageUrl(dataProperty?.sku, imagen.image)" alt="Imagen de propiedad">
                             </swiper-slide>
                         </swiper-container>
                     
@@ -62,7 +62,7 @@
                             free-mode="true"  
                             watch-slides-progress="false">
                             <swiper-slide *ngFor="let imagen of dataProperty?.image; let i = index" >
-                                <img [src]="getImageUrl(dataProperty?.id_property, imagen.image)" alt="Imagen de propiedad">
+                                <img [src]="getImageUrl(dataProperty?.sku, imagen.image)" alt="Imagen de propiedad">
                             </swiper-slide>
                         </swiper-container>
                     </div>
