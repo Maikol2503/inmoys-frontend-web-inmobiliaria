@@ -34,7 +34,7 @@
 .contenedor .header-contenedor{
     min-height: 700px;
     max-width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.627), rgba(0, 0, 0, 0.255)), url('http://127.0.0.1:8000/images-for-web/imagenes/fondo6.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.627), rgba(0, 0, 0, 0.255)), url('https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/imagenes/fondo6.jpg');
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: cover;
