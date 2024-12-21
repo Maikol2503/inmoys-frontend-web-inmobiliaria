@@ -11,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class NavComponent {
   scrolled = false;
-  private baseUrlImagesWeb: string = 'http://127.0.0.1:8000/images-for-web/';
+  private baseUrlImagesWeb: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/';
   isNotHome = false;
 
   constructor(private router: Router) {
