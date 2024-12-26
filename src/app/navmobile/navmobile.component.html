@@ -11,10 +11,10 @@
             X
         </p>
         <ul class="options">
-            <li class="item">Inicio</li>
-            <li class="item">Propiedades</li>
-            <li class="item">Nosotros</li>
-            <li class="item">Contactos</li>
+            <li class="item" (click)="redirect('/home')">Inicio</li>
+            <li class="item" (click)="redirect('/browser')">Propiedades</li>
+            <li class="item" (click)="redirect('/nosotros')">Nosotros</li>
+            <li class="item" (click)="redirect('/contact')">Contactos</li>
         </ul>
         
     </div>
