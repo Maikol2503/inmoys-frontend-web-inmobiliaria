@@ -86,6 +86,26 @@ footer{
 
 
 
+@media (max-width:690px){
+ .footer-container{
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+ }
+
+ .footer-container .webs{
+    gap: 10px;
+ }
+
+ .footer-container .rentals{
+    gap: 10px;
+ }
+
+ .footer-container .sale{
+    gap: 10px;
+ }
+}
+
 
 
 

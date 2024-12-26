@@ -1,0 +1,21 @@
+
+<div class="nav" >
+    <div class="bar" (click)="openModal()">
+        <img class="img-bar" src="https://i.imgur.com/IPjC0TC.png" alt="">
+    </div>
+    <div class="iphone"> 
+        <div class="item telefono"><img [src]="getImageUrlWeb('iconos', 'llamar.png')" alt=""><a href="tel:+34602451849">641161427</a></div>
+    </div>
+    <div class="menu" *ngIf="isVisible">
+        <p class="cerrar" (click)="closeModal()">
+            X
+        </p>
+        <ul class="options">
+            <li class="item">Inicio</li>
+            <li class="item">Propiedades</li>
+            <li class="item">Nosotros</li>
+            <li class="item">Contactos</li>
+        </ul>
+        
+    </div>
+</div>

@@ -81,3 +81,19 @@
   }
 
   
+
+
+
+
+
+  @media (max-width:690px){
+    .mapa{
+        margin-top: 25px;
+    }
+
+    .mapa .modal{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+  }

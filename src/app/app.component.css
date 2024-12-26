@@ -7,3 +7,19 @@
     z-index: 1000;
     
 }
+
+.nav-mobile{
+    display: none;
+}
+
+
+@media (max-width:920px){
+    .nav{
+        display: none;
+    }
+
+    .nav-mobile{
+        display: block;
+        height: 100%;
+    }
+}
