@@ -520,16 +520,20 @@ align-items: center;
 
 .container .content-wrapper .form-contact .buttons-action{
   display: flex;
-  gap: 5px;
+  justify-content: space-between;
+  gap: 10px;
 }
 
+.container .content-wrapper .form-contact .buttons-action a{
+  width: 50%;
+}
 
-.container .content-wrapper .form-contact .buttons-action button{
+.container .content-wrapper .form-contact .buttons-action a button {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  width: 50%;
+  width: 100%;
   background-color: #00000000;
   border: 1px solid #94792F;
   border-radius: 5px;
@@ -663,14 +667,14 @@ align-items: center;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 0 20px;
+    padding: 0 10px;
     margin: 70px auto 0px auto;
   }
 
   .container .header .volver{
     position: absolute;
     top: -60px;
-    left: 20px;
+    left: 10px;
     background-color: #00000000;
     border: none;
     cursor: pointer;
@@ -697,7 +701,21 @@ align-items: center;
     margin-top: 10px;
   }  
 
+  .container .content-wrapper .property-data{
+    padding: 0px 0px;
+  }
 
+  .container .content-wrapper{
+    padding: 0px 10px;
+    gap: 150px;
+  }
+
+  .container .content-wrapper .property-data .property-details-container{
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0px;
+    margin-top: 15px;
+    border-radius: 5px;
+  }
 
   .container .content-wrapper .property-details-container .property-equipment .icons-equipment{
     margin-top: 40px;
@@ -723,9 +741,10 @@ align-items: center;
 
 
   .container .content-wrapper .form-contact{
-    position: sticky;
-    top: 70px;
-    padding: 30px;
+    /* position: relative;
+    left: 0%;
+    top: 70px; */
+    padding: 20px;
   }
 
 }

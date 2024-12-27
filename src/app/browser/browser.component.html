@@ -85,6 +85,66 @@
                         <p>Mas filtros</p>
                         <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'mas' }" src="https://i.imgur.com/3TUC2WN.png" alt="">
                         <div id="modal" class="modal-mas-filtros" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'mas' }">
+
+
+                            <div class="filtersInMobile">
+                                <div class="tipologia-transaccion">
+                                    <div class="transaccionMobile">
+                                        <select name="" id="">
+                                            <option value="venta">Comprar</option>
+                                            <option value="alquiler">Alquilar</option>
+                                        </select>
+                                    </div>
+                                    <div class="tipologiaMobile">
+                                        <select name="" id="">
+                                            <option value="vivienda">Vivienda</option>
+                                            <option value="edificio">Edificio</option>
+                                            <option value="terreno">Terreno</option>
+                                            <option value="oficina">Oficina</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="precioMobile">
+                                    <div class="item">
+                                        <label for="precioDesde">Desde</label>
+                                        <input type="number" name="precioDesde" id="precioDesde"  [(ngModel)]="filters.precioDesde" (change)="applyFilter()">
+                                    </div>
+                                    <div class="item">
+                                        <label for="precioHasta">Hasta</label>
+                                        <input type="number" name="precioHasta" id="precioHasta"  [(ngModel)]="filters.precioHasta" (change)="applyFilter()">
+                                    </div>
+                                </div>
+                                <div class="superficieMobile">
+                                    <div class="item">
+                                        <label for="tamanoDesde">Desde</label>
+                                        <input type="number" name="tamanoDesde" id="tamanoDesde" [(ngModel)]="filters.tamanoDesde" (change)="applyFilter()">
+                                    </div>
+                                    <div class="item">
+                                        <label for="tamanoHasta">Hasta</label>
+                                        <input type="number" name="tamanoHasta" id="tamanoHasta" [(ngModel)]="filters.tamanoHasta" (change)="applyFilter()">
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            
                             <div class="filtros">
                                 <div class="num-habitaciones">
                                     <h2>Habitaciones</h2>

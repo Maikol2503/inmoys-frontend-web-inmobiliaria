@@ -87,6 +87,10 @@ footer{
 
 
 @media (max-width:690px){
+
+    .footer-container .logo{
+        font-size: 20px;
+    }
  .footer-container{
     flex-direction: column;
     padding: 20px;

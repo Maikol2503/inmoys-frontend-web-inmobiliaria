@@ -90,6 +90,10 @@ export class PropertyViewComponent implements OnInit {
   }
 
 
+  whatsappLink(): string {
+    return `https://wa.me/34602451849?text=Estoy%20interesado%20en%20la%20propiedad%20${this.skuProperty}%20https://inmoys-tau.vercel.app/propiedad/${this.skuProperty}`;
+  }
+
 
   // Método para manejar el envío del formulario
   onSubmit(): void {
