@@ -1196,17 +1196,16 @@ button:hover {
     
     }
 
-.search input, 
-.propertyType select, 
-.transactionType select, 
-.buttonSearch button {
-    width: 100%;
-    padding: 18px;
-    border:none;
-    background-color: rgba(240, 248, 255, 0);
-    
-}
-
+    .search input, 
+    .propertyType select, 
+    .transactionType select, 
+    .buttonSearch button {
+        width: 100%;
+        padding: 18px;
+        border:none;
+        background-color: rgba(240, 248, 255, 0);
+        
+    }
 
 
     .search {
@@ -1236,33 +1235,9 @@ button:hover {
         background-color: #94792F;
     }
 
-
-
-
-
-
-
-
-
-
-
     .properties .header p{
         font-size: 35px;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     .services-container{
         flex-direction: column;
@@ -1312,12 +1287,6 @@ button:hover {
         width: 100%;
         gap: 40px;
     }
-
-
-
-
-
-
 
     .form-contact{
         flex-direction: column-reverse;
@@ -1370,6 +1339,12 @@ button:hover {
 
 
 @media (max-width:690px){
+
+    .whatsapp-btn{
+        right: 20px;
+        height: 45px;
+        width: 45px;
+      }
 
     .properties{
         padding: 30px 50px;

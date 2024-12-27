@@ -556,3 +556,176 @@ align-items: center;
   height: 20px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:950px){
+
+  .container .content-wrapper{
+    flex-direction: column;
+  }
+
+  .container .content-wrapper .property-data{
+    width: 100%;
+  }
+
+  .container .content-wrapper .form-contact{
+    width: 100%;
+    padding: 50px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:690px){
+
+  
+
+  .container .header{
+    padding: 0 20px;
+  }
+
+  .container .header .property-header .property-title h2{
+    font-size: 25px;
+  }
+
+  .container .header .property-actions .price{
+    font-size: 30px;
+  }
+
+  .container .content-wrapper{
+    padding: 0px 20px;
+  }
+  
+}
+
+
+
+
+
+@media (max-width:550px){
+
+  .container .header{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 20px;
+    margin: 70px auto 0px auto;
+  }
+
+  .container .header .volver{
+    position: absolute;
+    top: -60px;
+    left: 20px;
+    background-color: #00000000;
+    border: none;
+    cursor: pointer;
+  }
+
+  .container .header .property-header{
+    gap: 5px;}
+
+  .container .header .property-header .property-title h2{
+    font-size: 25px;
+    line-height: 30px;
+    margin-top: 25px;
+  }
+
+  .container .header .property-header .property-location{
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+
+  .container .header .property-actions{
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 10px;
+  }  
+
+
+
+  .container .content-wrapper .property-details-container .property-equipment .icons-equipment{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px 20px;
+  }
+
+  .container .content-wrapper .property-details-container .property-equipment .icons-equipment .icon p{
+    font-size: 12px;
+     
+  }
+
+  .container .content-wrapper .property-details-container .property-characteristics .characteristics li{
+    font-size: 14px;
+  }
+
+  .container .content-wrapper .property-details-container .property-characteristics .characteristics li .span{
+    color: #000000;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+
+  .container .content-wrapper .form-contact{
+    position: sticky;
+    top: 70px;
+    padding: 30px;
+  }
+
+}

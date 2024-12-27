@@ -145,10 +145,10 @@
                     <div *ngIf="dataProperty?.detalles && (dataProperty?.detalles | keyvalue).length > 0" class="property-characteristics">
                         <h2>Características</h2>
                         <ul class="characteristics">
-                            <li *ngIf="dataProperty?.detalles?.calefaccion" class="characteristic-item">Combustible Calefacción: {{dataProperty?.detalles.combustibleCalefaccion}}</li>
-                            <li *ngIf="dataProperty?.detalles?.orientacion" class="characteristic-item">Interior / Exterior: {{dataProperty?.detalles.orientacion}}</li>
-                            <li *ngIf="dataProperty?.detalles?.planta" class="characteristic-item">Planta Nº {{dataProperty?.detalles.planta}}</li>
-                            <li *ngIf="dataProperty?.detalles?.calefaccion" class="characteristic-item">Sistema calefacción {{dataProperty?.detalles.sistemaCalefaccion}}</li>
+                            <li *ngIf="dataProperty?.detalles?.calefaccion" class="characteristic-item">Combustible Calefacción: <span class="span">{{dataProperty?.detalles.combustibleCalefaccion}}</span></li>
+                            <li *ngIf="dataProperty?.detalles?.orientacion" class="characteristic-item">Interior / Exterior: <span class="span">{{dataProperty?.detalles.orientacion}}</span></li>
+                            <li *ngIf="dataProperty?.detalles?.planta" class="characteristic-item">Planta Nº <span class="span">{{dataProperty?.detalles.planta}}</span></li>
+                            <li *ngIf="dataProperty?.detalles?.calefaccion" class="characteristic-item">Sistema calefacción <span class="span">{{dataProperty?.detalles.sistemaCalefaccion}}</span></li>
                             <li *ngIf="dataProperty?.detalles?.consumo != 'sinValor'" 
                                 class="characteristic-item characteristic-consumo">
                                 Consumo: 
@@ -168,7 +168,7 @@
                                      [src]="getImageUrlWeb('iconos', dataProperty?.detalles.emisiones+'.png')" alt="">
                             </li>
                             <li *ngIf="dataProperty?.detalles?.certificadoEnergetico" class="characteristic-item">Certificado Energético: {{dataProperty?.detalles.certificadoEnergetico}}</li>
-                            <li *ngIf="dataProperty?.detalles?.anoConstruccion" class="characteristic-item">Año de construcción: {{dataProperty?.detalles.anoConstruccion}}</li>
+                            <li *ngIf="dataProperty?.detalles?.anoConstruccion" class="characteristic-item">Año de construcción:<span class="span">{{dataProperty?.detalles.anoConstruccion}}</span></li>
                         </ul>
                     </div>
                 </div>
