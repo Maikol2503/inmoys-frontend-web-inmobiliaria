@@ -7,8 +7,8 @@ import { Propiedad } from './propertiesModel';
   providedIn: 'root',
 })
 export class PropertiesService {
-  private apiUrl = 'http://localhost:8000'; // Cambia esto a la URL base de tu API FastAPI
-  // private apiUrl = 'https://inmoys-backend-inmobiliaria-1.onrender.com';
+  // private apiUrl = 'http://localhost:8000'; // Cambia esto a la URL base de tu API FastAPI
+  private apiUrl = 'https://inmoys-backend-inmobiliaria-1.onrender.com';
 
   constructor(private http: HttpClient) {}
 
