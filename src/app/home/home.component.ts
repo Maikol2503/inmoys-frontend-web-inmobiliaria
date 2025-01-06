@@ -16,6 +16,7 @@ import { MapaComponent } from '../mapa/mapa.component';
 import { FooterComponent } from "../footer/footer.component";
 import { MailService } from '../services/mail.service';
 import { FormsModule } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class HomeComponent implements  OnInit {
   enviando = false; 
   private baseUrl: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images/';
   private baseUrlImagesWeb: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/';
-
+  mainLoadingActive = true
   page = 1
   limit = 8
 
@@ -67,48 +68,30 @@ export class HomeComponent implements  OnInit {
 
   private map!: L.Map;
 
-  // ngAfterViewInit(): void {
-  //   this.initMap();
-  // }
 
-
-  loadProperties(): void {
+ async loadProperties(): Promise<void>  {
     const params = {
                 limit:this.limit,
                 offset:this.page
               }
-    this.services.getAllAvailableProperties(params).subscribe(
-      (data) => {
-        this.dataProperties = data;
-        this.filteredProperties = data; 
-        console.log(this.dataProperties, 'todas las propiedades');
-      },
-      (error) => {
-        console.error('Error loading properties:', error);
-      }
-    );
+
+    this.dataProperties = await firstValueFrom(this.services.getAllAvailableProperties(params));
+    this.filteredProperties = this.dataProperties;
+    this.mainLoadingActive = false
   }
 
-  loadPropertiesDestacadas(): void {
+async  loadPropertiesDestacadas(): Promise<void> {
     const params = {
       limit:this.limit_destacados,
       offset:this.page_destacados
     }
-    this.services.getPropertiesDestacadas(params).subscribe(
-      (data) => {
-        this.dataPropertiesDestacadas = data;
-        console.log(this.dataPropertiesDestacadas, 'todas las propiedades destacadas');
-      },
-      (error) => {
-        
-        
-      }
-    );
-  }
+    this.dataPropertiesDestacadas = await firstValueFrom(this.services.getPropertiesDestacadas(params));
+    
+}
 
-  loadTesmonialsClients(){
-    this.dataTestimonialsClients = this.servicesTestimonialsClients.getTestimonials()
-  }
+loadTesmonialsClients(){
+  this.dataTestimonialsClients = this.servicesTestimonialsClients.getTestimonials()
+}
 
 
   filterProperties(transaccion:string){

@@ -230,6 +230,10 @@
     height: calc(100vh - 85px - 65px);
 }
 
+.filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .btn-close-modal{
+    display: none;
+}
+
 
 .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtersInMobile{
     display: none;
@@ -760,13 +764,15 @@
 
 
 .container-properties .properties{
+    position: relative;
     width: 100%;
+    min-height: 40vh;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 30px 40px 30px 50px; 
+    padding: 30px 40px 150px 50px; 
 }
 
 
@@ -966,7 +972,23 @@ height: 100% ;
 
 
 
-
+.loading-new-properties{
+    width: 70px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  
+.main-loading{
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-30%, -50%);
+}
 
 
 
@@ -1207,15 +1229,130 @@ height: 100% ;
   @media (max-width:920px){
 
       
-      .filter-wrapper .filter-options{
-          padding: 0px 20px;
-        }
+    .filter-wrapper .filter-options{
+        padding: 0px 20px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .option{
+        border-right: 0px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .btn-close-modal{
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 15px;
+        height: 15px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .tipologia-transaccion{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 20px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .tipologia-transaccion h2{
+        font-size: 18px;
+        color: #424e5b;
+        margin-top: 10px;
+    }
+
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .tipologia-transaccion .transaccionMobile select{
+        width: 100%;
+        padding: 10px;
+        border-radius: 15px;
+        font-size: 14px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .tipologia-transaccion .tipologiaMobile select{
+        width: 100%;
+        padding: 10px;
+        border-radius: 15px;
+        font-size: 14px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .text-price{
+        margin-top: 20px;
+        font-size: 18px;
+        color: #424e5b;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .text-superficie{
+        margin-top: 20px;
+        font-size: 18px;
+        color: #424e5b;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .precioMobile{
+        display: flex;
+        margin-top: 0px;
+        gap: 20px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .precioMobile .item{
+        width: 50%;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .precioMobile .item label{
+        font-size: 12px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .precioMobile .item input{
+        width: 100%;
+        font-size: 14px;
+        padding: 12px;
+        border-radius: 10px;
+        border:1px solid rgb(203, 203, 203);
+    }
+
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .superficieMobile{
+        display: flex;
+        margin-top: 0px;
+        gap: 20px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .superficieMobile .item label{
+        font-size: 12px;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .superficieMobile .item{
+        width: 50%;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros .filtersInMobile .superficieMobile .item input{
+        width: 100%;
+        font-size: 14px;
+        padding: 12px;
+        border-radius: 10px;
+        border:1px solid rgb(203, 203, 203);
+    }
+
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .num-habitaciones{
+        margin-top: 20px;
+    }
         
     .filter-wrapper .filter-options .option-label .options-container .transaccion,
     .filter-wrapper .filter-options .option-label .options-container .tipologia,
     .filter-wrapper .filter-options .option-label .options-container .precio,
     .filter-wrapper .filter-options .option-label .options-container .superficie{
         display: none;
+    }
+
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros{
+        transform: translateY(0%);
+        position: fixed;
+        top: 60px;
+        right: 0px;
+        width: 100vw;
+        border-radius:0px 0px 0px 0px;
+        z-index: 100000;
+        height: calc(100vh + 6px - 65px);
+        padding: 30px 0px 60px 0px;
     }
     
     .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtersInMobile{
@@ -1230,7 +1367,7 @@ height: 100% ;
     }
 
     .container-properties .properties{
-        padding: 30px 10px 30px 10px;
+        padding: 30px 10px 130px 10px;
     }
 
     .container-properties .property{
@@ -1257,6 +1394,14 @@ height: 100% ;
         padding: 0px 10px;
     }
 
+    .filter-wrapper .filter-options .option-label .options-container .mas .modal-mas-filtros .filtros{
+        overflow-y: scroll;
+        height: 100%;
+        padding: 10px;
+    }
+
+    
+
     .container .results-section{
         padding: 0px 10px;
         align-items: flex-start;
@@ -1275,6 +1420,7 @@ height: 100% ;
 
     .container .results-section .results-header .sort-options label{
         font-size: 10px;
+        
     }
     
     .container .results-section .results-header .sort-options select{

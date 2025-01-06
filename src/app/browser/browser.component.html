@@ -85,162 +85,145 @@
                         <p>Mas filtros</p>
                         <img [ngClass]="{ 'rotate': modalToggleFilterActive === 'mas' }" src="https://i.imgur.com/3TUC2WN.png" alt="">
                         <div id="modal" class="modal-mas-filtros" [ngClass]="{ 'modalFilterActive': modalToggleFilterActive === 'mas' }">
-
-
-                            <div class="filtersInMobile">
-                                <div class="tipologia-transaccion">
-                                    <div class="transaccionMobile">
-                                        <select name="" id="">
-                                            <option value="venta">Comprar</option>
-                                            <option value="alquiler">Alquilar</option>
-                                        </select>
-                                    </div>
-                                    <div class="tipologiaMobile">
-                                        <select name="" id="">
-                                            <option value="vivienda">Vivienda</option>
-                                            <option value="edificio">Edificio</option>
-                                            <option value="terreno">Terreno</option>
-                                            <option value="oficina">Oficina</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="precioMobile">
-                                    <div class="item">
-                                        <label for="precioDesde">Desde</label>
-                                        <input type="number" name="precioDesde" id="precioDesde"  [(ngModel)]="filters.precioDesde" (change)="applyFilter()">
-                                    </div>
-                                    <div class="item">
-                                        <label for="precioHasta">Hasta</label>
-                                        <input type="number" name="precioHasta" id="precioHasta"  [(ngModel)]="filters.precioHasta" (change)="applyFilter()">
-                                    </div>
-                                </div>
-                                <div class="superficieMobile">
-                                    <div class="item">
-                                        <label for="tamanoDesde">Desde</label>
-                                        <input type="number" name="tamanoDesde" id="tamanoDesde" [(ngModel)]="filters.tamanoDesde" (change)="applyFilter()">
-                                    </div>
-                                    <div class="item">
-                                        <label for="tamanoHasta">Hasta</label>
-                                        <input type="number" name="tamanoHasta" id="tamanoHasta" [(ngModel)]="filters.tamanoHasta" (change)="applyFilter()">
-                                    </div>
-                                </div>
-                                
-                            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
+                            <img  class="btn-close-modal" src="https://cdn-icons-png.flaticon.com/128/1828/1828774.png" alt="">
                             <div class="filtros">
-                                <div class="num-habitaciones">
-                                    <h2>Habitaciones</h2>
-                                    <ul>
-                                        <li (click)="numberRoomSelected(0)" [class.selected]="filters.habitaciones === 0">Todo</li>
-                                        <li (click)="numberRoomSelected(1)" [class.selected]="filters.habitaciones === 1"><span *ngIf="filters.numeroExactoHabitaciones === false">1+</span><span *ngIf="filters.numeroExactoHabitaciones">1</span></li>
-                                        <li (click)="numberRoomSelected(2)" [class.selected]="filters.habitaciones === 2"><span *ngIf="filters.numeroExactoHabitaciones === false">2+</span><span *ngIf="filters.numeroExactoHabitaciones">2</span></li>
-                                        <li (click)="numberRoomSelected(3)" [class.selected]="filters.habitaciones === 3"><span *ngIf="filters.numeroExactoHabitaciones === false">3+</span><span *ngIf="filters.numeroExactoHabitaciones">3</span></li>
-                                        <li (click)="numberRoomSelected(4)" [class.selected]="filters.habitaciones === 4"><span *ngIf="filters.numeroExactoHabitaciones === false">4+</span><span *ngIf="filters.numeroExactoHabitaciones">4</span></li> 
-                                        <li (click)="numberRoomSelected(5)" [class.selected]="filters.habitaciones === 5"><span *ngIf="filters.numeroExactoHabitaciones === false">5+</span><span *ngIf="filters.numeroExactoHabitaciones">5</span></li> 
-                                        <li (click)="numberRoomSelected(6)" [class.selected]="filters.habitaciones === 6"><span *ngIf="filters.numeroExactoHabitaciones === false">6+</span><span *ngIf="filters.numeroExactoHabitaciones">6</span></li>                      
-                                    </ul>
-                                    <div class="checkbox">
-                                        <input type="checkbox" name="numeroExactoHabitaciones" id="numeroExactoHabitaciones" [(ngModel)]="filters.numeroExactoHabitaciones" (change)="applyFilter()">
-                                        <label for="numeroExactoHabitaciones">Numero exacto de habitaciones</label>
-                                    </div>
-                                    
-                                </div>
-                                <div class="num-banos">
-                                    <h2>Baños</h2>
-                                    <ul>
-                                        <li (click)="numbeBathroomsSelected(0)" [class.selected]="filters.banos === 0">Todo</li>
-                                        <li (click)="numbeBathroomsSelected(1)" [class.selected]="filters.banos === 1"><span *ngIf="filters.numeroExactoBanos === false">1+</span><span *ngIf="filters.numeroExactoBanos">1</span></li>
-                                        <li (click)="numbeBathroomsSelected(2)" [class.selected]="filters.banos === 2"><span *ngIf="filters.numeroExactoBanos === false">2+</span><span *ngIf="filters.numeroExactoBanos">2</span></li>
-                                        <li (click)="numbeBathroomsSelected(3)" [class.selected]="filters.banos === 3"><span *ngIf="filters.numeroExactoBanos === false">3+</span><span *ngIf="filters.numeroExactoBanos">3</span></li>
-                                        <li (click)="numbeBathroomsSelected(4)" [class.selected]="filters.banos === 4"><span *ngIf="filters.numeroExactoBanos === false">4+</span><span *ngIf="filters.numeroExactoBanos">4</span></li> 
-                                        <li (click)="numbeBathroomsSelected(5)" [class.selected]="filters.banos === 5"><span *ngIf="filters.numeroExactoBanos === false">5+</span><span *ngIf="filters.numeroExactoBanos">5</span></li> 
-                                        <li (click)="numbeBathroomsSelected(6)" [class.selected]="filters.banos === 6"><span *ngIf="filters.numeroExactoBanos === false">6+</span><span *ngIf="filters.numeroExactoBanos">6</span></li>                      
-                                    </ul>
-                                    <div class="checkbox">
-                                        <input type="checkbox" name="numeroExactobanos" id="numeroExactobanos"  [(ngModel)]="filters.numeroExactoBanos" (change)="applyFilter()">
-                                        <label for="numeroExactobanos">Numero exacto de Baños</label>
-                                    </div>
-                                </div>
-                                <div class="estado-inmueble">
-                                    <label for="estadoInmueble">Estado del inmueble:</label>
-                                    <select id="estadoInmueble" class="form-control" name="estadoInmueble" [(ngModel)]="filters.estadoInmueble" (change)="applyFilter()">
-                                        <option value="" [disabled]="true">Seleccione una opcion</option>
-                                        <option value="nuevo">Nuevo</option>
-                                        <option value="reformado">Reformado</option>
-                                        <option value="buenEstado">Buen estado</option>
-                                        <option value="malEstado">Mal estado</option>
-                                        <option value="Construccion">En construcción</option>
-                                        <option value="aReformar">Para reformar</option>
-                                    </select>                        
-                                </div>
-                                <div class="filtros-adicionales">
-                                    <h2>Mas Filtros</h2>
-                                    <div class="filtros-container">
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="garaje" name="garaje" [(ngModel)]="filters.garaje" (change)="applyFilter()">
-                                            <label for="garaje">Garaje</label>
+                                    <div class="filtersInMobile">
+                                        <div class="tipologia-transaccion">
+                                            <h2>Transaccion</h2>
+                                            <div class="transaccionMobile">
+                                                <select name="trasaccion" id="transaccion" [(ngModel)]="filters.transaccion" (change)="applyFilter()">
+                                                    <option value="venta">Comprar</option>
+                                                    <option value="alquiler">Alquilar</option>
+                                                </select>
+                                            </div>
+                                            <h2>Tipologia</h2>
+                                            <div class="tipologiaMobile">
+                                                <select name="tipo" id="tipo" [(ngModel)]="filters.tipo" (change)="applyFilter()">
+                                                    <option value="vivienda">Vivienda</option>
+                                                    <option value="edificio">Edificio</option>
+                                                    <option value="terreno">Terreno</option>
+                                                    <option value="oficina">Oficina</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="piscina" name="piscina" [(ngModel)]="filters.piscina" (change)="applyFilter()">
-                                            <label for="piscina">Piscina</label>
+                                        <h2 class="text-price">Precio</h2>
+                                        <div class="precioMobile">
+                                            <div class="item">
+                                                <label for="precioDesde">Desde</label>
+                                                <input type="number" name="precioDesde" id="precioDesde"  [(ngModel)]="filters.precioDesde" (change)="applyFilter()">
+                                            </div>
+                                            <div class="item">
+                                                <label for="precioHasta">Hasta</label>
+                                                <input type="number" name="precioHasta" id="precioHasta"  [(ngModel)]="filters.precioHasta" (change)="applyFilter()">
+                                            </div>
                                         </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="trastero" name="trastero" [(ngModel)]="filters.trastero" (change)="applyFilter()">
-                                            <label for="trastero">Trastero</label>
-                                        </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="jardin" name="jardin" [(ngModel)]="filters.jardin" (change)="applyFilter()">
-                                            <label for="jardin">Jardín</label>
-                                        </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="ascensor" name="ascensor" [(ngModel)]="filters.ascensor" (change)="applyFilter()">
-                                            <label for="ascensor">Ascensor</label>
-                                        </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="gimnasio" name="gimnasio" [(ngModel)]="filters.gimnasio" (change)="applyFilter()">
-                                            <label for="gimnasio">Gimnasio</label>
-                                        </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="aire-acondicionado" name="aire-acondicionado" [(ngModel)]="filters.aireAcondicionado" (change)="applyFilter()">
-                                            <label for="aire-acondicionado">Aire Acondicionado</label>
-                                        </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="calefaccion" name="calefaccion" [(ngModel)]="filters.calefaccion" (change)="applyFilter()">
-                                            <label for="calefaccion">Calefacción</label>
-                                        </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="balcon" name="balcon" [(ngModel)]="filters.balcon" (change)="applyFilter()">
-                                            <label for="balcon">Balcón</label>
-                                        </div>
-                                        <div class="filtro-item">
-                                            <input type="checkbox" id="terraza" name="terraza" [(ngModel)]="filters.terraza" (change)="applyFilter()">
-                                            <label for="terraza">Terraza</label>
+                                        <h2 class="text-superficie">Superficie</h2>
+                                        <div class="superficieMobile">
+                                            <div class="item">
+                                                <label for="tamanoDesde">Desde</label>
+                                                <input type="number" name="tamanoDesde" id="tamanoDesde" [(ngModel)]="filters.tamanoDesde" (change)="applyFilter()">
+                                            </div>
+                                            <div class="item">
+                                                <label for="tamanoHasta">Hasta</label>
+                                                <input type="number" name="tamanoHasta" id="tamanoHasta" [(ngModel)]="filters.tamanoHasta" (change)="applyFilter()">
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="num-habitaciones">
+                                        <h2>Habitaciones</h2>
+                                        <ul>
+                                            <li (click)="numberRoomSelected(0)" [class.selected]="filters.habitaciones === 0">Todo</li>
+                                            <li (click)="numberRoomSelected(1)" [class.selected]="filters.habitaciones === 1"><span *ngIf="filters.numeroExactoHabitaciones === false">1+</span><span *ngIf="filters.numeroExactoHabitaciones">1</span></li>
+                                            <li (click)="numberRoomSelected(2)" [class.selected]="filters.habitaciones === 2"><span *ngIf="filters.numeroExactoHabitaciones === false">2+</span><span *ngIf="filters.numeroExactoHabitaciones">2</span></li>
+                                            <li (click)="numberRoomSelected(3)" [class.selected]="filters.habitaciones === 3"><span *ngIf="filters.numeroExactoHabitaciones === false">3+</span><span *ngIf="filters.numeroExactoHabitaciones">3</span></li>
+                                            <li (click)="numberRoomSelected(4)" [class.selected]="filters.habitaciones === 4"><span *ngIf="filters.numeroExactoHabitaciones === false">4+</span><span *ngIf="filters.numeroExactoHabitaciones">4</span></li> 
+                                            <li (click)="numberRoomSelected(5)" [class.selected]="filters.habitaciones === 5"><span *ngIf="filters.numeroExactoHabitaciones === false">5+</span><span *ngIf="filters.numeroExactoHabitaciones">5</span></li> 
+                                            <li (click)="numberRoomSelected(6)" [class.selected]="filters.habitaciones === 6"><span *ngIf="filters.numeroExactoHabitaciones === false">6+</span><span *ngIf="filters.numeroExactoHabitaciones">6</span></li>                      
+                                        </ul>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="numeroExactoHabitaciones" id="numeroExactoHabitaciones" [(ngModel)]="filters.numeroExactoHabitaciones" (change)="applyFilter()">
+                                            <label for="numeroExactoHabitaciones">Numero exacto de habitaciones</label>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="num-banos">
+                                        <h2>Baños</h2>
+                                        <ul>
+                                            <li (click)="numbeBathroomsSelected(0)" [class.selected]="filters.banos === 0">Todo</li>
+                                            <li (click)="numbeBathroomsSelected(1)" [class.selected]="filters.banos === 1"><span *ngIf="filters.numeroExactoBanos === false">1+</span><span *ngIf="filters.numeroExactoBanos">1</span></li>
+                                            <li (click)="numbeBathroomsSelected(2)" [class.selected]="filters.banos === 2"><span *ngIf="filters.numeroExactoBanos === false">2+</span><span *ngIf="filters.numeroExactoBanos">2</span></li>
+                                            <li (click)="numbeBathroomsSelected(3)" [class.selected]="filters.banos === 3"><span *ngIf="filters.numeroExactoBanos === false">3+</span><span *ngIf="filters.numeroExactoBanos">3</span></li>
+                                            <li (click)="numbeBathroomsSelected(4)" [class.selected]="filters.banos === 4"><span *ngIf="filters.numeroExactoBanos === false">4+</span><span *ngIf="filters.numeroExactoBanos">4</span></li> 
+                                            <li (click)="numbeBathroomsSelected(5)" [class.selected]="filters.banos === 5"><span *ngIf="filters.numeroExactoBanos === false">5+</span><span *ngIf="filters.numeroExactoBanos">5</span></li> 
+                                            <li (click)="numbeBathroomsSelected(6)" [class.selected]="filters.banos === 6"><span *ngIf="filters.numeroExactoBanos === false">6+</span><span *ngIf="filters.numeroExactoBanos">6</span></li>                      
+                                        </ul>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="numeroExactobanos" id="numeroExactobanos"  [(ngModel)]="filters.numeroExactoBanos" (change)="applyFilter()">
+                                            <label for="numeroExactobanos">Numero exacto de Baños</label>
+                                        </div>
+                                    </div>
+                                    <div class="estado-inmueble">
+                                        <label for="estadoInmueble">Estado del inmueble:</label>
+                                        <select id="estadoInmueble" class="form-control" name="estadoInmueble" [(ngModel)]="filters.estadoInmueble" (change)="applyFilter()">
+                                            <option value="" [disabled]="true">Seleccione una opcion</option>
+                                            <option value="nuevo">Nuevo</option>
+                                            <option value="reformado">Reformado</option>
+                                            <option value="buenEstado">Buen estado</option>
+                                            <option value="malEstado">Mal estado</option>
+                                            <option value="Construccion">En construcción</option>
+                                            <option value="aReformar">Para reformar</option>
+                                        </select>                        
+                                    </div>
+                                    <div class="filtros-adicionales">
+                                        <h2>Mas Filtros</h2>
+                                        <div class="filtros-container">
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="garaje" name="garaje" [(ngModel)]="filters.garaje" (change)="applyFilter()">
+                                                <label for="garaje">Garaje</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="piscina" name="piscina" [(ngModel)]="filters.piscina" (change)="applyFilter()">
+                                                <label for="piscina">Piscina</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="trastero" name="trastero" [(ngModel)]="filters.trastero" (change)="applyFilter()">
+                                                <label for="trastero">Trastero</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="jardin" name="jardin" [(ngModel)]="filters.jardin" (change)="applyFilter()">
+                                                <label for="jardin">Jardín</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="ascensor" name="ascensor" [(ngModel)]="filters.ascensor" (change)="applyFilter()">
+                                                <label for="ascensor">Ascensor</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="gimnasio" name="gimnasio" [(ngModel)]="filters.gimnasio" (change)="applyFilter()">
+                                                <label for="gimnasio">Gimnasio</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="aire-acondicionado" name="aire-acondicionado" [(ngModel)]="filters.aireAcondicionado" (change)="applyFilter()">
+                                                <label for="aire-acondicionado">Aire Acondicionado</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="calefaccion" name="calefaccion" [(ngModel)]="filters.calefaccion" (change)="applyFilter()">
+                                                <label for="calefaccion">Calefacción</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="balcon" name="balcon" [(ngModel)]="filters.balcon" (change)="applyFilter()">
+                                                <label for="balcon">Balcón</label>
+                                            </div>
+                                            <div class="filtro-item">
+                                                <input type="checkbox" id="terraza" name="terraza" [(ngModel)]="filters.terraza" (change)="applyFilter()">
+                                                <label for="terraza">Terraza</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="footer">
-                                <button class="btn-reset" (click)="resetFilters()">Resetear</button>
-                                <button class="btn-filtrar" (click)="applyAdditionalFilters()">Aplicar filtros</button>
-                            </div>   
+                                <div class="footer">
+                                    <button class="btn-reset" (click)="resetFilters()">Resetear</button>
+                                    <button class="btn-filtrar" (click)="applyAdditionalFilters()">Aplicar filtros</button>
+                                </div>   
                         </div>
                     </div>
                 </div>
@@ -252,8 +235,8 @@
     <div class="results-section">
         <div class="results-header">
             <div class="results-count">
-                <p *ngIf="numResults <= 1">{{numResults}} Resultado</p>
-                <p *ngIf="numResults > 1">{{numResults}} Resultados</p>
+                <!-- <p *ngIf="numResults <= 1">{{numResults}} Resultado</p>
+                <p *ngIf="numResults > 1">{{numResults}} Resultados</p> -->
             </div>
             <div class="sort-options">
                 <label for="sort" >Ordenar Por</label>
@@ -270,9 +253,13 @@
     
     <!-- properties container -->
     <div class="container-properties">
+        
         <!-- Aquí se mostrará la lista de propiedades filtradas -->
         <div class="properties" [ngClass]="{'grid-dos-columnas': viewPropertyActive === true} ">
-            <div [ngClass]="{'selected-property': selectedPropertyId === property.id_property}" class="property" *ngFor="let property of filteredProperties; let i = index" >
+            <div *ngIf="mainLoadingActive" class="main-loading">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="4" width="6" height="14" opacity="1"><animate id="spinner_aqiq" begin="0;spinner_xVBj.end-0.25s" attributeName="y" dur="0.75s" values="1;5" fill="freeze"/><animate begin="0;spinner_xVBj.end-0.25s" attributeName="height" dur="0.75s" values="22;14" fill="freeze"/><animate begin="0;spinner_xVBj.end-0.25s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></rect><rect x="9" y="4" width="6" height="14" opacity=".4"><animate begin="spinner_aqiq.begin+0.15s" attributeName="y" dur="0.75s" values="1;5" fill="freeze"/><animate begin="spinner_aqiq.begin+0.15s" attributeName="height" dur="0.75s" values="22;14" fill="freeze"/><animate begin="spinner_aqiq.begin+0.15s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></rect><rect x="17" y="4" width="6" height="14" opacity=".3"><animate id="spinner_xVBj" begin="spinner_aqiq.begin+0.3s" attributeName="y" dur="0.75s" values="1;5" fill="freeze"/><animate begin="spinner_aqiq.begin+0.3s" attributeName="height" dur="0.75s" values="22;14" fill="freeze"/><animate begin="spinner_aqiq.begin+0.3s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></rect></svg>
+            </div>
+            <div [ngClass]="{'selected-property': selectedPropertyId === property.id_property}" class="property" *ngFor="let property of dataProperties; let i = index" >
                 
                 <!-- <div class="splide" [style.view-transition-name]="'fotos'+property.sku"> -->
                 <div class="splide" [style.view-transition-name]="property.sku">
@@ -299,15 +286,17 @@
                     </div>
                 </div>
             </div>
+            <div *ngIf="loadinNewPropertiesgActive" class="loading-new-properties">
+                <svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 40 60 16" enable-background="new 0 0 0 0" xml:space="preserve"><circle fill="currentColor" stroke="none" cx="6" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/></circle><circle fill="currentColor" stroke="none" cx="26" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/></circle><circle fill="currentColor" stroke="none" cx="46" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/></circle></svg>
+            </div>
         </div>
        
 
-    
         
     </div>
 
     <!-- footer -->
-    <footer>
+    <!-- <footer #footer>
         <app-footer></app-footer>
-    </footer>
+    </footer> -->
 </div>

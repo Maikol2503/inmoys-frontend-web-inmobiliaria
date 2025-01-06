@@ -238,3 +238,90 @@ border-radius: 20px;
 .section-form-and-info .additional-info .horarios p{
   margin-top: 10px;
 }
+
+
+
+
+
+@media (max-width:920px){
+  .section-form-and-info{
+    flex-direction: column-reverse;
+    padding: 20px;
+  }
+
+  .section-form-and-info .additional-info{
+    width: 100%;
+    padding:0px;
+  }
+
+  
+
+  .form{
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+
+@media (max-width:550px){
+  .section-form-and-info{
+    padding: 40px 10px;
+  }
+
+
+  .section-form-and-info .additional-info .assistance-title{
+    font-size: 18px;
+  }
+
+
+  .section-form-and-info .additional-info .contact-subtitle{
+    font-size: 30px;
+  }
+
+
+  .section-form-and-info .additional-info .assistance-description{
+    
+    font-size: 14px;
+  }
+
+  .section-form-and-info .additional-info .contact-title{
+    font-size: 18px;
+  }
+
+  .section-form-and-info .additional-info .correo h2{
+    font-size: 18px;
+  }
+  
+  .section-form-and-info .additional-info .whatsapp p a{
+    font-size: 14px;
+  }
+
+  .section-form-and-info .additional-info .telefono p a{
+    font-size: 14px;
+  }
+
+  .section-form-and-info .additional-info .correo p a{
+    font-size: 14px;
+  }
+
+  .section-form-and-info .additional-info .horarios{
+    border-radius: 10px;
+    }
+
+  .form{
+    padding: 30px 20px;
+    border-radius: 10px;
+  }
+
+  .inputs{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+
+  label {
+    font-size: 12px;
+    color: #696969;
+  }
+}

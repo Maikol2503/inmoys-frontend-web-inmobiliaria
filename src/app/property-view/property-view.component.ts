@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MailService } from '../services/mail.service';
 import { Location } from '@angular/common';
 import { Imagen } from '../services/imagesPropertiesModel';
+import { firstValueFrom } from 'rxjs';
 
 
 
@@ -37,7 +38,7 @@ export class PropertyViewComponent implements OnInit {
   modalFullScreenActive = false
   selectedImageIndex: number = 0; 
   formulario: FormGroup;
-
+  mainLoadingActive = true
   contact = {
     nombre: '',
     apellido:'',
@@ -72,21 +73,25 @@ export class PropertyViewComponent implements OnInit {
 
 
 
-  getProperty(){
-    this.servicesProperties.getPropertyBySkuSimilar(this.skuProperty).subscribe(
-      (data:any)=>{
-        this.dataProperty=data;
-        console.log(this.dataProperty)
-        if (this.dataProperty) {
-          this.esDestacado = this.dataProperty.destacado == 1 ? 'destacado' : '';
-          this.imagenes = this.dataProperty.image || [];  // Asigna las imágenes si existen
-          this.idDeLaPropiedad = this.dataProperty.id_property;  // Asigna el ID de la propiedad
-        }
-      },
-      (error)=>{
-        console.error('Error al cargar lapropiedad:', error);
-      }
-    )
+ async getProperty(){
+    this.dataProperty = await firstValueFrom(this.servicesProperties.getPropertyBySkuSimilar(this.skuProperty));
+    this.imagenes = this.dataProperty.image || [];  // Asigna las imágenes si existen
+    this.idDeLaPropiedad = this.dataProperty.id_property; 
+    this.mainLoadingActive = false
+    // this.servicesProperties.getPropertyBySkuSimilar(this.skuProperty).subscribe(
+    //   (data:any)=>{
+    //     this.dataProperty=data;
+    //     console.log(this.dataProperty)
+    //     if (this.dataProperty) {
+    //       this.esDestacado = this.dataProperty.destacado == 1 ? 'destacado' : '';
+    //       this.imagenes = this.dataProperty.image || [];  // Asigna las imágenes si existen
+    //       this.idDeLaPropiedad = this.dataProperty.id_property;  // Asigna el ID de la propiedad
+    //     }
+    //   },
+    //   (error)=>{
+    //     console.error('Error al cargar lapropiedad:', error);
+    //   }
+    // )
   }
 
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PropertiesService } from '../services/properties.service';
 import { Propiedad } from '../services/propertiesModel';
@@ -37,11 +37,20 @@ export class BrowserComponent implements OnInit {
   selectedPropertyId: number | null = null;
   numResults = 0
   page = 1
-  limit = 10
+  limit = 6
+
+  loadinNewPropertiesgActive = false
+  isLoading = false
+  noMoreProperties = false
+  newPropertiesData: any
+  mainLoadingActive = true
+
+  // @ViewChild('footer') footer!: ElementRef;
+  
   
   // Definir los filtros
   filters = {
-    tipo: '',
+    tipo: 'vivienda',
     precioDesde:0,
     precioHasta:0,
     tamanoDesde:0,
@@ -103,48 +112,69 @@ clickOutside(event: MouseEvent) {
           this.closeToggleModal();
       }
 }
+
+
+
+
+// Escucha el evento de scroll en la ventana
+@HostListener('window:scroll', [])
+async onWindowScroll(): Promise<void>  {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+    // const footerHeight = this.footer.nativeElement.offsetHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight) {
+      
+      this.loadinNewPropertiesgActive = true
+      // Verificar si ya estás cargando datos para evitar llamadas duplicadas
+      if (this.isLoading || this.noMoreProperties) {
+       this.loadinNewPropertiesgActive = false
+        return;
+      }
+  
+      this.isLoading = true; // Indicar que se está cargando más contenido
+      this.filters.offset += 1;
+      const filters = this.cleanFilters(this.filters) 
+
+      this.servicesProperties.filteresProperties(filters).subscribe({
+        next: (data: Propiedad[]) => {
+          this.newPropertiesData = data
+          
+          if (this.newPropertiesData.length === 0) {
+            this.noMoreProperties = true; // No hay más propiedades para cargar
+            console.log('No hay más propiedades disponibles');
+            this.loadinNewPropertiesgActive = false
+          } else {
+            this.dataProperties = [...this.dataProperties, ...this.newPropertiesData];
+            this.loadinNewPropertiesgActive = false
+          }
+        },
+        error: (err) => {
+          console.error('Error al obtener propiedades', err);
+        },
+        complete: () => {
+          this.isLoading = false; // Finalizar estado de carga
+          this.loadinNewPropertiesgActive = false
+        }
+      });
+    }
+  }
+
+async checkLoadingState(): Promise<void> {
+    if (this.dataProperties.length >= 0) {
+        this.mainLoadingActive = false;
+    } 
+}
   
 
 // Cargar todas las propiedades disponibles
-loadProperties(filters:any) {
-    this.servicesProperties.filteresProperties(filters).subscribe(
-      (data) => {
-        this.dataProperties = data;
-        this.filteredProperties = data; // Inicialmente, mostrar todas las propiedades
-        this.numResults = data.length
-        
-      },
-      (error) => {
-        console.error('Error al cargar todas las propiedades:', error);
-      }
-    );
+async loadProperties(filters:any): Promise<void>  {
+    this.dataProperties = await firstValueFrom(this.servicesProperties.filteresProperties(filters));
+    this.numResults = this.dataProperties.length
+    this.checkLoadingState()
 }
 
-
- 
-
-
-async viewProperty(idProperty: number | undefined) {
-    this.selectedPropertyId = idProperty ?? 0;
-    this.viewPropertyActive = true;
-    this.resetSlider = false;
-
-    // Esperar un pequeño tiempo y luego volver a mostrar el slider
-    setTimeout(() => {
-      this.resetSlider = true;
-    }, 50);  // 50ms es suficiente para el re-render
-
-    // this.dataProperty = this.getProperty(id)
-  
-    this.servicesProperties.getPropertyById(this.selectedPropertyId).subscribe(
-      (data)=>{
-        this.dataProperty = data
-      },
-      (error)=>{
-        console.error('Error al cargar todas las propiedades:', error);
-      }
-    )
-}
 
 
 // cierro la seccion donde se vizualiza la propiedad seleccionada
@@ -168,10 +198,15 @@ cleanFilters(filters: any): any {
 
  
 // Aplicar los filtros a las propiedades
-applyFilter() {
+async applyFilter(): Promise<void>  {
     // Limpiar los filtros antes de enviarlos
+    this.noMoreProperties = false
+    this.filters.offset = 1
+    this.dataProperties = []
+    this.newPropertiesData = []
+    this.mainLoadingActive = true
     const cleanFilters = this.cleanFilters(this.filters);
-    this.loadProperties(cleanFilters); // Cargar propiedades filtradas desde el backend
+    await this.loadProperties(cleanFilters); // Cargar propiedades filtradas desde el backend
     this.actualizarUrl(cleanFilters)
 }
 
@@ -224,13 +259,16 @@ toggleModal(filter: string, event: MouseEvent) {
 closeToggleModal(event?: MouseEvent) {
   // Verifica si el clic proviene de dentro del modal y no lo cierra
   const targetElement = event?.target as HTMLElement;
-  
-  if (targetElement?.closest('.modal') || targetElement?.closest('.modalPrecio') || targetElement?.closest('.modalTamano') || targetElement?.closest('.mas')) {
+  if(targetElement?.closest('.btn-close-modal')){
+      this.modalToggleFilterActive = '';
+      return
+  } else if (targetElement?.closest('.modal') || targetElement?.closest('.modalPrecio') || targetElement?.closest('.modalTamano') || targetElement?.closest('.mas')) {
       return;  // No cierra el modal si el clic fue dentro del mismo
-  }
-
+  } 
   this.modalToggleFilterActive = '';  // Cierra el modal si el clic fue fuera de él
 }
+
+
 
 
 applyAdditionalFilters(){
@@ -255,7 +293,7 @@ numbeBathroomsSelected(numberSelected:number){
 
 resetFilters() {
   this.filters = {
-    tipo: '',
+    tipo: 'vivienda',
     precioDesde: 0,
     precioHasta: 0,
     tamanoDesde: 0,
